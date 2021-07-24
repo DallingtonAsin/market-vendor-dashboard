@@ -1,0 +1,78 @@
+
+
+.white_box{display:block; width:100%; padding:15px; background:#fff; border-radius: 10px;}
+.page_head{display:block; width:100%;font-size:24px; font-weight:400;margin:10px 0px 30px; color:#000;}
+.form_head{display:block; width:100%;font-size: 14;margin-bottom: 5px;color: #9A9A9A;}
+.flt{display:block;}
+.form-control{margin-bottom: 20px; }
+.mt-20{margin-top: 20px; }
+.ref_form .form-control::placeholder{font-size: 14px;font-weight:500;}
+.ref_form .form-control:focus{border-color:#000;}
+.btn-ref .btn-info{background:#34b5b8; color:#fff !important;border-radius:30px;}
+.ref_link a {color: #FFFFFF;display: block;text-decoration: none;text-transform: uppercase;cursor: pointer;font-size: 12px;padding: 10px 8px 10px 65px;opacity: .7;}
+.btn-ref .btn-secondary{background:#8d8a8a; border-radius:30px; color:#fff !important;margin-left: 15px;}
+.custom-control{display: inline;}
+.custom-file-input:focus , .custom-control-input:focus{box-shadow:none;}
+.ref_btn {text-align: center;}
+.ref_btn .btn-info , .btn-danger ,  .btn-success{padding:3px 5px;}
+.ref_btn .btn-info{margin-right: 10px;}
+.btn_refrs .btn-info{background:#34b5b8; color:#fff !important;border-radius:30px;font-weight:400; font-size:10px;padding:10px 12px 8px;}
+.chervon_mot i{font-size:12px !important;}
+.ref-collapse[aria-expanded='false']  .chervon_mot i {transform:  rotate(90deg);}
+.login {    background-color: #013243;}
+.dispay_inline{display:inline-block; width:100%;}
+.login-pg{float:left;width:100%;}
+.header-logo{ float: left; width:100%; margin-top:70px; text-align: center; }
+.link{display:inline-block;}
+.panel-header-sign-up{float: left; width: 100%; text-align: center;color: #fff !important;font-size:35px; margin-top:25px;}
+.panel-header{float: left; width: 100%; text-align: center;color: #fff; font-size:16px;}
+.header-logo img{max-width:100%;}
+.login-form{float: left;width:100%; }
+.login-form .form-group{ margin-bottom:20px;}
+.padding-box{padding:30px;float: left;width:100%; }
+.sign-up-btn{ float: left; width: 100%;}
+.login-form .form-control{border:1px solid #e9e9e9;box-shadow:none;height:auto;padding:10px 12px; border-radius:10px;}
+.login-form .btn-info{width:100%; border-radius:10px; background: #02e079;border:none;padding:15px 12px;}
+.login-form .btn-info:hover{background-color:#238859;}
+.login-form .btn-info:active{background-color:#06b664;}
+.login-form .form-control-feedback{top: 18px;height: 16px; width:23px; right: 12px; color:#777;}
+.login-form .form-control:focus{ background:#eee;}
+.flashmessage {background: #4caf50;color: #ffffff;font:14px "Muli", sans-serif;position: fixed;right:0px;top: -65px;height: 62px;
+line-height: 62px;padding-left: 80px;left: 0px;box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);transition: all 1s cubic-bezier(1, -0.01, 0, 0.99) 0s;
+z-index: 9999;}
+.flashmessage i {background: #388e3c;animation: 1s ease 0s normal none 1 running alert-icon-anim;bottom: 0;font-size: 35px;left: 0;position: absolute;
+text-align: center;text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.15);top: 0;line-height: 60px;width: 60px;}
+.flashmessage.show {top:0px;}
+.flashmessage-error {background: #F2DEDE;color: #B31111 !important;font:14px "Muli", sans-serif !important;position: fixed;right:0px;top: -65px;height: 62px;line-height: 62px !important;padding-left: 80px;left: 0px;box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);transition: all 1s cubic-bezier(1, -0.01, 0, 0.99) 0s;z-index: 9999;}
+.flashmessage-error i {background: #B41111;animation: 1s ease 0s normal none 1 running alert-icon-anim;bottom: 0;font-size: 35px;color: #F2DEDE;left: 0;position: absolute;text-align: center;text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.15);top: 0;line-height: 60px;width: 60px;}
+
+.poppay-flash-mask{position:fixed;left:0;right:0;top:0;bottom:0;background:rgba(0,0,0,0.5);z-index:100000;content:'';}
+.poppay-flash-notify{position:fixed;top:200px;right:0;width:auto;background:#fff;color:#333;padding:10px;border-radius:2px;font-size:16px;z-index:1000000;font-weight:500;text-align:center;transform:scale(0,0);-webkit-transform:scale(0,0);transition:all 1s ease 0s;-webkit-transition:all 1s ease 0s;cursor:pointer;border:1px solid #F99712;}
+.poppay-flash-notify.show{transform:scale(1,1);-webkit-transform:scale(1,1);}
+.poppay-flash-notify i{margin:0 10px 0 0;}
+
+[type="date"] {
+  background:#fff url('../../img/calendar.png')  97% 50% no-repeat ;
+}
+[type="date"]::-webkit-inner-spin-button {
+  display: none;
+}
+[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+}
+
+input[type="date"] {
+  border: 1px solid #c4c4c4;
+  border-radius: 5px;
+  background-color: #fff;
+  padding: 3px 5px;
+  box-shadow: inset 0 3px 6px rgba(0,0,0,0.1);
+  width: 190px;
+}
+
+.errors{color:red;}
+.hint{color:red;}
+.cancel_btn{background: #ff3333;padding: 11px 12px;margin-left: 8px;}
+.cancel_btn:hover{background: #cc0000;}
+
+.star_color{color:#e1de0f;}

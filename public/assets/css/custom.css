@@ -1,0 +1,10 @@
+.logo {
+  outline: 5px solid #fff;
+  outline-offset: -3px;
+}
+
+.slot-section{
+  font-family: 'Roboto', sans-serif;
+  font-size:  14px;
+  color:  #2e3238;
+}

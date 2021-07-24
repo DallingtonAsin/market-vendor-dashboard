@@ -1,0 +1,2 @@
+<button type="button" class="btn btn-primary btn-sm" wire:click.prevent="edit(1)" data-toggle="modal" data-target="#editClient"><i class="fa fa-pencil"></i></button>
+                            <button type="button" class="btn btn-danger btn-sm" wire:click="comfirmDelModal(2)" data-toggle="modal" data-target="#deleteClient"><i class="fa fa-trash"></i></button>
