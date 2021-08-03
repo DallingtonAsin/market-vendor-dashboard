@@ -1,13 +1,13 @@
 <div class="sidebar" data-color="white" data-active-color="danger">
     <div class="logo">
 
-        <a href="index" class="simple-text logo-mini">
+        <a href="{{ route('home') }}" class="simple-text logo-mini">
             <div class="logo-image-small">
                 <img src="/img/logos/logo2.png">
             </div>
         </a>
 
-        <a href="index" class="simple-text logo-normal">
+        <a href="{{ route('home') }}" class="simple-text logo-normal">
             @include('components.company-name')
         </a>
     </div>
@@ -20,7 +20,7 @@
                 </a>
             </li>
 
-            @cannot('isAdmin')
+            @can('isAdmin')
             <li>
                 <a data-toggle="collapse" data-target="#roles" aria-expanded='false' class="ref-collapse">
                     <i class="nc-icon nc-circle-10"></i>

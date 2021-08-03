@@ -3,7 +3,7 @@
 namespace App\DataTables;
 use Yajra\DataTables\Services\DataTable;
 use App\Helpers\ApiRequestResponse;
-use App\Models\MonthlyRequest;
+use App\Models\MonthlyReview;
 
 class MonthlyRequestDataTable extends DataTable
 {
@@ -28,7 +28,7 @@ class MonthlyRequestDataTable extends DataTable
      * @param \request $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(MonthlyRequest $model)
+    public function query(MonthlyReview $model)
     {
         
             $endPoint = '/reports/requests/review';
@@ -37,7 +37,7 @@ class MonthlyRequestDataTable extends DataTable
             $data = $apiResult['data'];
             // dd($data);
             // $data = json_encode($data);
-            $data = MonthlyRequest::hydrate($data);
+            $data = MonthlyReview::hydrate($data);
             return $data; 
     }
 

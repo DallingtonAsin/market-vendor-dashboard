@@ -7,6 +7,7 @@ use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use App\Helpers\ApiRequestResponse;
 use Livewire\WithFileUploads;
+use App\Helpers\EndPoints;
 use Helper;
 
 class Edit extends Component
@@ -42,25 +43,31 @@ class Edit extends Component
 
     }
 
-    public function update(Request $request){
-
-        $reqParams = $this->validate([
-         'first_name' => 'required|min:3',
-         'last_name' => 'required|min:3',
-         'username' => 'required',
-         'email' => 'required|email',
-         'gender' => 'required',
-         'mobile_no' => 'required',
-         'address' => 'required',
-         'nin' => 'required',
-     ]);
+   public function update(){
+  $formData = $this->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'username' => 'required',
+            'email' => 'required|email',
+            'gender' => 'required',
+            'mobile_no' => 'required',
+            'user_role' => 'required',
+            'address' => 'required',
+            'nin' => 'required',
+        ]);
 
         $fileData = [];
 
-        if($this->photo){
+
+        try{
+            $user_id = Auth::user()->id;
+            if($user_id){
+
+
+                if($this->photo){
                     $this->validate([
-                       'photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-                   ]);
+                     'photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                 ]);
                     $fileData['photo'] = $this->photo; 
                     $fileData['file_path'] = $this->photo->getPathname();
                     $fileData['fileRealPath'] = $this->photo->getRealPath();
@@ -68,30 +75,52 @@ class Edit extends Component
                     $fileData['file_name'] = $this->photo->getClientOriginalName();
                 }
 
+                $filename = isset($fileData['file_name']) ? $fileData['file_name'] : '';
+                $filemime = isset($fileData['file_mime']) ? $fileData['file_mime'] : '';
+                $fileRealPath = isset($fileData['fileRealPath']) ? $fileData['fileRealPath'] : '';
+                $file_contents = !empty($fileRealPath) ? fopen($fileData['fileRealPath'], 'r') : '';
 
-         $reqParams['user_role'] = Auth::user()->role;
-         $reqParams['user_id'] = Auth::user()->role;
-         $reqParams['id'] = Auth::user()->id; 
+                $endPoint = '/users';
+                $baseApiUrl = EndPoints::$BASE_URL;
+                $url = $baseApiUrl . $endPoint;
+                // dd($formData);
 
-    
-        try{
 
-            
+                $request = ApiRequestResponse::httpObj()->request('POST',$url,[
+                    'multipart' => [
+                        ['name' => 'photo',
+                        'filename' => $filename,
+                        'Mime-Type' => $filemime,
+                        'contents' => $file_contents ,
+                    ],
+                ['name' => 'user_id', 'contents' => $user_id],
+                ['name' => 'id', 'contents' => $user_id],
+                ['name' => 'first_name', 'contents' => $this->first_name],
+                ['name' => 'last_name', 'contents' => $this->last_name],
+                 ['name' => 'username', 'contents' => $this->username],
+                ['name' => 'email' , 'contents' => $this->email],
+                ['name' => 'gender' , 'contents' => $this->gender],
+                ['name' => 'mobile_no', 'contents' => $this->mobile_no],
+                ['name' => 'user_role', 'contents' => $this->user_role],
+                ['name' => 'address', 'contents' => $this->address],
+                ['name' => 'nin', 'contents' =>$this->nin], 
+                ],
+                
+            ]);
 
-            // dd($reqParams);
+                $resp = $request->getBody()->getContents();
+                $apiResult = json_decode($resp, true);
+                $statusCode = $apiResult['statusCode'];
+                $message = $apiResult['message'];
+                $data = $apiResult['data'];
 
-            $endPoint = '/users';
-            $resp = ApiRequestResponse::PostDataWithFileByEndPoint($endPoint, $reqParams, $fileData);
-            $apiResult = json_decode($resp, true);
-            $statusCode = $apiResult['statusCode'];
-            $message = $apiResult['message'];
-            $data = $apiResult['data'];
-           
-
-            if($statusCode == '1'){
-               session()->flash('success', $message);
-           }else{
-            session()->flash('error',   $message);
+                if($statusCode == '1'){
+                   session()->flash('success', $message);
+               }else{
+                session()->flash('error',   $message);
+            }
+        }else{
+            session()->flash('error',   "Login to update profile");
         }
 
     }catch(\Exception $ex){
@@ -99,6 +128,7 @@ class Edit extends Component
    }
 
 }
+
 
 
 public function updatee(Request $request, $id)

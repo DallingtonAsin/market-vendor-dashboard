@@ -59,7 +59,6 @@ class Add extends Component
             $user_id = Auth::user()->id;
             if($user_id){
 
-                $formData['user_id'] = $user_id;
 
                 if($this->photo){
                     $this->validate([
@@ -80,6 +79,8 @@ class Add extends Component
                 $endPoint = '/users';
                 $baseApiUrl = EndPoints::$BASE_URL;
                 $url = $baseApiUrl . $endPoint;
+                // dd($formData);
+
 
                 $request = ApiRequestResponse::httpObj()->request('POST',$url,[
                     'multipart' => [
@@ -88,6 +89,7 @@ class Add extends Component
                         'Mime-Type' => $filemime,
                         'contents' => $file_contents ,
                     ],
+                ['name' => 'user_id', 'contents' => $user_id],
                 ['name' => 'first_name', 'contents' => $this->first_name],
                 ['name' => 'last_name', 'contents' => $this->last_name],
                 ['name' => 'email' , 'contents' => $this->email],
@@ -95,14 +97,13 @@ class Add extends Component
                 ['name' => 'mobile_no', 'contents' => $this->mobile_no],
                 ['name' => 'user_role', 'contents' => $this->user_role],
                 ['name' => 'address', 'contents' => $this->address],
-                ['name' => 'nin', 'contents' =>$this->address], 
+                ['name' => 'nin', 'contents' =>$this->nin], 
                 ],
                 
             ]);
+
                 $resp = $request->getBody()->getContents();
                 $apiResult = json_decode($resp, true);
-                dd($apiResult);
-
                 $statusCode = $apiResult['statusCode'];
                 $message = $apiResult['message'];
                 $data = $apiResult['data'];
@@ -142,42 +143,86 @@ public function cancel(){
 }
 
 public function update(){
+  $formData = $this->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|email',
+            'gender' => 'required',
+            'mobile_no' => 'required',
+            'user_role' => 'required',
+            'address' => 'required',
+            'nin' => 'required',
+        ]);
 
-    $reqParams = $this->validate([
-     'first_name' => 'required|min:6',
-     'last_name' => 'required|min:6',
-     'email' => 'required|email',
-     'gender' => 'required',
-     'mobile_no' => 'required',
-     'user_role' => 'required',
-     'address' => 'required',
-     'nin' => 'required',
- ]);
+        $fileData = [];
 
-    try{
-        $user_id = Auth::user()->id;
-        if($user_id){
-            $reqParams['user_id'] = $user_id;
-            $endPoint = '/users';
-            $resp = ApiRequestResponse::PostDataByEndPoint($endPoint, $reqParams);
-            $apiResult = json_decode($resp, true);
-            $statusCode = $apiResult['statusCode'];
-            $message = $apiResult['message'];
-            $data = $apiResult['data'];
 
-            if($statusCode == '1'){
-               session()->flash('success', $message);
-               $this->resetInputFields();
-           }else{
-            session()->flash('error',   $message);
+        try{
+            $user_id = Auth::user()->id;
+            if($user_id){
+
+
+                if($this->photo){
+                    $this->validate([
+                     'photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                 ]);
+                    $fileData['photo'] = $this->photo; 
+                    $fileData['file_path'] = $this->photo->getPathname();
+                    $fileData['fileRealPath'] = $this->photo->getRealPath();
+                    $fileData['file_mime'] = $this->photo->getMimeType('image');
+                    $fileData['file_name'] = $this->photo->getClientOriginalName();
+                }
+
+                $filename = isset($fileData['file_name']) ? $fileData['file_name'] : '';
+                $filemime = isset($fileData['file_mime']) ? $fileData['file_mime'] : '';
+                $fileRealPath = isset($fileData['fileRealPath']) ? $fileData['fileRealPath'] : '';
+                $file_contents = !empty($fileRealPath) ? fopen($fileData['fileRealPath'], 'r') : '';
+
+                $endPoint = '/users';
+                $baseApiUrl = EndPoints::$BASE_URL;
+                $url = $baseApiUrl . $endPoint;
+                // dd($formData);
+
+
+                $request = ApiRequestResponse::httpObj()->request('POST',$url,[
+                    'multipart' => [
+                        ['name' => 'photo',
+                        'filename' => $filename,
+                        'Mime-Type' => $filemime,
+                        'contents' => $file_contents ,
+                    ],
+                ['name' => 'user_id', 'contents' => $user_id],
+                ['name' => 'id', 'contents' => $user_id],
+                ['name' => 'first_name', 'contents' => $this->first_name],
+                ['name' => 'last_name', 'contents' => $this->last_name],
+                ['name' => 'email' , 'contents' => $this->email],
+                ['name' => 'gender' , 'contents' => $this->gender],
+                ['name' => 'mobile_no', 'contents' => $this->mobile_no],
+                ['name' => 'user_role', 'contents' => $this->user_role],
+                ['name' => 'address', 'contents' => $this->address],
+                ['name' => 'nin', 'contents' =>$this->address], 
+                ],
+                
+            ]);
+
+                $resp = $request->getBody()->getContents();
+                $apiResult = json_decode($resp, true);
+                $statusCode = $apiResult['statusCode'];
+                $message = $apiResult['message'];
+                $data = $apiResult['data'];
+
+                if($statusCode == '1'){
+                   session()->flash('success', $message);
+               }else{
+                session()->flash('error',   $message);
+            }
+        }else{
+            session()->flash('error',   "Login to update profile");
         }
-    }else{
-        session()->flash('error',   "Login to update user details");
-    }
 
-}catch(\Exception $ex){
-   session()->flash('error',   $ex->getMessage());
-}
+    }catch(\Exception $ex){
+       session()->flash('error',   $ex->getMessage());
+   }
 
 }
 

@@ -9,7 +9,7 @@ use App\Models\Client;
 class AddParkingArea extends Component
 {
 
-    public $client_name, $parking_area, $total_space;
+    public $client_name, $parking_area, $address, $total_space;
     public function render()
     {
         $clients = Client::all();
@@ -21,6 +21,7 @@ class AddParkingArea extends Component
     public function resetInputFields(){
         $this->client_name = '';
         $this->parking_area = '';
+        $this->address = '';
         $this->total_space = '';
     }
 
@@ -29,6 +30,7 @@ class AddParkingArea extends Component
         $reqParams = $this->validate([
           'client_name' => 'required',
           'parking_area' => 'required',
+          'address' => 'required',
           'total_space' => 'required',
       ]);
         // dd($reqParams);

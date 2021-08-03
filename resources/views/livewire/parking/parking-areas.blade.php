@@ -16,6 +16,9 @@
                             <th>No</th>
                             <th>Client</th>
                             <th>Parking area</th>
+                            <th>Address</th>
+                            <th>Total space</th>
+                            <th>Free space</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -42,6 +45,9 @@
         {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false,  searchable: false },
         {data: 'client', name:'client'},
         {data: 'area', name:'area'},
+        {data: 'address', name:'address'},
+        {data: 'total_space', name:'total_space'},
+        {data: 'current_free_space', name:'current_free_space'},
         {data: 'action', name:'action'},
         ];
         makeDataTable(table, title, columns, dataColumns);

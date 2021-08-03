@@ -31,6 +31,14 @@
                 </div>
 
                 <div class="row form-group">
+                    <div class="col col-md-3"><label for="text-input" class=" form-control-label">Address</label></div>
+                    <div class="col-12 col-md-9">
+                        <input type="text" id="address" wire:model="address" class="form-control" placeholder="Address">
+                        @error('address') <span class="text-danger">{{ $message }}</span> @enderror
+                    </div>
+                </div>
+
+                <div class="row form-group">
                     <div class="col col-md-3"><label for="text-input" class=" form-control-label">Total space</label></div>
                     <div class="col-12 col-md-9">
                         <input type="number" id="total_space" wire:model="total_space" class="form-control" placeholder="Total no. of cars that can be accomodated">
