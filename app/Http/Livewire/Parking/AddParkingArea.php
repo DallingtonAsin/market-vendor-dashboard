@@ -54,7 +54,14 @@ class AddParkingArea extends Component
     }catch(\Exception $ex){
        session()->flash('error',   $ex->getMessage());
    }
-
-
 }
+
+public function changeParkingAreaEvent($parking_area_id){
+            $address = Client::where('id', $parking_area_id)->value('address');
+            $this->address = $address;
+}
+
+
+
+
 }

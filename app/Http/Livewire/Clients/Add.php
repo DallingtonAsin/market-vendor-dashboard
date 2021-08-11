@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class Add extends Component
 {
-    public $client_name, $mobile_number, $email;
+    public $client_name, $address, $mobile_number, $email;
 
     public function render()
     {
@@ -17,6 +17,7 @@ class Add extends Component
 
     public function resetInputFields(){
         $this->client_name = '';
+        $this->address = '';
         $this->mobile_number = '';
         $this->email = '';
     }
@@ -25,11 +26,13 @@ class Add extends Component
 
         $reqParams = $this->validate([
           'client_name' => 'required',
+          'address' => 'required',
           'mobile_number' => 'required',
           'email' => 'required',
       ]);
       
         try{
+            // dd($reqParams);
 
             $endPoint = '/clients';
             $reqParams['creator'] = Auth::user()->username;

@@ -16,6 +16,15 @@
                         @error('client_name') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
                 </div>
+
+                 <div class="row form-group">
+                    <div class="col col-md-3"><label for="text-input" class=" form-control-label">Address</label></div>
+                    <div class="col-12 col-md-9">
+                        <input type="text" id="address" name="address" wire:model="address" class="form-control" placeholder="Client address" >
+                        @error('address') <span class="text-danger">{{ $message }}</span> @enderror
+                    </div>
+                </div>
+
                 <div class="row form-group">
                     <div class="col col-md-3"><label for="text-input" class=" form-control-label">Telephone No.</label></div>
                     <div class="col-12 col-md-9">
@@ -23,6 +32,7 @@
                         @error('mobile_number') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
                 </div>
+
                 <div class="row form-group">
                     <div class="col col-md-3"><label for="text-input" class=" form-control-label">Email</label></div>
                     <div class="col-12 col-md-9">

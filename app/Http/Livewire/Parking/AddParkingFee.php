@@ -61,7 +61,7 @@ class AddParkingFee extends Component
 
 public function changeClientEvent($client_id){
             $parking_areas = ParkingArea::where('client_id', $client_id)->get();
-            $this->parking_areas = $parking_areas;
+            $this->parking_areas =  $parking_areas;
 }
 
 

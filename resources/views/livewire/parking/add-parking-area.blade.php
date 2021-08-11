@@ -12,7 +12,7 @@
                        <div class="row form-group">
                         <div class="col col-md-3"><label for="text-input" class=" form-control-label">Client's Name</label></div>
                         <div class="col-12 col-md-9">
-                            <select wire:model="client_name" class="form-control" id="client_name">
+                            <select wire:model="client_name" wire:click="changeParkingAreaEvent($event.target.value)" class="form-control" id="client_name">
                             <option value="">Select client</option>
                             @foreach($clients as $client)
                             <option value="{{$client->id}}">{{$client->name}}</option>
@@ -33,7 +33,7 @@
                 <div class="row form-group">
                     <div class="col col-md-3"><label for="text-input" class=" form-control-label">Address</label></div>
                     <div class="col-12 col-md-9">
-                        <input type="text" id="address" wire:model="address" class="form-control" placeholder="Address">
+                        <input type="text" id="address" wire:model="address" class="form-control bg-white" readonly="readonly" placeholder="Address">
                         @error('address') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
                 </div>

@@ -3,7 +3,7 @@
 
         <a href="{{ route('home') }}" class="simple-text logo-mini">
             <div class="logo-image-small">
-                <img src="/img/logos/logo2.png">
+                 <img src="/images/icons/logo.png">
             </div>
         </a>
 

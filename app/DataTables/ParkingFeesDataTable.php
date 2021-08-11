@@ -46,7 +46,7 @@ class ParkingFeesDataTable extends DataTable
              $clientName = Client::where('id', $parkingFee->client_id)->value('name');
              return $clientName;
         })->addColumn('parking_area', function ($parkingFee) {
-             $parking_area = ParkingArea::where('id', $parkingFee->parking_area_id)->value('area');
+             $parking_area = ParkingArea::where('id', $parkingFee->parking_area_id)->value('name');
              return $parking_area;
         })->addColumn('vehicle_category', function ($parkingFee) {
             $obj = VehicleCategory::find($parkingFee->vehicle_cat_id);

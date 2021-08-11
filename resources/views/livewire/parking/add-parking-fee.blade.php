@@ -30,7 +30,7 @@
                        <select id="parking_area" class="form-control parking_area" wire:model="parking_area" >
                         <option value="">Select parking area</option>
                          @foreach($parking_areas as $area)
-                         <option value="{{$area->id}}">{{$area->area}}</option>
+                         <option value="{{$area->id}}">{{$area->name}}</option>
                          @endforeach
                     </select>
                     @error('parking_area') <span class="text-danger">{{ $message }}</span> @enderror

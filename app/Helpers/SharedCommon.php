@@ -110,7 +110,7 @@ class SharedCommon
 public static function getParkingAreaName($areaId){
   try{
     $parking = ParkingArea::find($areaId);
-    $name = $parking->area;
+    $name = $parking->name;
     return $name;
 }catch(\Exception $ex){
     dd($ex->getMessage());
