@@ -44,7 +44,7 @@
         {data: 'checkbox', name:'checkbox'},
         {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false,  searchable: false },
         {data: 'client', name:'client'},
-        {data: 'area', name:'area'},
+        {data: 'name', name:'name'},
         {data: 'address', name:'address'},
         {data: 'total_space', name:'total_space'},
         {data: 'current_free_space', name:'current_free_space'},
