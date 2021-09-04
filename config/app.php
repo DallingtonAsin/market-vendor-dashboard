@@ -16,8 +16,8 @@ return [
     'name' => env('APP_NAME', 'ParkSmart'),
     'abbrv' => env('APP_ABBRV', 'ParkSmart'),
 
-    'apiURL' => env('apiURL', 'http://parksmart-api.test'),
-    'apiBaseURL' => env('apiBaseURL', 'http://parksmart-api.test/api'),
+    'apiURL' => env('apiURL', 'http://api.parkproug.com'),
+    'apiBaseURL' => env('apiBaseURL', 'http://api.parkproug.com/api'),
 
     /*
     |--------------------------------------------------------------------------

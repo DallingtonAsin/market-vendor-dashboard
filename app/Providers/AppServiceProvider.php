@@ -25,10 +25,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-       $data = Helper::getCompanyData();
-       if(count($data) > 0){
-        $company = $data[0];
-        View::share('company', $company);
-    }
+    //    $data = Helper::getCompanyData();
+    //    if(count($data) > 0){
+    //     $company = $data[0];
+    //     View::share('company', $company);
+    // }
 }
 }
