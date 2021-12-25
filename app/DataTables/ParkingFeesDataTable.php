@@ -68,9 +68,11 @@ class ParkingFeesDataTable extends DataTable
             $resp = ApiRequestResponse::GetDataByEndPoint($endPoint);
             $apiResult = json_decode($resp, true);
             $data = $apiResult['data'];
-            // dd($data);
-            $data = ParkingFee::hydrate($data);
-            return $data; 
+            $fees = ParkingFee::hydrate($data);
+            foreach($fees as $fee){
+                $fee->fee_per_hour = number_format($fee->fee_per_hour);
+            }
+            return $fees; 
     }
 
     /**

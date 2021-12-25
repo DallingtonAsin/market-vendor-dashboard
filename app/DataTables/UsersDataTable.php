@@ -63,7 +63,6 @@ class UsersDataTable extends DataTable
             $resp = ApiRequestResponse::GetDataByEndPoint($endPoint);
             $apiResult = json_decode($resp, true);
             $data = $apiResult['data'];
-            // dd($data);
             $data = User::hydrate($data);
             return $data; 
     }

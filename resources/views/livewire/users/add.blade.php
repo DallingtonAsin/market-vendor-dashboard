@@ -75,17 +75,6 @@
                 </div>
 
                 <div class="row form-group">
-                    <div class="col col-md-3"><label for="text-input" class=" form-control-label">NIN</label></div>
-                    <div class="col-12 col-md-9">
-                        <input type="text" id="nin" wire:model="nin" class="form-control" placeholder="National ID Number" />
-                        @error('nin') <span class="text-danger">{{ $message }}</span> @enderror
-                    </div>
-
-                </div>
-                
-                
-                
-                <div class="row form-group">
                     <div class="col col-md-3"><label for="photo" class=" form-control-label">Photo</label></div>
                     <div class="col-12 col-md-7">
                         <div

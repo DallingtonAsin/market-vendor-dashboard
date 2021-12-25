@@ -45,7 +45,7 @@
         {data: 'client', name:'client'},
         {data: 'parking_area', name:'parking_area'},
         {data: 'vehicle_category', name:'vehicle_category'},
-        {data: 'fee', name:'fee'},
+        {data: 'fee_per_hour', name:'fee_per_hour'},
         {data: 'action', name:'action'},
         ];
         makeDataTable(table, title, columns, dataColumns);

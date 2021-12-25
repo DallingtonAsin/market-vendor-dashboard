@@ -7,19 +7,24 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Session;
 use App\Helpers\EndPoints;
+use Auth;
 
 class ApiRequestResponse
 {
 
-	private static $token = "test1234";
 	public static function getHttpHeaders(){
+	
+		if(Session::has('access_token')){
+           $bearerToken = Session::get('access_token');
+		}else{
+			$bearerToken = null;
+		}
 		$headers    =   [
 			'headers' => [
 				'Content-Type' => 'application/json',
-			    'AuthToken' => self::$token, // $this->Auth->user('auth_token')
-			    'AccessToken' => 'key',
-			    'Authorization' => 'Bearer ' . self::$token,
+			    'Authorization' => 'Bearer ' . $bearerToken,
 			]
 		];
 		return $headers;

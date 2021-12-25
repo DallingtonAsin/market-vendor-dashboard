@@ -148,10 +148,11 @@ public static function getCompanyData(){
    $endPoint = '/company';
    $resp = ApiRequestResponse::GetDataByEndPoint($endPoint);
    $apiResult = json_decode($resp, true);
+//    dd($apiResult);
    $statusCode = $apiResult['statusCode'];
    $message = $apiResult['message'];
    $data = $apiResult['data'];
-   $data = \App\Models\Company::hydrate($data);
+   $data = Company::hydrate($data);
     return $data;
 }
 

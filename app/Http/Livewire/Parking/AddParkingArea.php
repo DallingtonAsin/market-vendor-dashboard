@@ -9,7 +9,8 @@ use App\Models\Client;
 class AddParkingArea extends Component
 {
 
-    public $client_name, $parking_area, $address, $total_space;
+    public $client_id, $name, $address, $description, $opens_at, $closes_at,
+    $latitude, $longitude, $total_space;
     public function render()
     {
         $clients = Client::all();
@@ -19,22 +20,31 @@ class AddParkingArea extends Component
     }
 
     public function resetInputFields(){
-        $this->client_name = '';
-        $this->parking_area = '';
+        $this->client_id = '';
+        $this->name = '';
         $this->address = '';
+        $this->description = '';
+        $this->opens_at = '';
+        $this->closes_at = '';
+        $this->latitude = '';
+        $this->longitude = '';
         $this->total_space = '';
     }
 
     public function store(){
 
         $reqParams = $this->validate([
-          'client_name' => 'required',
-          'parking_area' => 'required',
+          'client_id' => 'required',
+          'name' => 'required',
           'address' => 'required',
+          'description' => 'required',
+          'opens_at' => 'required',
+          'closes_at' => 'required',
+          'latitude' => 'required',
+          'longitude' => 'required',
           'total_space' => 'required',
       ]);
         // dd($reqParams);
-
         try{
 
             $endPoint = '/parking_areas';

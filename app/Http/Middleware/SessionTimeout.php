@@ -7,7 +7,6 @@ use Illuminate\Session\Store;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
-use App\Models\User;
 class SessionTimeout
 {
 
@@ -43,16 +42,12 @@ class SessionTimeout
           $this->session->forget('lastActivityTime');
           $cookie = cookie('intend', $isLoggedIn ? url()->current() : 'dashboard');
           $email = $request->user()->email;
-          User::where("id", $request->user()->id)
-          ->update(["otp_code" => null, "isVerified" => false]);
 
           $msg = "session timed out after ".$this->timeout/60 ." ".$units." inactive";
           $dataArr = array("code" => '404',
             "message" => $msg,
             "method" => "Middleware@SessionTimeout@handle"
           );
-          // LogAfterRequest::LogRequest($request, $dataArr); 
-          // LogsController::logger($request, $msg, now());
           Auth::logout();
           if ($request->session()->exists('username')) {
             $request->session()->forget('username');

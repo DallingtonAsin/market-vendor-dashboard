@@ -13,12 +13,16 @@
                     <thead>
                         <tr>
                             <th></th>
-                            <th>No</th>
                             <th>Client</th>
-                            <th>Parking area</th>
+                            <th>Name</th>
                             <th>Address</th>
-                            <th>Total space</th>
-                            <th>Free space</th>
+                            <th>Opens At</th>
+                            <th>Closes At</th>
+                            <th>Lat</th>
+                            <th>Long</th>
+                            <th>Rating</th>
+                            <th>Slots</th>
+                            <th>Avail.</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -42,10 +46,15 @@
         var columns = [1,2,3];
         var dataColumns = [
         {data: 'checkbox', name:'checkbox'},
-        {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false,  searchable: false },
+        // {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false,  searchable: false },
         {data: 'client', name:'client'},
         {data: 'name', name:'name'},
         {data: 'address', name:'address'},
+        {data: 'opens_at', name:'opens_at'},
+        {data: 'closes_at', name:'closes_at'},
+        {data: 'latitude', name:'latitude'},
+        {data: 'longitude', name:'longitude'},
+        {data: 'rating', name:'rating'},
         {data: 'total_space', name:'total_space'},
         {data: 'current_free_space', name:'current_free_space'},
         {data: 'action', name:'action'},

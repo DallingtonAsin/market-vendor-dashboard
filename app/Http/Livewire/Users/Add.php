@@ -14,7 +14,7 @@ class Add extends Component
     use WithFileUploads;
 
     public $first_name, $last_name, $email, $user_id,$photo,
-    $gender, $mobile_no, $user_role, $address, $nin, $genderOptions;
+    $gender, $mobile_no, $user_role, $address, $genderOptions;
     public $updateMode = false;
 
     public function mount(){
@@ -35,7 +35,6 @@ class Add extends Component
         $this->mobile_no = '';
         $this->user_role = '';
         $this->address = '';
-        $this->nin = '';
         $this->photo = '';
     }
 
@@ -49,7 +48,6 @@ class Add extends Component
             'mobile_no' => 'required',
             'user_role' => 'required',
             'address' => 'required',
-            'nin' => 'required',
         ]);
 
         $fileData = [];
@@ -97,7 +95,6 @@ class Add extends Component
                 ['name' => 'mobile_no', 'contents' => $this->mobile_no],
                 ['name' => 'user_role', 'contents' => $this->user_role],
                 ['name' => 'address', 'contents' => $this->address],
-                ['name' => 'nin', 'contents' =>$this->nin], 
                 ],
                 
             ]);

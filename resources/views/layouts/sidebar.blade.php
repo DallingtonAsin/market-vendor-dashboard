@@ -60,27 +60,7 @@
 
 
 
-            <li>
-                <a data-toggle="collapse" data-target="#requests" aria-expanded='false' class="ref-collapse">
-                    <i class="fa fa-bath"></i>
-                    <p >Requests <span class="chervon_mot"><i class="fa fa-chevron-right float-right" aria-hidden="true"></i></span></p>
-                </a>
-                <div id="requests" class="collapse ref_link">     
-
-                    <a href="{{ route('requests.pending.index') }}"> 
-
-                        <p>   <i class="fa fa-minus-circle" style="font-size:20px"></i> Pending</p>
-                    </a>  
-                    <a href="{{ route('requests.rejected.index') }}"> 
-
-                        <p> <i class="fa fa-times-circle" style="font-size:20px"></i> Rejected</p>
-                    </a>                          
-                    <a href="{{ route('requests.approved.index') }}"> 
-
-                        <p>    <i class="fa fa-check-circle" style="font-size:20px"></i> Approved</p>
-                    </a>                                         
-                </div>                           
-            </li>
+         
 
 
             <li>
@@ -153,6 +133,28 @@
                     <a href="{{ route('parking.fees.index') }}"> 
                         <i class="fa fa-cloud-upload" style="font-size:20px"></i>
                         <p> Manage fee</p>
+                    </a>                                         
+                </div>                           
+            </li>
+
+            <li>
+                <a data-toggle="collapse" data-target="#requests" aria-expanded='false' class="ref-collapse">
+                    <i class="fa fa-bath"></i>
+                    <p >Requests <span class="chervon_mot"><i class="fa fa-chevron-right float-right" aria-hidden="true"></i></span></p>
+                </a>
+                <div id="requests" class="collapse ref_link">     
+
+                    <a href="{{ route('requests.pending.index') }}"> 
+
+                        <p>   <i class="fa fa-minus-circle" style="font-size:20px"></i> Pending</p>
+                    </a>  
+                    <a href="{{ route('requests.rejected.index') }}"> 
+
+                        <p> <i class="fa fa-times-circle" style="font-size:20px"></i> Rejected</p>
+                    </a>                          
+                    <a href="{{ route('requests.approved.index') }}"> 
+
+                        <p>    <i class="fa fa-check-circle" style="font-size:20px"></i> Approved</p>
                     </a>                                         
                 </div>                           
             </li>

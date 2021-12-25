@@ -41,15 +41,16 @@ class CustomLoginController extends Controller
 		try{
 
 			$login = $reqParams['username'];
-			$endPoint = '/login';
+			$endPoint = '/user/login';
 			$resp = ApiRequestResponse::PostDataByEndPoint($endPoint, $reqParams);
 			$apiResult = json_decode($resp, true);
 			$statusCode = $apiResult['statusCode'];
 			$message = $apiResult['message'];
-			$data = $apiResult['data'];
 			if($statusCode == '1'){
-                $user_id = $data['id'];
-                Auth::loginUsingId($user_id, true);
+			    $user = $apiResult['data'];
+                $userId = $user['id'];
+				Session::put('access_token', $user['access_token']);
+                Auth::loginUsingId($userId, true);
 				return redirect('/home');
 			}else{
 				$this->flushSessionData($request);

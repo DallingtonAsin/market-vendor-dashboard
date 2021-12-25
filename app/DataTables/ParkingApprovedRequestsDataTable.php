@@ -67,7 +67,7 @@ class ParkingApprovedRequestsDataTable extends DataTable
             $resp = ApiRequestResponse::GetDataByEndPoint($endPoint);
             $apiResult = json_decode($resp, true);
             $data = $apiResult['data'];
-            // dd($data);
+          //   dd($data);
             // $data = json_encode($data);
             $data = ParkingRequest::hydrate($data);
             return $data; 

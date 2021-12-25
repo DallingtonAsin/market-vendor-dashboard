@@ -22,7 +22,6 @@ class AddParkingFee extends Component
     }
 
     public function resetInputFields(){
-        $this->client = '';
         $this->parking_area = '';
         $this->vehicle_category = '';
         $this->fee = '';
@@ -31,7 +30,6 @@ class AddParkingFee extends Component
     public function store(){
 
         $reqParams = $this->validate([
-          'client' => 'required',
           'parking_area' => 'required',
           'vehicle_category' => 'required',
           'fee' => 'required',

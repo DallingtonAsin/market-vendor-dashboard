@@ -44,7 +44,7 @@
         {data: 'checkbox', name:'checkbox'},
         {data: 'name', name:'name'},
         {data: 'username', name:'username'},
-        {data: 'mobile_no', name:'mobile_no'},
+        {data: 'phone_number', name:'phone_number'},
         {data: 'address', name:'address'},
         {data: 'is_active', name:'is_active'},
         {data: 'account_action', name:'account_action'},
