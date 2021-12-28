@@ -59,7 +59,7 @@
 
                 <p>
                 {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}<br/>
-                <small>App User</small>
+                <small>{{ Auth::user()->phone_number }}</small>
                 </p>
               </li>
               <!-- Menu Footer-->

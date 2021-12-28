@@ -26,14 +26,12 @@
             </div>
             <div class="col-md-4">
                 <?php if(isset($image)): ?>
-                <img class="mx-auto d-block" style="border-radius: 50%; 
-                border: solid grey 1px; padding: 15px; vertical-align: middle; position: relative; margin:-15px"
-                src="<?php echo e($image); ?>" width="50" height="90" />
+                <img class="mx-auto d-block" style="border-radius: 40px; padding: 15px; vertical-align: middle; position: relative; margin:-15px"
+                src="<?php echo e($image); ?>" width="80" height="80" />
                 <?php endif; ?>
 
                 <?php if(empty($image)): ?>
-                <img class="mx-auto d-block" style="border-radius: 50%; border: solid grey 1px; 
-                padding: 15px; vertical-align: middle; position: relative; margin:-15px"
+                <img class="mx-auto d-block" style="border-radius: 50%; border: solid grey 1px; padding: 5px; vertical-align: middle; position: relative; margin:-15px"
                 src="<?php echo e(asset('images/default/user.png')); ?>" width="60" height="60" />
                 <?php endif; ?>
             </div>

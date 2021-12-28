@@ -26,14 +26,12 @@
             </div>
             <div class="col-md-4">
                 @isset($image)
-                <img class="mx-auto d-block" style="border-radius: 50%; 
-                border: solid grey 1px; padding: 15px; vertical-align: middle; position: relative; margin:-15px"
-                src="{{ $image }}" width="50" height="90" />
+                <img class="mx-auto d-block" style="border-radius: 40px; padding: 15px; vertical-align: middle; position: relative; margin:-15px"
+                src="{{ $image }}" width="80" height="80" />
                 @endisset
 
                 @empty($image)
-                <img class="mx-auto d-block" style="border-radius: 50%; border: solid grey 1px; 
-                padding: 15px; vertical-align: middle; position: relative; margin:-15px"
+                <img class="mx-auto d-block" style="border-radius: 50%; border: solid grey 1px; padding: 5px; vertical-align: middle; position: relative; margin:-15px"
                 src="{{ asset('images/default/user.png') }}" width="60" height="60" />
                 @endempty
             </div>

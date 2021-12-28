@@ -59,7 +59,7 @@
 
                 <p>
                 <?php echo e(Auth::user()->first_name); ?> <?php echo e(Auth::user()->last_name); ?><br/>
-                <small>App User</small>
+                <small><?php echo e(Auth::user()->phone_number); ?></small>
                 </p>
               </li>
               <!-- Menu Footer-->
