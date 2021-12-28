@@ -68,6 +68,7 @@ class CustomLoginController extends Controller
 			Helper::logger($request, $action, $this->dateTime);
 		}
 		Auth::logout();
+		Session::forget('access_token');
 		Session::flush();
 		return redirect('/');
 

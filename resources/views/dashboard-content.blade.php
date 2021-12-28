@@ -3,13 +3,17 @@
     <!-- Info boxes -->
     <div class="row">
        <!-- /.col -->
-       <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="">
+       <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="{{ route('requests.pending.index') }}">
         <div class="info-box">
           <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
 
           <div class="info-box-content">
-            <span class="info-box-text">Staff</span>
-            <span class="info-box-number"></span>
+            <span class="info-box-text">Pending ReQs</span>
+            <span class="info-box-number">
+                @isset($data['total_pending_requests'])
+                {{ number_format($data['total_pending_requests']) }}
+                @endisset
+            </span>
           </div>
           <!-- /.info-box-content -->
         </div>
@@ -17,12 +21,16 @@
 </a>
       <!-- /.col -->
      
-        <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="">
+        <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="{{ route('requests.approved.index') }}">
         <div class="info-box">
           <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
           <div class="info-box-content">
-            <span class="info-box-text text-dark">Departments</span>
-            <span class="info-box-number text-dark"></span>
+            <span class="info-box-text">Approved ReQs</span>
+            <span class="info-box-number">
+                @isset($data['total_approved_requests'])
+                {{ number_format($data['total_approved_requests']) }}
+                @endisset
+            </span>
           </div>
         </div>
       </a>
@@ -31,38 +39,39 @@
 
 
       <!-- /.col -->
-      @cannot('isStaff')
-      <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="">
+      <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="{{ route('clients.index') }}">
         <div class="info-box">
           <span class="info-box-icon bg-red"><i class="fa fa-balance-scale"></i></span>
 
           <div class="info-box-content">
-            <span class="info-box-text">Expenses</span>
-            <span class="info-box-number"></span>
+            <span class="info-box-text">clients</span>
+            <span class="info-box-number">
+              @isset($data['total_clients'])
+              {{ number_format($data['total_clients']) }}
+              @endisset
+            </span>
           </div>
           <!-- /.info-box-content -->
         </div>
         <!-- /.info-box -->
 </a>
-      @endcannot
-      <!-- /.col -->
+      
 
-  <!-- /.col -->
-      @can('isStaff')
-      <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="">
+      <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="{{ route('parking.areas.index') }}">
         <div class="info-box">
-          <span class="info-box-icon bg-red"><i class="fa fa-file-archive-o"></i></span>
+          <span class="info-box-icon bg-black"><i class="fa fa-file-archive-o"></i></span>
 
           <div class="info-box-content">
-            <span class="info-box-text">Uploaded files</span>
-            <span class="info-box-number"></span>
+            <span class="info-box-text">Parking Areas</span>
+            <span class="info-box-number">
+              @isset($data['total_parking_areas'])
+              {{ number_format($data['total_parking_areas']) }}
+              @endisset
+            </span>
           </div>
-          <!-- /.info-box-content -->
         </div>
-        <!-- /.info-box -->
        </a>
-      @endcan
-      <!-- /.col -->
+   
 
 
 
@@ -70,166 +79,231 @@
       <!-- fix for small devices only -->
       <div class="clearfix visible-sm-block"></div>
 
-      <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="">
+      <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="{{ route('users.index') }}">
         <div class="info-box">
           <span class="info-box-icon bg-green"><i class="fa fa-user"></i></span>
 
           <div class="info-box-content">
-            <span class="info-box-text">Roles</span>
-            <span class="info-box-number"></span>
+            <span class="info-box-text">Total  Users</span>
+            <span class="info-box-number">
+              @isset($data['total_users'])
+              {{ number_format($data['total_users']) }}
+              @endisset
+            </span>
           </div>
           <!-- /.info-box-content -->
         </div>
         <!-- /.info-box -->
-      </div>
-</a>
-    <!-- /.row -->
+       </a>
 
- 
-     @cannot('isStaff')
-    <div class="row">
-      <div class="col-md-12">
-        <div class="box">
-          <div class="box-header with-border">
-            <h3 class="box-title">Monthly Expenses Report</h3>
+    <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="{{ route('vehicle.category.index') }}">
+      <div class="info-box">
+        <span class="info-box-icon bg-red"><i class="fa fa-file-archive-o"></i></span>
 
-            <div class="box-tools pull-right">
-              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-              </button>
-              <div class="btn-group">
-                <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown">
-                  <i class="fa fa-wrench"></i></button>
-                <ul class="dropdown-menu" role="menu">
-                  <li><a href="#">Action</a></li>
-                  <li><a href="#">Another action</a></li>
-                  <li><a href="#">Something else here</a></li>
-                  <li class="divider"></li>
-                  <li><a href="#">Separated link</a></li>
-                </ul>
-              </div>
-              <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-            </div>
-          </div>
-          <!-- /.box-header -->
-          <div class="box-body">
-            <div class="row">
-              <div class="col-md-8">
-                <p class="text-center">
-                  <strong>Expenses: 1 Jan, 2014 - 30 Jul, 2014</strong>
-                </p>
-
-                <div class="chart">
-                  <!-- Sales Chart Canvas -->
-                  <canvas id="salesChart" style="height: 140px;"></canvas>
-                </div>
-                <!-- /.chart-responsive -->
-              </div>
-              <!-- /.col -->
-              <div class="col-md-4">
-                <p class="text-center">
-                  <strong>Role Completion</strong>
-                </p>
-
-                <div class="progress-group">
-                  <span class="progress-text">Project Completion</span>
-                  <span class="progress-number"><b>160</b>/200</span>
-
-                  <div class="progress sm">
-                    <div class="progress-bar progress-bar-aqua" style="width: 80%"></div>
-                  </div>
-                </div>
-                <!-- /.progress-group -->
-                <div class="progress-group">
-                  <span class="progress-text">Expenditure rate</span>
-                  <span class="progress-number"><b>310</b>/400</span>
-
-                  <div class="progress sm">
-                    <div class="progress-bar progress-bar-red" style="width: 80%"></div>
-                  </div>
-                </div>
-                <!-- /.progress-group -->
-                <div class="progress-group">
-                  <span class="progress-text">Work Rate</span>
-                  <span class="progress-number"><b>480</b>/800</span>
-
-                  <div class="progress sm">
-                    <div class="progress-bar progress-bar-green" style="width: 80%"></div>
-                  </div>
-                </div>
-                <!-- /.progress-group -->
-                <div class="progress-group">
-                  <span class="progress-text">Feedback Rate</span>
-                  <span class="progress-number"><b>250</b>/500</span>
-
-                  <div class="progress sm">
-                    <div class="progress-bar progress-bar-yellow" style="width: 80%"></div>
-                  </div>
-                </div>
-                <!-- /.progress-group -->
-              </div>
-              <!-- /.col -->
-            </div>
-            <!-- /.row -->
-          </div>
-          <!-- ./box-body -->
-
-
-          
-
-
-
-          <div class="box-footer">
-            <div class="row">
-              <div class="col-sm-3 col-xs-6">
-                <div class="description-block border-right">
-                  {{-- <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> 17%</span> --}}
-                  <h5 class="description-header"></h5>
-                  <span class="description-text">TOTAL Expenses</span>
-                </div>
-                <!-- /.description-block -->
-              </div>
-              <!-- /.col -->
-              <div class="col-sm-3 col-xs-6">
-                <div class="description-block border-right">
-                  {{-- <span class="description-percentage text-yellow"><i class="fa fa-caret-left"></i> 0%</span> --}}
-                  <h5 class="description-header"></h5>
-                  <span class="description-text">TOTAL staff</span>
-                </div>
-                <!-- /.description-block -->
-              </div>
-              <!-- /.col -->
-              <div class="col-sm-3 col-xs-6">
-                <div class="description-block border-right">
-                  {{-- <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> 20%</span> --}}
-                  <h5 class="description-header"></h5>
-                  <span class="description-text">TOTAL Departments</span>
-                </div>
-                <!-- /.description-block -->
-              </div>
-              <!-- /.col -->
-
-
-
-              <div class="col-sm-3 col-xs-6">
-                <div class="description-block">
-                  <span class="description-percentage text-red"><i class="fa fa-caret-down"></i> 18%</span>
-                  {{-- <h5 class="description-header">12%</h5> --}}
-                  <span class="description-text">Attendance Rate</span>
-                </div>
-              </div>
-
-
-            </div>
-            <!-- /.row -->
-          </div>
-          <!-- /.box-footer -->
+        <div class="info-box-content">
+          <span class="info-box-text">Vehicle Types</span>
+          <span class="info-box-number">
+            @isset($data['total_parking_areas'])
+            {{ number_format($data['total_parking_areas']) }}
+            @endisset
+          </span>
         </div>
-        <!-- /.box -->
       </div>
-      <!-- /.col -->
-    </div>
-    <!-- /.row -->
-    @endcannot
+     </a>
 
+
+     <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="">
+      <div class="info-box">
+        <span class="info-box-icon bg-orange"><i class="fa fa-file-archive-o"></i></span>
+
+        <div class="info-box-content">
+          <span class="info-box-text">Monthly income</span>
+          <span class="info-box-number">
+            @isset($data['current_month_income'])
+            {{ number_format($data['current_month_income']) }}
+            @endisset
+          </span>
+        </div>
+      </div>
+     </a>
+
+     <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="">
+      <div class="info-box">
+        <span class="info-box-icon bg-blue"><i class="fa fa-file-archive-o"></i></span>
+
+        <div class="info-box-content">
+          <span class="info-box-text"> Last month </span>
+          <span class="info-box-number">
+            @isset($data['total_clients'])
+            {{ number_format($data['last_month_income']) }}
+            @endisset
+          </span>
+        </div>
+      </div>
+     </a>
+
+    </div>
+
+
+    <div class="row">
+
+      <div class="col-md-6 col-sm-6 col-xs-12 homelink">
+       <div class="info-box">
+                 <span class="info-box-text text-center">Barchart of approved parking requests Vs months</span>
+                   <canvas id="bar_chart_canvas" height="300" width="600" class="nunito-font"></canvas>
+       </div>
+   </div>
+
+   <div class="col-md-6 col-sm-6 col-xs-12 homelink">
+       <div class="info-box">
+                   <span class="info-box-text text-center">Areachart showing income generated over months</span>
+                   <canvas id="line_graph_canvas" height="300" width="600" class="nunito-font"></canvas>
+          
+       </div>
+   </div>
+
+</div>
   </section>
-  <!-- /.content -->
+
+  <script type="text/javascript">
+
+    $(document).ready(function(){
+
+      var request_data = {!! json_encode($request_data) !!};
+      if (request_data != undefined || request_data.length > 0) {
+          request_data = request_data;
+      }
+
+      var income_data = {!! json_encode($income_data) !!};
+      if (income_data != undefined || income_data.length > 0) {
+          income_data = income_data;
+      }
+
+    detectGraphChange();
+
+    function detectGraphChange() {
+      drawBarChart(request_data);
+      drawLineChart(income_data);
+  }
+
+  function drawLineChart(response){
+
+    var ctx = document.getElementById("line_graph_canvas").getContext('2d');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: response.months,
+          datasets:[{
+            label:"Income generated",
+            lineTension:0.3,
+            backgroundColor:'rgba(2,117,216,0.2)',
+            borderColor:'rgba(2,117,216,1)',
+            pointRadius:5,
+            pointHoverRadius:5,
+            pointHoverBackgroundColor:'rgba(2,117,216,1)',
+            pointHitRadius:5,
+            pointBorderWidth:2,
+            data:response.income,
+
+        }],
+    },
+
+
+    options: {
+     tooltips: {
+      callbacks: {
+        label: function(tooltipItem, data) {
+          return tooltipItem.yLabel.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+      }
+  }
+},
+
+scales: {
+  xAxes: [{
+    time: {
+      unit: 'date'
+  },
+  scaleLabel: {
+      display: true,
+      labelString: 'Months of the year'
+  },
+  gridLines:{
+      display:true
+  },
+  ticks: {
+      maxTicksLimit:24,
+  },
+  gridLines:{
+      color: "rgba(0,0,0,0.125)",
+  }
+}],
+yAxes: [{
+
+  scaleLabel: {
+    display: true,
+    labelString: "Income generated"
+},
+gridLines:{
+    color: "rgba(0,0,0,0.125)",
+}
+}]
+}
+},
+legend:{
+display:true
+}
+});
+}
+
+function drawBarChart(response){
+  var ctx = document.getElementById("bar_chart_canvas").getContext('2d');
+  var date = response.months+" "+response.years;
+  new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: response.months,
+        datasets:[{
+          label:'Number of requests',
+          data: response.requests,
+          backgroundColor: ['#b87333','orange','grey','#B1FB17',
+          '#000','#82caff',
+          '#7D0552',"#3e95cd", "#8e5ea2","#3cba9f","#800000","#c45850",'#808000',
+          '#008000', '#000080', '#ff00ff', '#008080','#ff0000',
+          ],
+          borderColor: '#82caff',
+          hoverBorderColor: '#666666'
+      }],
+  },
+  options: {
+     tooltips: {
+      callbacks: {
+        label: function(tooltipItem, data) {
+          return tooltipItem.yLabel.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+      }
+  }
+},
+scales: {
+  xAxes: [{
+    scaleLabel: {
+      display: true,
+      labelString: 'Months of the year'
+  }
+}],
+yAxes: [{
+scaleLabel: {
+ display: true,
+ labelString: 'Number of requests'
+}
+}]
+} ,
+},
+legend:{
+display:true
+}
+});
+}
+
+
+});
+
+</script> 

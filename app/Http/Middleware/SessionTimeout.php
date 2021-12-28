@@ -42,7 +42,7 @@ class SessionTimeout
           $this->session->forget('lastActivityTime');
           $cookie = cookie('intend', $isLoggedIn ? url()->current() : 'dashboard');
           $email = $request->user()->email;
-
+          Session::forget('access_token');
           $msg = "session timed out after ".$this->timeout/60 ." ".$units." inactive";
           $dataArr = array("code" => '404',
             "message" => $msg,
