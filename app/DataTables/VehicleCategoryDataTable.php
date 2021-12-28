@@ -25,10 +25,7 @@ class VehicleCategoryDataTable extends DataTable
             $btn = '<a href="javascript:void(0)" data-toggle="tooltip"
             data-id="'.$vehicleCat->id.'" data-original-title="Edit" wire:click="edit({{ $vehicleCat->id }})" 
             class="btn btn-success btn-sm"><i class="fa fa-pencil"></i></a>
-
-             <a href="javascript:void(0)" data-toggle="tooltip"
-            data-id="'.$vehicleCat->id.'" data-original-title="View" id="view-vehicleCat"
-            class="btn btn-warning btn-sm ml-2"><i class="fa fa-trash"></i> <a href="javascript:void(0)" data-toggle="tooltip"
+          <a href="javascript:void(0)" data-toggle="tooltip"
             data-id="'.$vehicleCat->id.'" data-original-title="Delete" wire:click="delete({{ $vehicleCat->id }})" 
             class="btn btn-danger btn-sm ml-2"><i class="fa fa-trash"></i></a>';
 

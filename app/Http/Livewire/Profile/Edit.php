@@ -15,7 +15,7 @@ class Edit extends Component
     use WithFileUploads;
 
     public $first_name, $last_name, $username, $email, $user_id,
-    $gender, $mobile_no, $user_role, $address, $nin, $photo;
+    $gender, $mobile_no, $user_role, $address, $photo;
 
     public $genderOptions;
 
@@ -36,10 +36,9 @@ class Edit extends Component
         $this->username = Auth::user()->username;
         $this->email = Auth::user()->email;
         $this->gender = Auth::user()->gender;
-        $this->mobile_no = Auth::user()->mobile_no;
+        $this->mobile_no = Auth::user()->phone_number;
         $this->user_role = ucfirst(Helper::getRoleName(Auth::user()->role));
         $this->address = Auth::user()->address;
-        $this->nin = Auth::user()->national_id_no;
 
     }
 
@@ -53,7 +52,6 @@ class Edit extends Component
             'mobile_no' => 'required',
             'user_role' => 'required',
             'address' => 'required',
-            'nin' => 'required',
         ]);
 
         $fileData = [];
@@ -103,7 +101,6 @@ class Edit extends Component
                 ['name' => 'mobile_no', 'contents' => $this->mobile_no],
                 ['name' => 'user_role', 'contents' => $this->user_role],
                 ['name' => 'address', 'contents' => $this->address],
-                ['name' => 'nin', 'contents' =>$this->nin], 
                 ],
                 
             ]);

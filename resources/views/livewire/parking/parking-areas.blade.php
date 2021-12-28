@@ -1,38 +1,73 @@
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1 style="font-weight:bolder; text-transform:uppercase; font-family: 'Times New Roman', Times, serif">
+        Parking Area Mangement
+      </h1>
+      <ol class="breadcrumb">
+        <!-- li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li-->
+        <li class="active">Parking Area Mangement</li>
+      </ol>
+    </section>
 
-<div class="wrapper">
-    <div class="main-panel">
-        <div class="content">
-            <div class="white_box">
-                <div class="page_head float-left">
-                        <span>Parking areas</span> 
-                        <span class="float-right btn_refrs">
-                            <a class="btn btn-info"  href="{{ route('parking.area.create') }}" >Add</a>
-                        </span>
-                    </div>
-                <table class="table table-hover" id="parking-areas">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Client</th>
-                            <th>Name</th>
-                            <th>Address</th>
-                            <th>Opens At</th>
-                            <th>Closes At</th>
-                            <th>Lat</th>
-                            <th>Long</th>
-                            <th>Rating</th>
-                            <th>Slots</th>
-                            <th>Avail.</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                </table>
-            </div>
+
+<!-- Main content -->
+<section class="content">
+  <div class="box">
+    @include('components.message')
+    <div class="box-header">
+      <div class="row">
+        <div class="col-sm-4">
+          <h3 class="box-title" style="font-weight:bolder; text-transform:uppercase; 
+          font-family: 'Times New Roman', Times, serif">List of parking areas</h3>
         </div>
+        
+     
+      <div class="col-sm-4">
+        <a type="button" href="{{route('parking.area.create')}}" class="btn btn-info pull-right">
+        <i class="fa fa-plus-circle"></i> Add Parking Area
+      </a>
     </div>
+  </div>
+
 </div>
 
-<script>
+<div class="box-body">
+
+<br/>
+
+<div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="table-responsive">
+        <table class="table table-hover" id="parking-areas">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Client</th>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>OpensAt</th>
+                    <th>ClosesAt</th>
+                    <th>Lat</th>
+                    <th>Long</th>
+                    <th>Rating</th>
+                    <th>Slots</th>
+                    <th>Avail.</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+  </div>
+
+
+  <script>
     var $=jQuery.noConflict();
 
     const ajaxUrl =   @json(route('parking.areas.ajax.fetch'));
@@ -62,3 +97,6 @@
         makeDataTable(table, title, columns, dataColumns);
     });
 </script>
+
+
+

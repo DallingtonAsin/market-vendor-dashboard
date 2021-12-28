@@ -33,7 +33,7 @@ class Edit extends Component
         if($reqParams['new_password'] == $reqParams['confirm_password']){
             if($userId){
                 $reqParams['user_id'] = $userId;
-                $endPoint = '/password/edit';
+                $endPoint = '/user/password/edit';
                 $resp = ApiRequestResponse::PostDataByEndPoint($endPoint, $reqParams);
                 $apiResult = json_decode($resp, true);
                 $statusCode = $apiResult['statusCode'];

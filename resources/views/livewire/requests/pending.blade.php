@@ -1,34 +1,66 @@
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1 style="font-weight:bolder; text-transform:uppercase; font-family: 'Times New Roman', Times, serif">
+        Parking Requests
+      </h1>
+      <ol class="breadcrumb">
+        <!-- li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li-->
+        <li class="active">Pending Parking Requests</li>
+      </ol>
+    </section>
 
-<div class="wrapper">
-    <div class="main-panel">
-        <div class="content">
-            <div class="white_box">
-                <div class="page_head">Pending Requests</div>
-                <table class="table table-hover" id="pending-requests">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Tel</th>
-                            <th>Vehicle No</th>
-                            <th>V. Type</th>
-                            <th>Client</th>
-                            <th>Area</th>
-                            <th>Time</th>
-                            <th>Hours</th>
-                            <th>Amount</th>
-                            <th>Status</th>
-                            <th>Request date</th>
-                            <!-- <th>Manage</th> -->
-                            <!-- <th>Action</th> -->
-                        </tr>
-                    </thead>
-                </table>
-            </div>
+
+<!-- Main content -->
+<section class="content">
+  <div class="box">
+    @include('components.message')
+    <div class="box-header">
+      <div class="row">
+        <div class="col-sm-4">
+          <h3 class="box-title" style="font-weight:bolder; text-transform:uppercase; 
+          font-family: 'Times New Roman', Times, serif">List of pending parking requests</h3>
         </div>
-    </div>
+  </div>
 </div>
 
-<script>
+<div class="box-body">
+
+<br/>
+
+<div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="table-responsive">
+        <table class="table table-hover" id="pending-requests">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Tel</th>
+                    <th>Vehicle No</th>
+                    <th>V. Type</th>
+                    <th>Client</th>
+                    <th>Area</th>
+                    <th>Time</th>
+                    <th>Hours</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Request date</th>
+                    <!-- <th>Manage</th> -->
+                    <!-- <th>Action</th> -->
+                </tr>
+            </thead>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+  </div>
+
+
+  <script>
     var $=jQuery.noConflict();
     const ajaxUrl =   @json(route('pending.requests.fetch'));
     const cat = 'pending request';
@@ -56,6 +88,14 @@
         // {data: 'manage', name:'manage'},
         // {data: 'action', name:'action'},
         ];
-        DataTablizeRequests(table, title, columns, dataColumns);
+        makeDataTable(table, title, columns, dataColumns);
     });
 </script>
+
+
+
+
+
+
+
+

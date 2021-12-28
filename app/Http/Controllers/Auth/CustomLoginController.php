@@ -28,7 +28,6 @@ class CustomLoginController extends Controller
 
 		$this->tbl = 'users';
 		$this->dateTime = now();
-		$this->middleware('guest')->except('logout');
 	}
 
 
@@ -53,7 +52,6 @@ class CustomLoginController extends Controller
                 Auth::loginUsingId($userId, true);
 				return redirect('/home');
 			}else{
-				$this->flushSessionData($request);
 				return back()
 				->with('loginErr', $message);
 			}
@@ -63,63 +61,6 @@ class CustomLoginController extends Controller
 		}
 	}
 
-	
-
-
-
-	public function authenticat(Request $request)
-	{
-
-		($request->has('remember'))
-		? $remembered = true
-		: $remembered = false;
-
-		$this->validate($request,[
-			'username' => 'required',
-			'password' => 'required',
-		]);
-
-		$login = $request->input('username');
-		$password = $request->input('password');
-
-		filter_var($login, FILTER_VALIDATE_EMAIL)
-		? $fieldType = 'email' 
-		: $fieldType = 'username';
-
-		$user_id = $this->getUserId($login, $password);
-
-		if(Auth::attempt([$fieldType => $login,
-			'password' =>  $password
-		], $remembered)){
-
-			$userId = $this->getUserId($login);
-			$status = $this->findAccountStatus($userId);
-			if($status == 0){
-
-				$this->flushSessionData($request);
-				
-				return back()
-				->with('loginErr', 'Your account is inactivated, see admin');
-			}
-			if($status == 1){
-				$action = "logged into the system";
-				Helper::logger($request, $action, $this->dateTime);
-				return redirect('/home');
-
-			}
-		}
-		else
-		{
-			$this->flushSessionData($request);
-			return back()
-			->with('loginErr', 'Invalid login credentials');
-
-		}
-
-
-	}
-
-
 	public function logout(Request $request){
 
 		$action = "logged out of the system";
@@ -127,55 +68,13 @@ class CustomLoginController extends Controller
 			Helper::logger($request, $action, $this->dateTime);
 		}
 		Auth::logout();
-		$this->flushSessionData($request);
-		
+		Session::flush();
 		return redirect('/');
 
 	}
 
-	//Flush login data and all session variables on login attempts
-	protected function flushSessionData(Request $request)
-	{
-		
-		Session::flush();
-		
+	
 
-	}
-
-	public function getUserId($login)
-	{
-		filter_var($login, FILTER_VALIDATE_EMAIL)
-		? $fieldType = 'email' 
-		: $fieldType = 'username';
-
-		$userId = DB::table($this->tbl)
-		->where($fieldType, $login)
-		->value('email');
-
-		return $userId;
-	}
-
-	public function findAccountStatus($id){
-
-		$accountStatus = DB::table($this->tbl)
-		->where('email', $id)->value('is_active');
-		return $accountStatus;
-
-	}
-
-
-	public function findUsername(){
-
-		$login = request()->input('pos_login');
-
-		$fieldType = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
-
-		request()->merge([$fieldType => $login]);
-		if($fieldType){
-			return $fieldType;  
-		}
-
-	}
 
 
 }

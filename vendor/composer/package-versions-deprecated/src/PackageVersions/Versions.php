@@ -63,6 +63,7 @@ final class Versions
   'laminas/laminas-zendframework-bridge' => '1.3.0@13af2502d9bb6f7d33be2de4b51fb68c6cdb476e',
   'laravel/framework' => 'v8.48.2@4c50ebbb7d1a66c5f3511261413cd499d30ba4cd',
   'laravel/nexmo-notification-channel' => 'v2.5.1@178c9f0eb3a18d4b5682471bffca104a15d817a7',
+  'laravel/sanctum' => 'v2.13.0@b4c07d0014b78430a3c827064217f811f0708eaa',
   'laravel/slack-notification-channel' => 'v2.3.1@f428e76b8d0a0a2ff413ab225eeb829b9a8ffc20',
   'laravel/tinker' => 'v2.6.1@04ad32c1a3328081097a181875733fa51f402083',
   'laravel/ui' => 'v3.3.0@07d725813350c695c779382cbd6dac0ab8665537',
@@ -155,7 +156,7 @@ final class Versions
   'wemersonjanuario/wkhtmltopdf-windows' => '0.12.2.3@90fcd3487cad5931287742113c449b926e9e48d8',
   'yajra/laravel-datatables-buttons' => 'v4.13.0@3ac8d2bbfbb930852e75bdd3eb601ab629719247',
   'yajra/laravel-datatables-html' => 'v4.38.0@7171b9fae1b0ad2f161ae61fcea8241eb20017de',
-  'yajra/laravel-datatables-oracle' => 'v9.18.0@b00f25b1941879b34e05f270835235a32b46567c',
+  'yajra/laravel-datatables-oracle' => 'v9.18.2@f4eebc1dc2b067058dfb91e7c067de862353c40f',
   'doctrine/instantiator' => '1.4.0@d56bf6102915de5702778fe20f2de3b2fe570b5b',
   'facade/flare-client-php' => '1.8.1@47b639dc02bcfdfc4ebb83de703856fa01e35f5f',
   'facade/ignition' => '2.10.2@43688227bbf27c43bc1ad83af224f135b6ef0ff4',
@@ -194,7 +195,7 @@ final class Versions
   'sebastian/type' => '2.3.4@b8cd8a1c753c90bc1a0f5372170e3e489136f914',
   'sebastian/version' => '3.0.2@c6c1022351a901512170118436c764e473f6de8c',
   'theseer/tokenizer' => '1.2.0@75a63c33a8577608444246075ea0af0d052e452a',
-  'laravel/laravel' => 'dev-master@5ac9dab9a8be26473d210159dee5f0c96e73e8db',
+  'laravel/laravel' => 'dev-master@7a8dbbfc8664847cace60084594f188b00bbed23',
 );
 
     private function __construct()

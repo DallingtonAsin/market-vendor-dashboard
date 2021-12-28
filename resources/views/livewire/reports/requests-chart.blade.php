@@ -1,27 +1,42 @@
 
-<div class="wrapper">
-    <div class="main-panel">
-        <div class="content">
-            <div class="white_box">
-               <div class="page_head float-left">
-                <span class="reportTitle">Report showing number of approved requests made over time</span> 
-                <span class="float-right btn_refrs">
-                    <span><i class="text-success">Select a graph to view</i></span>
-                      <select class="form-control nunito-font" id="chart">
-                         <option value="barchart">Bar graph</option>
-                         <option  value="linechart">Line graph</option>
-                         <option  value="piechart">Pie graph</option>
-                     </select>
-             </span>
-         </div>
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1 style="font-weight:bolder; text-transform:uppercase; font-family: 'Times New Roman', Times, serif">
+     Requests Chart
+    </h1>
+    <ol class="breadcrumb">
+      <!-- li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li-->
+      <li class="active">Requests</li>
+    </ol>
+  </section>
 
-         <canvas id="canvas" height="250" width="600" class="nunito-font"></canvas>
 
+  <section class="content">
+      <div class="box">
+          @include('components.message')
+        <div class="box-header">
+          <div class="row">
+            <div class="col-md-9">
+              <span class="reportTitle">Report showing number of approved requests made over time</span> 
+            </div>
+            <div class="col-md-3">
+            <span class="float-right btn_refrs">
+                <span><i class="text-success">Select a graph to view</i></span>
+                  <select class="form-control nunito-font" id="chart">
+                     <option value="barchart">Bar graph</option>
+                     <option  value="linechart">Line graph</option>
+                     <option  value="piechart">Pie graph</option>
+                 </select>
+         </span>
+        </div>
      </div>
- </div>
-</div>
-</div>
 
+     <canvas id="canvas" height="250" width="600" class="nunito-font"></canvas>
+        </div>
+
+</div>
+</div>
 
 
 <script type="text/javascript">
@@ -38,9 +53,8 @@
   var linechartTitle = "Areachart showing the number of approved parking requests over months";
   $('.reportTitle').html(barchartTitle);
 
-  $(window).on('load', function(){
    getRequestsData('bar');
-});
+
 
   detectGraphChange();
 
@@ -281,5 +295,3 @@ tooltips: {
 });
 
 </script>
-
-

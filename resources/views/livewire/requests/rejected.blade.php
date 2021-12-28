@@ -1,34 +1,66 @@
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1 style="font-weight:bolder; text-transform:uppercase; font-family: 'Times New Roman', Times, serif">
+        Parking Requests
+      </h1>
+      <ol class="breadcrumb">
+        <!-- li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li-->
+        <li class="active">Rejected Parking Requests</li>
+      </ol>
+    </section>
 
-<div class="wrapper">
-    <div class="main-panel">
-        <div class="content">
-            <div class="white_box">
-                <div class="page_head">Rejected Requests</div>
-                <table class="table table-hover" id="rejected-requests">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Tel</th>
-                            <th>Vehicle No</th>
-                            <th>Vehicle Type</th>
-                            <th>Client</th>
-                            <th>Area</th>
-                            <th>Time</th>
-                            <th>Hours</th>
-                            <th>Amount</th>
-                            <th>Status</th>
-                            <th>Request date</th>
-                            <th>Rejected on</th>
-                            <!-- <th>Action</th> -->
-                        </tr>
-                    </thead>
-                </table>
-            </div>
+
+<!-- Main content -->
+<section class="content">
+  <div class="box">
+    @include('components.message')
+    <div class="box-header">
+      <div class="row">
+        <div class="col-sm-4">
+          <h3 class="box-title" style="font-weight:bolder; text-transform:uppercase; 
+          font-family: 'Times New Roman', Times, serif">List of rejected parking requests</h3>
         </div>
-    </div>
+  </div>
 </div>
 
-<script>
+<div class="box-body">
+
+<br/>
+
+<div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="table-responsive">
+        <table class="table table-hover" id="rejected-requests">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Tel</th>
+                    <th>Vehicle No</th>
+                    <th>Vehicle Type</th>
+                    <th>Client</th>
+                    <th>Area</th>
+                    <th>Time</th>
+                    <th>Hours</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Request date</th>
+                    <th>Rejected on</th>
+                    <!-- <th>Action</th> -->
+                </tr>
+            </thead>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+  </div>
+
+
+  <script>
     var $=jQuery.noConflict();
 
     const ajaxUrl =   @json(route('rejected.requests.fetch'));
@@ -58,3 +90,4 @@
         makeDataTable(table, title, columns, dataColumns);
     });
 </script>
+

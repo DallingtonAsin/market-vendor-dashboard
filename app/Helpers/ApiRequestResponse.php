@@ -21,6 +21,7 @@ class ApiRequestResponse
 		}else{
 			$bearerToken = null;
 		}
+		// dd($bearerToken);
 		$headers    =   [
 			'headers' => [
 				'Content-Type' => 'application/json',

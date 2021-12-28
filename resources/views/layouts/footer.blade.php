@@ -1,15 +1,10 @@
-<footer class="footer footer-black  footer-white ">
-    <div class="container-fluid">
-    <div class="row">
-        <div class="credits ml-auto">
-        <span class="copyright">
-            ©
-            <script>
-            document.write(new Date().getFullYear())
-            </script>,  All Rights Reserved by 
-            @include('components.company-name')
-        </span>
-        </div>
+  <!-- Main Footer -->
+  <footer class="main-footer">
+    <!-- To the right -->
+    <div class="pull-right hidden-xs">
+      ParkPro Solutions
     </div>
-    </div>
-</footer>
+    <!-- Default to the left -->
+    <strong>Copyright &copy; {{date('Y')}} <a href="https://parkproug.com" target="_blank">Parkpro Solutions</a>.</strong> 
+    All rights reserved.
+  </footer>
