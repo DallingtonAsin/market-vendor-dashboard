@@ -1,11 +1,11 @@
 <?php
 
-namespace App\DataTables;
+namespace App\DataTables\Reports;
 use Yajra\DataTables\Services\DataTable;
 use App\Helpers\ApiRequestResponse;
 use App\Models\MonthlyReview;
 
-class MonthlyRequestDataTable extends DataTable
+class MonthlyIncomeDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -17,8 +17,8 @@ class MonthlyRequestDataTable extends DataTable
     {
         return datatables($query)
             ->addIndexColumn()
-            ->editColumn('total_requests', function ($request) {
-             return number_format($request->total_requests);
+            ->editColumn('total_income', function ($request) {
+             return number_format($request->total_income);
         });
     }
 
@@ -31,12 +31,10 @@ class MonthlyRequestDataTable extends DataTable
     public function query(MonthlyReview $model)
     {
         
-            $endPoint = '/reports/requests/review';
+            $endPoint = '/reports/incomes/review';
             $resp = ApiRequestResponse::GetDataByEndPoint($endPoint);
             $apiResult = json_decode($resp, true);
             $data = $apiResult['data'];
-            // dd($data);
-            // $data = json_encode($data);
             $data = MonthlyReview::hydrate($data);
             return $data; 
     }
@@ -98,7 +96,7 @@ class MonthlyRequestDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'MonthlyRequests_' . date('YmdHis');
+        return 'MonthlyIncomes_' . date('YmdHis');
     }
 }
 

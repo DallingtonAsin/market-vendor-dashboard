@@ -9,8 +9,12 @@
                        </div>
                         <form wire:submit.prevent="update()" method="POST">
                        <div class="modal-body">
-                            <div class="form-group">
-                                <label for="client_name">Name</label>
+                            
+                        <div class="row">
+                        <div class="col-md-3">
+                            <label for="client_name">Name</label>
+                        </div>
+                            <div class="col-md-9">
                                 <input type="hidden" class="form-control" id="client_id" wire:model="client_id">
                                 <input type="text" class="form-control" id="client_name" placeholder="Enter Name" wire:model="client_name">
                                 <?php $__errorArgs = ['client_name'];
@@ -22,8 +26,15 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                             </div>
-                            <div class="form-group">
+                        </div>
+                        <br/>
+
+
+                        <div class="row">
+                            <div class="col-md-3">
                                 <label for="mobile_number">Telephone No.</label>
+                            </div>
+                            <div class="col-md-9">
                                 <input type="text" class="form-control" id="mobile_number" wire:model="mobile_number" placeholder="Mobile number">
                                 <?php $__errorArgs = ['mobile_number'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -34,8 +45,33 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                             </div>
-                            <div class="form-group">
-                                <label for="email">Email address</label>
+                        </div>
+                        <br/>
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label for="address">Address</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" id="address" wire:model="address" placeholder="Address">
+                                <?php $__errorArgs = ['address'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> <span class="text-danger error"><?php echo e($message); ?></span><?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                            </div>
+                        </div>
+                        <br/>
+
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label for="email">Email</label>
+                            </div>
+                            <div class="col-md-9">
                                 <input type="email" class="form-control" id="email" wire:model="email" placeholder="Enter Email">
                                 <?php $__errorArgs = ['email'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -46,7 +82,9 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                             </div>
-                    </div>
+                       </div>
+                       </div>
+
                     <div class="modal-footer">
                          <button type="submit" class="btn btn-primary close-modal">Update</button>
                          <button type="button" class="btn btn-secondary close-btn" data-dismiss="modal">Close</button>

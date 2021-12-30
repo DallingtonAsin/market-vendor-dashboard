@@ -50,6 +50,8 @@
              </tr>
          </thead>
      </table>
+     @include('livewire.modals.vehicle-types.edit')
+      @include('livewire.modals.vehicle-types.delete')
       </div>
     </div>
   </div>
@@ -58,6 +60,12 @@
 </div>
   </div>
 
+  <script>
+    window.addEventListener('closeModal', event=>{
+      $('#editVehicleType').modal('hide');
+      $('#deleteVehicleType').modal('hide');
+    });
+  </script>
 
   <script>
     var $=jQuery.noConflict();

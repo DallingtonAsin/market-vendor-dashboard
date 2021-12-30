@@ -10,7 +10,8 @@ use App\Models\Client;
 class Index extends Component
 {
 
-    public $client_id, $client_name, $mobile_number, $email;
+    public $client_id, $client_name;
+    public $user_id, $name, $address, $mobile_number, $email;
     public $count = 0;
 
     public $client;
@@ -24,6 +25,13 @@ class Index extends Component
     {
         $clients = Client::all();
         return view('livewire.clients.index')->with(compact('clients'));
+    }
+
+    private function resetEditInputFields(){
+      $this->name = '';
+      $this->address = '';
+      $this->mobile_number = '';
+      $this->email = '';
     }
 
     public function fetchAjaxRequest(ClientsDataTable $dataTable){

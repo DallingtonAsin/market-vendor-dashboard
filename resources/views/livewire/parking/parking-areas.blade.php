@@ -58,6 +58,8 @@
                 </tr>
             </thead>
         </table>
+        @include('livewire.modals.parking-areas.edit')
+        @include('livewire.modals.parking-areas.delete')
       </div>
     </div>
   </div>
@@ -66,6 +68,12 @@
 </div>
   </div>
 
+  <script>
+    window.addEventListener('closeModal', event=>{
+      $('#editParkingArea').modal('hide');
+      $('#deleteParkingArea').modal('hide');
+    });
+  </script>
 
   <script>
     var $=jQuery.noConflict();

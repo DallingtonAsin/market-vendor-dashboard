@@ -53,6 +53,8 @@
                 </tr>
             </thead>
         </table>
+        <?php echo $__env->make('livewire.modals.parking-fees.edit', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+        <?php echo $__env->make('livewire.modals.parking-fees.delete', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
       </div>
     </div>
   </div>
@@ -60,6 +62,13 @@
 </div>
 </div>
   </div>
+
+  <script>
+    window.addEventListener('closeModal', event=>{
+      $('#editParkingFee').modal('hide');
+      $('#deleteParkingFee').modal('hide');
+    });
+  </script>
 
   <script>
     var $=jQuery.noConflict();
@@ -76,7 +85,7 @@
         var dataColumns = [
         {data: 'checkbox', name:'checkbox'},
         {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false,  searchable: false },
-        {data: 'client', name:'client'},
+        {data: 'client_name', name:'client_name'},
         {data: 'parking_area', name:'parking_area'},
         {data: 'vehicle_category', name:'vehicle_category'},
         {data: 'fee_per_hour', name:'fee_per_hour'},

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\DataTables;
+namespace App\DataTables\Requests;
 use Yajra\DataTables\Services\DataTable;
 use App\Helpers\ApiRequestResponse;
 use App\Models\ParkingRequest;
 use Helper;
 
-class ParkingRejectedRequestsDataTable extends DataTable
+class RejectedRequestsDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -20,22 +20,20 @@ class ParkingRejectedRequestsDataTable extends DataTable
             ->addIndexColumn()
             ->addColumn('action', function ($request) {
                 
-            $actionBtn = '<a href="javascript:void(0)" data-toggle="tooltip"
+            $actionBtn = '<div class="row"><a href="javascript:void(0)" data-toggle="tooltip"
             data-id="'.$request->id.'" data-original-title="Edit" id="edit-request" 
             class="btn btn-success edit-request btn-sm"><i class="fa fa-pencil"></i></a>
              <a href="javascript:void(0)" data-toggle="tooltip"
             data-id="'.$request->id.'" data-original-title="View" id="view-request"
             class="btn btn-warning text-white btn-sm ml-2"><i class="fa fa-eye"></i> <a href="javascript:void(0)" data-toggle="tooltip"
             data-id="'.$request->id.'" data-original-title="Delete" id="delete-request" 
-            class="btn btn-danger btn-sm ml-2"><i class="fa fa-trash"></i></a>';
+            class="btn btn-danger btn-sm ml-2"><i class="fa fa-trash"></i></a></div>';
 
            return $actionBtn;
 
         })->addColumn('checkbox', function ($request) {
               $checkBox = '<input type="checkbox" id="'.$request->id.'"/>';
              return $checkBox;
-        })->addColumn('client', function ($request) {
-             return Helper::getClientName($request->client_id);
         })->addColumn('parking_area', function ($request) {
              return Helper::getParkingAreaName($request->parking_area_id);
         })->addColumn('duration', function ($request) {
@@ -43,7 +41,7 @@ class ParkingRejectedRequestsDataTable extends DataTable
              $end_time = date('H:i', strtotime($request->end_time));
              return $start_time."-".$end_time;
         })->addColumn('vehicle_type', function ($request) {
-                 $arr = Helper::getVehicleTypeName($request->vehicle_type_id);
+                 $arr = Helper::getVehicleTypeName($request->vehicle_cat_id);
                  return $arr['data'];
         })->editColumn('request_date', function ($request) {
              return date('Y-m-d', strtotime($request->request_date));
@@ -67,8 +65,6 @@ class ParkingRejectedRequestsDataTable extends DataTable
             $resp = ApiRequestResponse::GetDataByEndPoint($endPoint);
             $apiResult = json_decode($resp, true);
             $data = $apiResult['data'];
-            // dd($data);
-            // $data = json_encode($data);
             $data = ParkingRequest::hydrate($data);
             return $data; 
     }

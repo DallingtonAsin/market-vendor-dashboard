@@ -54,6 +54,8 @@
               </tr>
           </thead>
       </table>
+      <?php echo $__env->make('livewire.modals.users.edit', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+      <?php echo $__env->make('livewire.modals.users.delete', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
       </div>
     </div>
   </div>
@@ -61,6 +63,13 @@
 </div>
 </div>
   </div>
+
+  <script>
+    window.addEventListener('closeModal', event=>{
+      $('#editUser').modal('hide');
+      $('#deleteUser').modal('hide');
+    });
+  </script>
 
 
   <script>

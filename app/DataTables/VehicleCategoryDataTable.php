@@ -22,12 +22,12 @@ class VehicleCategoryDataTable extends DataTable
         ->addIndexColumn()
         ->addColumn('action', function ($vehicleCat) {
             
-            $btn = '<a href="javascript:void(0)" data-toggle="tooltip"
+            $btn = '<div class="row"><a href="javascript:void(0)" data-toggle="modal" data-target="#editVehicleType"
             data-id="'.$vehicleCat->id.'" data-original-title="Edit" wire:click="edit({{ $vehicleCat->id }})" 
             class="btn btn-success btn-sm"><i class="fa fa-pencil"></i></a>
-          <a href="javascript:void(0)" data-toggle="tooltip"
+          <a href="javascript:void(0)" data-toggle="modal" data-target="#deleteVehicleType"
             data-id="'.$vehicleCat->id.'" data-original-title="Delete" wire:click="delete({{ $vehicleCat->id }})" 
-            class="btn btn-danger btn-sm ml-2"><i class="fa fa-trash"></i></a>';
+            class="btn btn-danger btn-sm ml-2"><i class="fa fa-trash"></i></a></div>';
 
            return $btn;
 
@@ -47,7 +47,7 @@ class VehicleCategoryDataTable extends DataTable
     public function query(VehicleCategory $model)
     {
         
-            $endPoint = '/vehicle_category';
+            $endPoint = '/vehicle-category';
             $resp = ApiRequestResponse::GetDataByEndPoint($endPoint);
             $apiResult = json_decode($resp, true);
             $data = $apiResult['data'];

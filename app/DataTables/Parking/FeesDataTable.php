@@ -1,6 +1,6 @@
 <?php
 
-namespace App\DataTables;
+namespace App\DataTables\Parking;
 use Yajra\DataTables\Services\DataTable;
 use App\Helpers\ApiRequestResponse;
 use App\Models\ParkingFee;
@@ -10,7 +10,7 @@ use App\Models\Client;
 use Helper;
 
 
-class ParkingFeesDataTable extends DataTable
+class FeesDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -25,12 +25,12 @@ class ParkingFeesDataTable extends DataTable
         ->addIndexColumn()
         ->addColumn('action', function ($parkingFee) {
             
-            $btn = '<a href="javascript:void(0)" data-toggle="tooltip"
+            $btn = '<div class="row"><a href="javascript:void(0)" data-toggle="modal" data-target="#editParkingFee"
             data-id="'.$parkingFee->id.'" data-original-title="Edit" wire:click="edit({{ $parkingFee->id }})" 
             class="btn btn-success btn-sm"><i class="fa fa-pencil"></i></a>
-                  <a href="javascript:void(0)" data-toggle="tooltip"
+                  <a href="javascript:void(0)" data-toggle="modal" data-target="#deleteParkingFee"
             data-id="'.$parkingFee->id.'" data-original-title="Delete" wire:click="delete({{ $parkingFee->id }})" 
-            class="btn btn-danger btn-sm ml-2"><i class="fa fa-trash"></i></a>';
+            class="btn btn-danger btn-sm ml-2"><i class="fa fa-trash"></i></a></div>';
 
            return $btn;
 
@@ -61,7 +61,7 @@ class ParkingFeesDataTable extends DataTable
     public function query(ParkingFee $model)
     {
         
-            $endPoint = '/parking_fees';
+            $endPoint = '/parking-fees';
             $resp = ApiRequestResponse::GetDataByEndPoint($endPoint);
             $apiResult = json_decode($resp, true);
             $data = $apiResult['data'];

@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\Reports;
 
 use Livewire\Component;
-use App\DataTables\MonthlyRequestDataTable;
+use App\DataTables\Reports\MonthlyRequestDataTable;
 
 class RequestMonthlyReview extends Component
 {

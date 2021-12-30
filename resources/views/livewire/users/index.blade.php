@@ -54,6 +54,8 @@
               </tr>
           </thead>
       </table>
+      @include('livewire.modals.users.edit')
+      @include('livewire.modals.users.delete')
       </div>
     </div>
   </div>
@@ -61,6 +63,13 @@
 </div>
 </div>
   </div>
+
+  <script>
+    window.addEventListener('closeModal', event=>{
+      $('#editUser').modal('hide');
+      $('#deleteUser').modal('hide');
+    });
+  </script>
 
 
   <script>

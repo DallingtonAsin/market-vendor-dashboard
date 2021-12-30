@@ -20,7 +20,7 @@
           
         </div>
         <div class="pull-left info">
-          <p class="text-white"><small><?php echo e(Auth::user()->username); ?></small></p>
+          <p class="text-white"><small><?php echo e(ucfirst(Auth::user()->username)); ?></small></p>
           <!-- Status -->
           <small><a href="#"><i class="fa fa-circle text-success"></i> Online</a></small>
         </div>
@@ -48,14 +48,14 @@
         
         
         <li class="treeview">
-          <a href="#"><i class="fa fa-users fa-lg"></i> <span class="ml-2"> Roles</span>
+          <a href="#"><i class="fa fa-tasks fa-lg"></i> <span class="ml-2"> Roles</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
             <li><a href="<?php echo e(route('roles.add')); ?>"><i class="fa fa-plus-circle"></i> Create</a></li>
-            <li><a href="<?php echo e(route('roles.index')); ?>"><i class="fa fa-calendar"></i> List of roles</a></li>
+            <li><a href="<?php echo e(route('roles.index')); ?>"><i class="fa fa-list"></i> List of roles</a></li>
           </ul>
         </li>
         
@@ -69,8 +69,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo e(route('users.add')); ?>"><i class="fa fa-list"></i> Create</a></li>
-            <li><a href="<?php echo e(route('users.index')); ?>"><i class="fa fa-clock-o"></i> List of users</a></li>
+            <li><a href="<?php echo e(route('users.add')); ?>"><i class="fa fa-plus-circle"></i> Create</a></li>
+            <li><a href="<?php echo e(route('users.index')); ?>"><i class="fa fa-list"></i> List of users</a></li>
           </ul>
         </li>
 
@@ -84,7 +84,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo e(route('clients.add')); ?>"><i class="fa fa-list"></i> Create</a></li>
+            <li><a href="<?php echo e(route('clients.add')); ?>"><i class="fa fa-plus-circle"></i> Create</a></li>
             <li><a href="<?php echo e(route('clients.index')); ?>"><i class="fa fa-list"></i> List of clients</a></li>
 
           </ul>
@@ -97,7 +97,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo e(route('vehicle.category.add')); ?>"><i class="fa fa-list"></i> Add category</a></li>
+            <li><a href="<?php echo e(route('vehicle.category.add')); ?>"><i class="fa fa-plus-circle"></i> Add category</a></li>
             <li><a href="<?php echo e(route('vehicle.category.index')); ?>"><i class="fa fa-list"></i> List of vehicle types</a></li>
 
           </ul>
@@ -111,7 +111,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo e(route('parking.area.create')); ?>"><i class="fa fa-list"></i> Add parking</a></li>
+            <li><a href="<?php echo e(route('parking.area.create')); ?>"><i class="fa fa-plus-circle"></i> Add parking</a></li>
             <li><a href="<?php echo e(route('parking.areas.index')); ?>"><i class="fa fa-list"></i> Manage parking</a></li>
 
           </ul>
@@ -124,22 +124,22 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo e(route('parking.fees.create')); ?>"><i class="fa fa-list"></i> Add fee</a></li>
+            <li><a href="<?php echo e(route('parking.fees.create')); ?>"><i class="fa fa-plus-circle"></i> Add fee</a></li>
             <li><a href="<?php echo e(route('parking.fees.index')); ?>"><i class="fa fa-list"></i> Manage fees</a></li>
 
           </ul>
         </li>
 
         <li class="treeview">
-          <a href="#"><i class="fa fa-shopping-cart fa-lg"></i> <span class="ml-2"> Requests</span>
+          <a href="#"><i class="fa fa-paper-plane fa-lg"></i> <span class="ml-2">Parking Requests</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo e(route('requests.pending.index')); ?>"><i class="fa fa-list"></i>Pending</a></li>
-            <li><a href="<?php echo e(route('requests.rejected.index')); ?>"><i class="fa fa-list"></i> Rejected</a></li>
-            <li><a href="<?php echo e(route('requests.approved.index')); ?>"><i class="fa fa-list"></i> Approved</a></li>
+            <li><a href="<?php echo e(route('requests.pending.index')); ?>"><i class="fa fa-clock-o"></i>Pending</a></li>
+            <li><a href="<?php echo e(route('requests.rejected.index')); ?>"><i class="fa fa-times-circle"></i> Rejected</a></li>
+            <li><a href="<?php echo e(route('requests.approved.index')); ?>"><i class="fa fa-check-circle"></i> Approved</a></li>
 
           </ul>
         </li>
@@ -148,7 +148,7 @@
         
         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->denies('isStaff')): ?>
         <li class="treeview">
-          <a href="#"><i class="fa fa-line-chart fa-lg"></i> <span> Reports </span>
+          <a href="#"><i class="fa fa-line-chart fa-lg"></i> <span class="ml-2"> Analytical Reports </span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -191,20 +191,16 @@
         
         
         <li class="treeview">
-          <a href="#"><i class="fa fa-cog fa-lg"></i> <span> Others </span>
+          <a href="#"><i class="fa fa-cog fa-lg"></i> <span class="ml-2"> Others </span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
             <li><a href="<?php echo e(route('company.add-edit')); ?>"><i class="fa fa-user"></i> Settings</a></li>
+            <li><a href="<?php echo e(route('password.edit')); ?>"><i class="fa fa-home"></i> Change Password</a></li>
             <li><a href="<?php echo e(route('logs.index')); ?>"><i class="fa fa-home"></i> Activity Logs</a></li>
-            
-            <a href="<?php echo e(route('profile.index')); ?>"><i class="fa fa-user"></i> My Profile</a>
-            <a href="<?php echo e(route('profile.edit')); ?>"><i class="fa fa-cog"></i> Account Settings</a>
-            <a href="<?php echo e(route('password.edit')); ?>"> <i class="fa fa-expeditedssl"></i> Change Password</a>
-            <a href="<?php echo e(route('signout')); ?>"><i class="fa fa-power-off"></i> Logout</a>
-        
+      
           </ul>
         </li>
       

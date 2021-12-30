@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Livewire\Requests;
-use App\DataTables\ParkingApprovedRequestsDataTable;
+use App\DataTables\Requests\ApprovedRequestsDataTable;
 use Livewire\Component;
 
 class Approved extends Component
@@ -11,7 +11,7 @@ class Approved extends Component
         return view('livewire.requests.approved');
     }
 
-     public function fetchAjaxRequest(ParkingApprovedRequestsDataTable $dataTable){
+     public function fetchAjaxRequest(ApprovedRequestsDataTable $dataTable){
                 try {
                         return $dataTable->render('livewire.requests.approved');
                     } catch (\Exception $ex) {

@@ -38,7 +38,7 @@
   <div class="row">
     <div class="col-sm-12">
       <div class="table-responsive">
-        <table class="table table-bordered table-dark" id="roles-table">
+        <table class="table table-borderless table-dark" id="roles-table">
           <thead>
             <tr>
               <th>No</th>
@@ -74,6 +74,7 @@
   </div>
 
   <script>
+    $('#roles-table').dataTable();
     window.addEventListener('closeModal', event=>{
       $('#editRole').modal('hide');
       $('#deleteRole').modal('hide');

@@ -1,11 +1,12 @@
 <?php
 
-namespace App\DataTables;
+namespace App\DataTables\Requests;
 use Yajra\DataTables\Services\DataTable;
 use App\Helpers\ApiRequestResponse;
-use App\Models\MonthlyReview;
+use App\Models\ParkingRequest;
+use Helper;
 
-class MonthlyIncomeDataTable extends DataTable
+class ApprovedRequestsDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -17,9 +18,38 @@ class MonthlyIncomeDataTable extends DataTable
     {
         return datatables($query)
             ->addIndexColumn()
-            ->editColumn('total_income', function ($request) {
-             return number_format($request->total_income);
-        });
+            ->addColumn('action', function ($request) {
+                
+            $actionBtn = '<div class="row"><a href="javascript:void(0)" data-toggle="tooltip"
+            data-id="'.$request->id.'" data-original-title="Edit" id="edit-request" 
+            class="btn btn-success edit-request btn-sm"><i class="fa fa-pencil"></i></a>
+             <a href="javascript:void(0)" data-toggle="tooltip"
+            data-id="'.$request->id.'" data-original-title="View" id="view-request"
+            class="btn btn-warning text-white btn-sm ml-2"><i class="fa fa-eye"></i> <a href="javascript:void(0)" data-toggle="tooltip"
+            data-id="'.$request->id.'" data-original-title="Delete" id="delete-request" 
+            class="btn btn-danger btn-sm ml-2"><i class="fa fa-trash"></i></a></div>';
+
+           return $actionBtn;
+
+        })->addColumn('checkbox', function ($request) {
+              $checkBox = '<input type="checkbox" id="'.$request->id.'"/>';
+             return $checkBox;
+        })->addColumn('parking_area', function ($request) {
+             return Helper::getParkingAreaName($request->parking_area_id);
+        })->addColumn('duration', function ($request) {
+             $start_time = date('H:i', strtotime($request->start_time));
+             $end_time = date('H:i', strtotime($request->end_time));
+             return $start_time."-".$end_time;
+        })->addColumn('vehicle_type', function ($request) {
+                 $arr = Helper::getVehicleTypeName($request->vehicle_cat_id);
+                 return $arr['data'];
+        })->editColumn('request_date', function ($request) {
+             return date('Y-m-d', strtotime($request->request_date));
+        })->editColumn('approval_date', function ($request) {
+             return date('Y-m-d', strtotime($request->approval_date));
+        })->editColumn('amount', function ($request) {
+             return number_format($request->amount);
+        })->rawColumns(['action', 'checkbox']);
     }
 
     /**
@@ -28,14 +58,14 @@ class MonthlyIncomeDataTable extends DataTable
      * @param \request $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(MonthlyReview $model)
+    public function query(ParkingRequest $model)
     {
         
-            $endPoint = '/reports/incomes/review';
+            $endPoint = '/requests/approved';
             $resp = ApiRequestResponse::GetDataByEndPoint($endPoint);
             $apiResult = json_decode($resp, true);
             $data = $apiResult['data'];
-            $data = MonthlyReview::hydrate($data);
+            $data = ParkingRequest::hydrate($data);
             return $data; 
     }
 
@@ -96,7 +126,7 @@ class MonthlyIncomeDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'MonthlyIncomes_' . date('YmdHis');
+        return 'Requests_' . date('YmdHis');
     }
 }
 

@@ -1,14 +1,11 @@
 <?php
 
-namespace App\DataTables;
+namespace App\DataTables\Reports;
 use Yajra\DataTables\Services\DataTable;
 use App\Helpers\ApiRequestResponse;
-use App\Models\ParkingArea;
-use App\Models\Client;
-use Helper;
+use App\Models\MonthlyReview;
 
-
-class ParkingAreasDataTable extends DataTable
+class MonthlyRequestDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -18,28 +15,11 @@ class ParkingAreasDataTable extends DataTable
      */
     public function dataTable($query)
     {
-
-         return datatables($query)
-        ->addIndexColumn()
-        ->addColumn('action', function ($parkingArea) {
-            
-            $btn = '<a href="javascript:void(0)" data-toggle="tooltip"
-            data-id="'.$parkingArea->id.'" data-original-title="Edit" wire:click="edit({{ $parkingArea->id }})" 
-            class="btn btn-success btn-sm"><i class="fa fa-pencil"></i></a>
-            <a href="javascript:void(0)" data-toggle="tooltip"
-            data-id="'.$parkingArea->id.'" data-original-title="Delete" wire:click="delete({{ $parkingArea->id }})" 
-            class="btn btn-danger btn-sm ml-2"><i class="fa fa-trash"></i></a>';
-
-           return $btn;
-
-        })->addColumn('checkbox', function ($parkingArea) {
-              $checkBox = '<input type="checkbox" id="'.$parkingArea->id.'"/>';
-             return $checkBox;
-        })->addColumn('client', function ($parkingArea) {
-            $obj = Client::find($parkingArea->client_id);
-             return $obj->name;
-        })->rawColumns(['action', 'checkbox']);
-
+        return datatables($query)
+            ->addIndexColumn()
+            ->editColumn('total_requests', function ($request) {
+             return number_format($request->total_requests);
+        });
     }
 
     /**
@@ -48,16 +28,16 @@ class ParkingAreasDataTable extends DataTable
      * @param \request $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(ParkingArea $model)
+    public function query(MonthlyReview $model)
     {
         
-            $endPoint = '/parking_areas';
+            $endPoint = '/reports/requests/review';
             $resp = ApiRequestResponse::GetDataByEndPoint($endPoint);
             $apiResult = json_decode($resp, true);
             $data = $apiResult['data'];
-        
             // dd($data);
-            $data = ParkingArea::hydrate($data);
+            // $data = json_encode($data);
+            $data = MonthlyReview::hydrate($data);
             return $data; 
     }
 
@@ -69,7 +49,7 @@ class ParkingAreasDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-                    ->setTableId('parkingAreasDatatable')
+                    ->setTableId('RequestsDatatable')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->dom('Bfrtip')
@@ -91,9 +71,23 @@ class ParkingAreasDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'id',
-            'client_id',
-            'areas'
+            Column::computed('action')
+                  ->exportable(false)
+                  ->printable(false)
+                  ->width(60)
+                  ->addClass('text-center'),
+            Column::computed('checkbox') ->exportable(false)
+                  ->printable(false)
+                  ->width(60)
+                  ->addClass('text-center'),
+            Column::make('id'),
+            Column::make('username'),
+            Column::make('telephone'),
+            Column::make('car_number'),
+            Column::make('status'),
+            Column::make('request_date'),
+             Column::make('approval_date'),
+
         ];
     }
 
@@ -104,9 +98,8 @@ class ParkingAreasDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'parkingAreas_' . date('YmdHis');
+        return 'MonthlyRequests_' . date('YmdHis');
     }
 }
-
 
 

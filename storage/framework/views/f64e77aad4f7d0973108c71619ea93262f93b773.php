@@ -6,7 +6,7 @@
       </h1>
       <ol class="breadcrumb">
         <!-- li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li-->
-        <li class="active">Users</li>
+        <li class="active">User Management</li>
       </ol>
     </section>
 

@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\Requests;
 
 use Livewire\Component;
-use App\DataTables\ParkingRejectedRequestsDataTable;
+use App\DataTables\Requests\RejectedRequestsDataTable;
 
 class Rejected extends Component
 {
@@ -12,7 +12,7 @@ class Rejected extends Component
         return view('livewire.requests.rejected');
     }
 
-    public function fetchAjaxRequest(ParkingRejectedRequestsDataTable $dataTable){
+    public function fetchAjaxRequest(RejectedRequestsDataTable $dataTable){
         try {
                 return $dataTable->render('livewire.requests.rejected');
             } catch (\Exception $ex) {

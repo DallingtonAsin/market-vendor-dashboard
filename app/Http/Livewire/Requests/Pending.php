@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\Requests;
 
 use Livewire\Component;
-use App\DataTables\ParkingPendingRequestsDataTable;
+use App\DataTables\Requests\PendingRequestsDataTable;
 use App\Helpers\ApiRequestResponse;
 use App\Models\ParkingRequest;
 
@@ -22,7 +22,7 @@ class Pending extends Component
         return view('livewire.requests.pending');
     }
 
-     public function fetchAjaxRequest(ParkingPendingRequestsDataTable $dataTable){
+     public function fetchAjaxRequest(PendingRequestsDataTable $dataTable){
                 try {
                         return $dataTable->render('livewire.requests.pending');
                     } catch (\Exception $ex) {

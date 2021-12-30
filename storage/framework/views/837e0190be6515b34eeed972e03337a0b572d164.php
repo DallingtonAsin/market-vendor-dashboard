@@ -17,7 +17,7 @@
     <?php echo $__env->make('components.message', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <div class="box-header">
       <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-8">
           <h3 class="box-title" style="font-weight:bolder; text-transform:uppercase; 
           font-family: 'Times New Roman', Times, serif">List of approved parking requests</h3>
         </div>
@@ -39,7 +39,6 @@
                     <th>Tel</th>
                     <th>Vehicle No</th>
                     <th>Vehicle Type</th>
-                    <th>Client</th>
                     <th>Area</th>
                     <th>Time</th>
                     <th>Hours</th>
@@ -47,7 +46,6 @@
                     <th>Status</th>
                     <th>Request date</th>
                     <th>Approval date</th>
-                    <!-- <th>Action</th> -->
                 </tr>
             </thead>
         </table>
@@ -74,9 +72,8 @@
         var dataColumns = [
         {data: 'checkbox', name:'checkbox'},
         {data: 'telephone_no', name:'telephone_no'},
-        {data: 'vehicle_number', name:'vehicle_number'},
+        {data: 'vehicle_details', name:'vehicle_details'},
         {data: 'vehicle_type', name:'vehicle_type'},
-        {data: 'client', name:'client'},
         {data: 'parking_area', name:'parking_area'},
         {data: 'duration', name:'duration'},
         {data: 'parking_hours', name:'parking_hours'},

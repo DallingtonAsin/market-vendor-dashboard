@@ -7,16 +7,20 @@ use App\DataTables\VehicleCategoryDataTable;
 
 class Index extends Component
 {
+
+    public $user_id, $name;
+
     public function render()
     {
         return view('livewire.vehicle-category.index');
     }
 
+    private function resetInputFields(){
+        $this->name = '';
+    }
+
     public function fetchAjaxRequest(VehicleCategoryDataTable $dataTable){
-                try {
-                        return $dataTable->render('livewire.vehicle-category.index');
-                    } catch (\Exception $ex) {
-                        dd($ex->getMessage());
-                    }
-       }
+         return $dataTable->render('livewire.vehicle-category.index');       
+     }
+     
 }

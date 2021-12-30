@@ -22,13 +22,13 @@ class UsersDataTable extends DataTable
         ->addIndexColumn()
         ->addColumn('action', function ($user) {
             
-            $btn = '<a href="javascript:void(0)" data-toggle="tooltip"
+            $btn = '<div class="row"><a href="javascript:void(0)" data-toggle="modal" data-target="#editUser"
             data-id="'.$user->id.'" data-original-title="Edit" wire:click="edit({{ $user->id }})" 
             class="btn btn-success btn-sm"><i class="fa fa-pencil"></i></a>
 
-          <a href="javascript:void(0)" data-toggle="tooltip"
+          <a href="javascript:void(0)" data-toggle="modal" data-target="#deleteUser"
             data-id="'.$user->id.'" data-original-title="Delete" wire:click="delete({{ $user->id }})" 
-            class="btn btn-danger btn-sm ml-2"><i class="fa fa-trash"></i></a>';
+            class="btn btn-danger btn-sm ml-2"><i class="fa fa-trash"></i></a></div>';
 
            return $btn;
 

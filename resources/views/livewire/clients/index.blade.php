@@ -49,6 +49,7 @@
                     <th>No</th>
                     <th>Name</th>
                     <th>Telephone No</th>
+                    <th>Address</th>
                     <th>Email</th>
                     <th>Action</th>
                 </tr>
@@ -90,6 +91,7 @@
           {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false,  searchable: false },
           {data: 'name', name:'name'},
           {data: 'mobile_number', name:'mobile_number'},
+          {data: 'address', name:'address'},
           {data: 'email', name:'email'},
           {data: 'action', name:'action'},
           ];

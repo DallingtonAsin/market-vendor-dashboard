@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\Reports;
 
 use Livewire\Component;
-use App\DataTables\MonthlyIncomeDataTable;
+use App\DataTables\Reports\MonthlyIncomeDataTable;
 
 class IncomeMonthlyReview extends Component
 {

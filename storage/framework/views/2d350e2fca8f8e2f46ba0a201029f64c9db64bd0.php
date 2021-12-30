@@ -42,7 +42,7 @@
 
 
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs"><?php echo e(Auth::user()->username); ?></span>
+              <span class="hidden-xs"><?php echo e(ucfirst(Auth::user()->username)); ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
