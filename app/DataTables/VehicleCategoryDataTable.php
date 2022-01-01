@@ -22,11 +22,12 @@ class VehicleCategoryDataTable extends DataTable
         ->addIndexColumn()
         ->addColumn('action', function ($vehicleCat) {
             
-            $btn = '<div class="row"><a href="javascript:void(0)" data-toggle="modal" data-target="#editVehicleType"
-            data-id="'.$vehicleCat->id.'" data-original-title="Edit" wire:click="edit({{ $vehicleCat->id }})" 
+            $btn = '<div class="row"><a href="javascript:void(0)" data-toggle="tooltip" 
+            data-id="'.$vehicleCat->id.'" data-name="'.$vehicleCat->name.'" id="edit-vehicle-type" data-original-title="Edit" 
             class="btn btn-success btn-sm"><i class="fa fa-pencil"></i></a>
-          <a href="javascript:void(0)" data-toggle="modal" data-target="#deleteVehicleType"
-            data-id="'.$vehicleCat->id.'" data-original-title="Delete" wire:click="delete({{ $vehicleCat->id }})" 
+
+          <a href="javascript:void(0)" data-toggle="tooltip" 
+            data-id="'.$vehicleCat->id.'" data-name="'.$vehicleCat->name.'" id="delete-vehicle-type"  data-original-title="Delete" 
             class="btn btn-danger btn-sm ml-2"><i class="fa fa-trash"></i></a></div>';
 
            return $btn;
@@ -98,7 +99,7 @@ class VehicleCategoryDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'Users_' . date('YmdHis');
+        return 'VehicleTypes_' . date('YmdHis');
     }
 }
 

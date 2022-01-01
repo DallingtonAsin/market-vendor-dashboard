@@ -34,6 +34,9 @@ Route::get('pending/requests/ajax/',[App\Http\Livewire\Requests\Pending::class, 
 Route::get('approved/requests/ajax/',[App\Http\Livewire\Requests\Approved::class, 'fetchAjaxRequest'])->name('approved.requests.fetch');
 Route::get('rejected/requests/ajax/',[App\Http\Livewire\Requests\Rejected::class, 'fetchAjaxRequest'])->name('rejected.requests.fetch');
 
+// Roles ajax
+Route::get('roles/ajax/',[App\Http\Livewire\Roles\Index::class, 'fetchAjaxRequest'])->name('roles.ajax.fetch');
+
 // Users ajax
 Route::get('users/ajax/',[App\Http\Livewire\Users\Index::class, 'fetchAjaxRequest'])->name('users.ajax.fetch');
 
@@ -62,7 +65,6 @@ Route::get('logs/ajax/',[ActivityLogs::class, 'fetchAjaxRequest'])->name('logs.a
 
 
 
-
 Route::group(["middleware" => "restricted"], function(){
 
 // Testing
@@ -76,7 +78,32 @@ Route::get('home',App\Http\Livewire\Home::class)->name('home');
 // Users
     Route::get('users',App\Http\Livewire\Users\Index::class)->name('users.index');
     Route::get('users/add',App\Http\Livewire\Users\Add::class)->name('users.add');
+    Route::get('users/show/{id}',[App\Http\Livewire\Users\Index::class, 'show'])->name('user.show');
 
+    Route::put('users/update',[App\Http\Livewire\Users\Index::class, 'update'])->name('user.update');
+    Route::delete('users/delete',[App\Http\Livewire\Users\Index::class, 'destroy'])->name('user.destroy');
+    Route::post('users/account/change',[App\Http\Livewire\Users\Index::class, 'changeUserAccountStatus'])->name('user.account.change');
+   
+    Route::get('client/show/{id}',[App\Http\Livewire\Clients\Index::class, 'show'])->name('client.show');
+    Route::put('client/update',[App\Http\Livewire\Clients\Index::class, 'update'])->name('client.update');
+    Route::delete('client/delete',[App\Http\Livewire\Clients\Index::class, 'destroy'])->name('client.destroy');
+
+    Route::get('vehicle-type/show/{id}',[App\Http\Livewire\VehicleCategory\Index::class, 'show'])->name('vehicle-type.show');
+    Route::put('vehicle-type/update',[App\Http\Livewire\VehicleCategory\Index::class, 'update'])->name('vehicle-type.update');
+    Route::delete('vehicle-type/delete',[App\Http\Livewire\VehicleCategory\Index::class, 'destroy'])->name('vehicle-type.destroy');
+   
+    Route::get('parking-area/show/{id}',[App\Http\Livewire\Parking\ParkingAreas::class, 'show'])->name('parking-area.show');
+    Route::put('parking-area/update',[App\Http\Livewire\Parking\ParkingAreas::class, 'update'])->name('parking-area.update');
+    Route::delete('parking-area/delete',[App\Http\Livewire\Parking\ParkingAreas::class, 'destroy'])->name('parking-area.destroy');
+   
+    Route::get('parking-fee/show/{id}',[App\Http\Livewire\Parking\ParkingFees::class, 'show'])->name('parking-fee.show');
+    Route::put('parking-fee/update',[App\Http\Livewire\Parking\ParkingFees::class, 'update'])->name('parking-fee.update');
+    Route::delete('parking-fee/delete',[App\Http\Livewire\Parking\ParkingFees::class, 'destroy'])->name('parking-fee.destroy');
+   
+    Route::get('role/show/{id}',[App\Http\Livewire\Roles\Index::class, 'show'])->name('role.show');
+    Route::put('role/update',[App\Http\Livewire\Roles\Index::class, 'update'])->name('role.update');
+    Route::delete('role/delete',[App\Http\Livewire\Roles\Index::class, 'destroy'])->name('role.destroy');
+   
 
 // Clients
     Route::get('clients',App\Http\Livewire\Clients\Index::class)->name('clients.index');
@@ -123,8 +150,8 @@ Route::get('home',App\Http\Livewire\Home::class)->name('home');
     Route::get('logs', ActivityLogs::class)->name('logs.index');
 
 // Roles
-    Route::get('roles', App\Http\Livewire\Users\Roles\Index::class)->name('roles.index');
-    Route::get('role/create/',App\Http\Livewire\Users\Roles\Add::class)->name('roles.add');
+    Route::get('roles', App\Http\Livewire\Roles\Index::class)->name('roles.index');
+    Route::get('role/create/',App\Http\Livewire\Roles\Add::class)->name('roles.add');
 
     // Company
     Route::get('settings/company', Company::class)->name('company.add-edit');

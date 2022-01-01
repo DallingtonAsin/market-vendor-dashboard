@@ -1,4 +1,4 @@
- <div wire:ignore.self class="modal fade" id="deleteUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+ <div class="modal fade" id="deleteUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -7,15 +7,15 @@
                  <span aria-hidden="true close-btn">×</span>
              </button>
          </div>
-         <form wire:submit.prevent="delete()" method="POST">
+         <form>
              <div class="modal-body">
                 <div class="form-group">
                     <label class="text-danger">Are you sure you want to delete user 
                         <span class="text-black"></span>?</label>
-                        <input type="hidden" class="form-control" id="id" wire:model="user_id">
+                        <input type="hidden" class="form-control" id="user_id">
                     </div>
                     <div class="modal-footer">
-                       <button type="submit" class="btn btn-primary close-modal">Delete</button>
+                       <button type="submit" wire:ignore class="btn btn-primary close-modal delete-ok-btn">Yes</button>
                        <button type="button" class="btn btn-secondary close-btn" data-dismiss="modal">Close</button>
                    </div>
                </form>

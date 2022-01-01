@@ -22,7 +22,8 @@
         <div class="col-sm-4">
           <h3 class="box-title" style="font-weight:bolder; 
           text-transform:uppercase; font-family: 'Times New Roman', Times, serif">List of clients</h3>
-        </div>
+            <span class="pl-0 mt-4 response"></span>
+      </div>
         
      
       <div class="col-sm-4">
@@ -56,7 +57,6 @@
             </thead>
     </table>
     <?php echo $__env->make('livewire.modals.clients.edit', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-    <?php echo $__env->make('livewire.modals.clients.delete', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
       </div>
     </div>
   </div>
@@ -82,6 +82,12 @@
       const token = "<?php echo e(csrf_token()); ?>";
   
       jQuery(document).ready(function($){
+
+        $.ajaxSetup({
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+      });
   
           var table = $('#clients-table');
           var title = "List of clients";
@@ -96,6 +102,123 @@
           {data: 'action', name:'action'},
           ];
           makeDataTable(table, title, columns, dataColumns);
+
+
+   // method to populate user information on editing
+     $('body').on('click', '#edit-client', function (event) {
+        var id = $(this).data('id');
+        event.preventDefault();
+        var Url = "<?php echo e(route('client.show', ':id')); ?>";
+        Url = Url.replace(':id', id);
+        $.ajax({
+
+          url: Url,
+          type: "GET",
+          dataType: 'json',
+          success: function (data) {
+
+            console.log("client data", data);
+            $('#id').val(data.id);
+            $('#name').val(data.name);
+            $('#address').val(data.address);
+            $('#mobile_number').val(data.mobile_number);
+            $('#email').val(data.email);
+            $('#editClient').modal('show');
+          },
+          error: function (data) {
+            console.log('Error:', data.error);
+          }
+        });
+
+      });
+
+      // method to update client information
+      $('body').on('click', '#update-btn', function (event) {
+        event.preventDefault();
+        let id =  $('#id').val();
+        let updateUrl =  '<?php echo e(route("client.update")); ?>';
+        $('#update-btn').html('Updating...');
+        $.ajax({
+          data: $('#clientsForm').serialize(),
+          url: updateUrl ,
+          type: "PUT",
+          dataType: 'json',
+          success: function (data) {
+            $('#clientsForm').trigger("reset");
+            $('#editClient').modal("hide");
+            var resp = data.message;
+            ShowResponse('.response', resp, 'success');
+            ResetInfo();
+            var tbl = $('#clients-table').DataTable();
+            tbl.ajax.reload();
+            $('#update-btn').html('Update');
+
+
+          },
+          error: function (data) {
+            console.log('Error:', data.fail);
+            ShowResponse('.response', data.error, 'error');
+            $('#update-btn').html('Update');
+          }
+        });
+
+      });
+
+      
+ //this pops up confirm delete client
+ $('body').on('click', '#delete-client', function (event) {
+        let id = $(this).data("id");
+        let name = $(this).data("name");
+        event.preventDefault();
+        if(confirm("Do you want to delete client "+name+"?")){
+        let deleteUrl = '<?php echo e(route("client.destroy")); ?>';
+        $.ajax({
+          type: "DELETE",
+          url: deleteUrl,
+          data: {
+            'id': id
+          },
+          success: function (data) {
+            var resp = data.message;
+            ShowResponse('.response', resp, 'success');
+            ResetInfo(data);
+            var tbl = $('#clients-table').DataTable();
+            tbl.ajax.reload();
+          },
+          error: function (data) {
+            console.log('Error:', data);
+            ShowResponse('.response', data.error, 'error');
+          }
+        });
+        }else{
+          console.log("Do nothing");
+        }
+      });
+
+    
+      // this resets form data
+      function ResetInfo(response)
+      {
+            $('#id').val('');
+            $('#name').val('');
+            $('#address').val('');
+            $('#mobile_number').val('');
+            $('#email').val('');
+      }
+
+      // this displays notification after edit/delete action
+      function ShowResponse(area, message, errorType)
+      {
+        $(area).notify(message,{
+          className: errorType,
+          autoHide: true,
+          clickToHide:true,
+          autoHideDelay:45000,
+        });
+      }
+
+
+
       });
   </script>
 

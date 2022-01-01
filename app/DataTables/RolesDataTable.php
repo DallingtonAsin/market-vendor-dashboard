@@ -3,12 +3,12 @@
 namespace App\DataTables;
 use Yajra\DataTables\Services\DataTable;
 use App\Helpers\ApiRequestResponse;
-use App\Models\Client;
+use App\Models\Role;
 use Livewire\Livewire;
 use Helper;
 
 
-class ClientsDataTable extends DataTable
+class RolesDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -21,20 +21,22 @@ class ClientsDataTable extends DataTable
 
          return datatables($query)
         ->addIndexColumn()
-        ->addColumn('action', function ($client) {
+        ->addColumn('action', function ($role) {
             $btn = '<div class="row"><a href="javascript:void(0)" data-toggle="tooltip" 
-            data-id="'.$client->id.'" data-name="'.$client->name.'" id="edit-client" data-original-title="Edit" 
+            data-id="'.$role->id.'" data-name="'.$role->name.'" id="edit-role" data-original-title="Edit" 
             class="btn btn-success btn-sm"><i class="fa fa-pencil"></i></a>
 
           <a href="javascript:void(0)" data-toggle="tooltip" 
-            data-id="'.$client->id.'" data-name="'.$client->name.'" id="delete-client"  data-original-title="Delete" 
+            data-id="'.$role->id.'" data-name="'.$role->name.'" id="delete-role"  data-original-title="Delete" 
             class="btn btn-danger btn-sm ml-2"><i class="fa fa-trash"></i></a></div>';
 
            return $btn;
         
 
-        })->addColumn('checkbox', function ($client) {
-              $checkBox = '<input type="checkbox" id="'.$client->id.'"/>';
+        })->addColumn('created_at', function ($role) {
+           return date('Y-m-d H:i A', strtotime($role->created_at));
+      })->addColumn('checkbox', function ($role) {
+              $checkBox = '<input type="checkbox" id="'.$role->id.'"/>';
              return $checkBox;
         })->rawColumns(['action', 'checkbox']);
 
@@ -46,15 +48,13 @@ class ClientsDataTable extends DataTable
      * @param \request $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Client $model)
+    public function query(Role $model)
     {
-        
-            $endPoint = '/clients';
+            $endPoint = '/roles';
             $resp = ApiRequestResponse::GetDataByEndPoint($endPoint);
             $apiResult = json_decode($resp, true);
             $data = $apiResult['data'];
-            // dd($data);
-            $data = Client::hydrate($data);
+            $data = Role::hydrate($data);
             return $data; 
     }
 
@@ -90,8 +90,8 @@ class ClientsDataTable extends DataTable
         return [
             'id',
             'name',
-            'mobile_number',
-            'email'
+            'created_at',
+            'updated_at'
         ];
     }
 
@@ -102,9 +102,10 @@ class ClientsDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'Clients_' . date('YmdHis');
+        return 'Roles_' . date('YmdHis');
     }
 }
+
 
 
 

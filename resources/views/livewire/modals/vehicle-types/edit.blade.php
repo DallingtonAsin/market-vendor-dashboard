@@ -7,7 +7,7 @@
                                <span aria-hidden="true close-btn">×</span>
                            </button>
                        </div>
-                        <form wire:submit.prevent="update()" method="POST">
+                        <form id="vehicleTypesForm">
                        <div class="modal-body">
                             
                         <div class="row">
@@ -15,9 +15,8 @@
                             <label for="vehicle_type">Name</label>
                         </div>
                             <div class="col-md-9">
-                                <input type="hidden" class="form-control" id="vehicle_type_id" wire:model="vehicle_type_id">
-                                <input type="text" class="form-control" id="vehicle_type" placeholder="Enter Name" wire:model="vehicle_type">
-                                @error('vehicle_type') <span class="text-danger error">{{ $message }}</span>@enderror
+                                <input type="hidden" class="form-control" id="id" name="id" wire:model="vehicle_type_id">
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" required>
                             </div>
                         </div>
                         <br/>
@@ -25,7 +24,7 @@
                        </div>
 
                     <div class="modal-footer">
-                         <button type="submit" class="btn btn-primary close-modal">Update</button>
+                         <button type="submit" class="btn btn-primary close-modal" id="update-btn">Update</button>
                          <button type="button" class="btn btn-secondary close-btn" data-dismiss="modal">Close</button>
                     </div>
                       </form>

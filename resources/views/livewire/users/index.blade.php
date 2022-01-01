@@ -20,6 +20,7 @@
         <div class="col-sm-4">
           <h3 class="box-title" style="font-weight:bolder; text-transform:uppercase; 
           font-family: 'Times New Roman', Times, serif">List of system users</h3>
+            <span class="pl-0 mt-4 response"></span>
         </div>
         
      
@@ -55,7 +56,6 @@
           </thead>
       </table>
       @include('livewire.modals.users.edit')
-      @include('livewire.modals.users.delete')
       </div>
     </div>
   </div>
@@ -64,11 +64,13 @@
 </div>
   </div>
 
+  <script src="{{ asset('vendors/notify/notify.js') }}"></script>
   <script>
     window.addEventListener('closeModal', event=>{
       $('#editUser').modal('hide');
       $('#deleteUser').modal('hide');
     });
+
   </script>
 
 
@@ -81,6 +83,13 @@
 
     jQuery(document).ready(function($){
 
+        $.ajaxSetup({
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+      });
+
+      // populating users table
         var table = $('#users-table');
         var title = "List of users";
         var columns = [1,2,3,4,5];
@@ -95,6 +104,160 @@
         {data: 'action', name:'action'},
         ];
         makeDataTable(table, title, columns, dataColumns);
+
+      // method to populate user information on editing
+     $('body').on('click', '#edit-user', function (event) {
+        var id = $(this).data('id');
+        event.preventDefault();
+        var Url = "{{ route('user.show', ':id') }}";
+        Url = Url.replace(':id', id);
+        $.ajax({
+
+          url: Url,
+          type: "GET",
+          dataType: 'json',
+          success: function (data) {
+
+            console.log("User data", data);
+            $('#id').val(data.id);
+            $('#first_name').val(data.first_name);
+            $('#last_name').val(data.last_name);
+            $('#phone_number').val(data.phone_number);
+            $('#email').val(data.email);
+            $('#address').val(data.address);
+            $('#gender').val(data.gender);
+            $('#editUser').modal('show');
+          },
+          error: function (data) {
+            console.log('Error:', data.error);
+          }
+        });
+
+      });
+
+      // method to update user information
+      $('body').on('click', '#update-btn', function (event) {
+        event.preventDefault();
+        let id =  $('#id').val();
+        let updateUrl =  '{{ route("user.update") }}';
+        $('#update-btn').html('Updating...');
+        $.ajax({
+          data: $('#usersForm').serialize(),
+          url: updateUrl ,
+          type: "PUT",
+          dataType: 'json',
+          success: function (data) {
+            $('#usersForm').trigger("reset");
+            $('#editUser').modal("hide");
+            var resp = data.message;
+            ShowResponse('.response', resp, 'success');
+            ResetInfo();
+            var tbl = $('#users-table').DataTable();
+            tbl.ajax.reload();
+            $('#update-btn').html('Update');
+
+
+          },
+          error: function (data) {
+            console.log('Error:', data.fail);
+            ShowResponse('.response', data.error, 'error');
+            $('#update-btn').html('Update');
+          }
+        });
+
+      });
+
+      
+    //this pops up confirm delete user
+        $('body').on('click', '#delete-user', function (event) {
+        let id = $(this).data("id");
+        let name = $(this).data("name");
+        event.preventDefault();
+        if(confirm("Do you want to delete user "+name+"?")){
+        let deleteUrl = '{{ route("user.destroy") }}';
+        $.ajax({
+          type: "DELETE",
+          url: deleteUrl,
+          data: {
+            'id': id
+          },
+          success: function (data) {
+            var resp = data.message;
+            ShowResponse('.response', resp, 'success');
+            ResetInfo(data);
+            var tbl = $('#users-table').DataTable();
+            tbl.ajax.reload();
+          },
+          error: function (data) {
+            console.log('Error:', data);
+            ShowResponse('.response', data.error, 'error');
+          }
+        });
+        }else{
+          console.log("Do nothing");
+        }
+      });
+
+       //alert to change user account status
+       $('body').on('click', '.changeAccountBtn', function (event) {
+        let id = $(this).data("id");
+        let status = $(this).data("status");
+        let statusAction = status == 1 ? 'deactivate' : 'activate';
+        event.preventDefault();
+        if(confirm("Do you want to "+statusAction+" this account?")){
+          console.log("user id "+id+" and status "+status);
+          let postUrl = '{{ route("user.account.change") }}';
+          $.ajax({
+          type: "POST",
+          url: postUrl,
+          data: {
+            'id': id,
+            'status': status,
+          },
+          success: function (data) {
+            console.log("Results", data);
+            var resp = data.message;
+            $('#deleteUser').modal("hide");
+            ShowResponse('.response', resp, 'success');
+            var tbl = $('#users-table').DataTable();
+            tbl.ajax.reload();
+          },
+          error: function (data) {
+            console.log('Error:', data);
+            ShowResponse('.response', data.error, 'error');
+          }
+        });
+        }else{
+          console.log("Do nothing");
+        }
+
+       });
+
+
+      // this resets form data
+      function ResetInfo(response)
+      {
+            $('#id').val('');
+            $('#first_name').val('');
+            $('#last_name').val('');
+            $('#phone_number').val('');
+            $('#email').val('');
+            $('#address').val('');
+            $('#gender').val('');
+      }
+
+      // this displays notification after edit/delete action
+      function ShowResponse(area, message, errorType)
+      {
+        $(area).notify(message,{
+          className: errorType,
+          autoHide: true,
+          clickToHide:true,
+          autoHideDelay:45000,
+        });
+      }
+
+
     });
 </script>
 

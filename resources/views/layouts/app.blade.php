@@ -5,13 +5,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>{{ config('app.name') }}</title>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  
+  <meta name="csrf-token" content="<?= csrf_token() ?>">
   
   <link rel="shortcut icon" href="{{ asset('images/icons/office1.ico') }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="{{ asset('vendors/fonts/montserrat/css.css') }}" rel="stylesheet">
-   {{-- <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,400;1,200" rel="stylesheet"> --}}
+  {{-- <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,400;1,200" rel="stylesheet"> --}}
   
   @livewireStyles
   
@@ -69,6 +69,18 @@
   <link href="{{ asset('bower_components/AdminLTE/dist/css/skins/_all-skins.css')}}" rel="stylesheet" type="text/css" />
   <link href="{{ asset('css/app-template.css') }}" rel="stylesheet">
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+  <style>
+    body{
+      overflow-x: hidden !important;
+    }
+    @media only screen and (min-width: 768px){
+      .table-responsive{
+        overflow-x: hidden !important;
+      }
+    }
+    
+  </style>
+  
   @livewireStyles
   
 </head>
@@ -102,7 +114,7 @@
     @include('layouts.sidebar')
     
     <div>
-    {{$slot}}
+      {{$slot}}
     </div>
     @include('layouts.footer')
     
@@ -112,13 +124,13 @@
       
       
       $(document).ready(function() {
-
-
+        
+        
         $('#assignee').multiselect();
         // $('#assigneee').multiselect();
-
-
-
+        
+        
+        
         
         //Date picker
         $('#birthDate').datepicker({

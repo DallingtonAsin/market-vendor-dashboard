@@ -24,12 +24,17 @@ class FeesDataTable extends DataTable
          return datatables($query)
         ->addIndexColumn()
         ->addColumn('action', function ($parkingFee) {
-            
-            $btn = '<div class="row"><a href="javascript:void(0)" data-toggle="modal" data-target="#editParkingFee"
-            data-id="'.$parkingFee->id.'" data-original-title="Edit" wire:click="edit({{ $parkingFee->id }})" 
+
+            $parking_area = ParkingArea::where('id', $parkingFee->parking_area_id)->value('name');
+            $vehicleType = VehicleCategory::where('id', $parkingFee->vehicle_cat_id)->value('name');
+
+
+            $btn = '<div class="row"><a href="javascript:void(0)" data-toggle="tooltip" 
+            data-id="'.$parkingFee->id.'" data-name="'.$parking_area.'"  data-vehicletype="'.$vehicleType.'" id="edit-parking-fee" data-original-title="Edit" 
             class="btn btn-success btn-sm"><i class="fa fa-pencil"></i></a>
-                  <a href="javascript:void(0)" data-toggle="modal" data-target="#deleteParkingFee"
-            data-id="'.$parkingFee->id.'" data-original-title="Delete" wire:click="delete({{ $parkingFee->id }})" 
+
+          <a href="javascript:void(0)" data-toggle="tooltip" 
+            data-id="'.$parkingFee->id.'" data-name="'.$parking_area.'" data-vehicletype="'.$vehicleType.'" id="delete-parking-fee"  data-original-title="Delete" 
             class="btn btn-danger btn-sm ml-2"><i class="fa fa-trash"></i></a></div>';
 
            return $btn;

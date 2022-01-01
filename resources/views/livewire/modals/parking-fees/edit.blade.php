@@ -1,4 +1,4 @@
- <div wire:ignore.self class="modal fade" id="editParkingFee" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+ <div class="modal fade" id="editParkingFee" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -8,7 +8,7 @@
                                <span aria-hidden="true close-btn">×</span>
                            </button>
                        </div>
-                        <form wire:submit.prevent="update()" method="POST">
+                        <form id="parkingFeesForm">
                        <div class="modal-body">
                             
                         <div class="row">
@@ -17,18 +17,16 @@
                         </div>
                             <div class="col-md-9">
                                 <input type="hidden" class="form-control" id="id"
-                                 wire:model="id">
+                                 name="id">
                                 <input type="text" class="form-control" id="fee_per_hour"
-                                 placeholder="Enter Fee per hour" wire:model="fee_per_hour">
-                                @error('fee_per_hour') <span class="text-danger error">{{ $message }}</span>@enderror
+                                 placeholder="Enter Fee per hour" name="fee_per_hour">
                             </div>
                         </div>
                         <br/>
-
                        </div>
 
                     <div class="modal-footer">
-                         <button type="submit" class="btn btn-primary close-modal">Update</button>
+                         <button type="submit" class="btn btn-primary close-modal" id="update-btn">Update</button>
                          <button type="button" class="btn btn-secondary close-btn" data-dismiss="modal">Close</button>
                     </div>
                       </form>

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Users\Roles;
+namespace App\Http\Livewire\Roles;
 
 use Livewire\Component;
 use App\Helpers\ApiRequestResponse;
@@ -11,7 +11,7 @@ class Add extends Component
     public $name;
     public function render()
     {
-        return view('livewire.users.roles.add');
+        return view('livewire.roles.add');
     }
 
     public function resetInputFields(){
@@ -33,7 +33,6 @@ class Add extends Component
                 $apiResult = json_decode($resp, true);
                 $statusCode = $apiResult['statusCode'];
                 $message = $apiResult['message'];
-                $data = $apiResult['data'];
 
                 if($statusCode == '1'){
                    session()->flash('success', $message);

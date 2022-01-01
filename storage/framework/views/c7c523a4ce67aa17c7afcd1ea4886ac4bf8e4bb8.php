@@ -5,13 +5,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title><?php echo e(config('app.name')); ?></title>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  
+  <meta name="csrf-token" content="<?= csrf_token() ?>">
   
   <link rel="shortcut icon" href="<?php echo e(asset('images/icons/office1.ico')); ?>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="<?php echo e(asset('vendors/fonts/montserrat/css.css')); ?>" rel="stylesheet">
-   
+  
   
   <?php echo \Livewire\Livewire::styles(); ?>
 
@@ -70,6 +70,18 @@
   <link href="<?php echo e(asset('bower_components/AdminLTE/dist/css/skins/_all-skins.css')); ?>" rel="stylesheet" type="text/css" />
   <link href="<?php echo e(asset('css/app-template.css')); ?>" rel="stylesheet">
   <link href="<?php echo e(asset('css/app.css')); ?>" rel="stylesheet">
+  <style>
+    body{
+      overflow-x: hidden !important;
+    }
+    @media  only screen and (min-width: 768px){
+      .table-responsive{
+        overflow-x: hidden !important;
+      }
+    }
+    
+  </style>
+  
   <?php echo \Livewire\Livewire::styles(); ?>
 
   
@@ -104,7 +116,7 @@
     <?php echo $__env->make('layouts.sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     
     <div>
-    <?php echo e($slot); ?>
+      <?php echo e($slot); ?>
 
     </div>
     <?php echo $__env->make('layouts.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
@@ -116,13 +128,13 @@
       
       
       $(document).ready(function() {
-
-
+        
+        
         $('#assignee').multiselect();
         // $('#assigneee').multiselect();
-
-
-
+        
+        
+        
         
         //Date picker
         $('#birthDate').datepicker({

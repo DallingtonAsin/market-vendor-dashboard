@@ -21,13 +21,15 @@ class UsersDataTable extends DataTable
          return datatables($query)
         ->addIndexColumn()
         ->addColumn('action', function ($user) {
+
+            $name = $user->first_name." ".$user->last_name;
             
-            $btn = '<div class="row"><a href="javascript:void(0)" data-toggle="modal" data-target="#editUser"
-            data-id="'.$user->id.'" data-original-title="Edit" wire:click="edit({{ $user->id }})" 
+            $btn = '<div class="row"><a href="javascript:void(0)" data-toggle="tooltip" 
+            data-id="'.$user->id.'" data-name="'.$name.'" id="edit-user" data-original-title="Edit" 
             class="btn btn-success btn-sm"><i class="fa fa-pencil"></i></a>
 
-          <a href="javascript:void(0)" data-toggle="modal" data-target="#deleteUser"
-            data-id="'.$user->id.'" data-original-title="Delete" wire:click="delete({{ $user->id }})" 
+          <a href="javascript:void(0)" data-toggle="tooltip" 
+            data-id="'.$user->id.'" data-name="'.$name.'" id="delete-user"  data-original-title="Delete" 
             class="btn btn-danger btn-sm ml-2"><i class="fa fa-trash"></i></a></div>';
 
            return $btn;
@@ -42,8 +44,8 @@ class UsersDataTable extends DataTable
         })->editColumn('account_action', function ($data) {
             $status = $data->is_active;
            return ($status)
-             ? '<a class="btn btn-danger text-white changeAccountBtn" data-id="'.$data->id.'" data-name="'.$data->name.'" data-status="'.$status.'" id="changeAccountBtn"   >Deactive</a>' 
-             : '<a class="btn btn-success text-white changeAccountBtn" data-id="'.$data->id.'" data-name="'.$data->name.'"  data-status="'.$status.'" id="changeAccountBtn" >Activate</a>';
+             ? '<a class="btn btn-danger text-white changeAccountBtn" style="width:100px" data-status="'.$data->is_active.'" data-id="'.$data->id.'" data-name="'.$data->name.'" data-status="'.$status.'" id="changeAccountBtn"   >Deactivate</a>' 
+             : '<a class="btn btn-success  text-white changeAccountBtn" style="width:100px" data-status="'.$data->is_active.'" data-id="'.$data->id.'" data-name="'.$data->name.'"  data-status="'.$status.'" id="changeAccountBtn" >Activate</a>';
         })->rawColumns(['action', 'checkbox', 'is_active', 'account_action']);
 
     }

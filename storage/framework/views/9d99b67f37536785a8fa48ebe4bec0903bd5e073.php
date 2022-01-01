@@ -7,7 +7,7 @@
                                <span aria-hidden="true close-btn">×</span>
                            </button>
                        </div>
-                        <form wire:submit.prevent="update()" method="POST">
+                        <form id="vehicleTypesForm">
                        <div class="modal-body">
                             
                         <div class="row">
@@ -15,16 +15,8 @@
                             <label for="vehicle_type">Name</label>
                         </div>
                             <div class="col-md-9">
-                                <input type="hidden" class="form-control" id="vehicle_type_id" wire:model="vehicle_type_id">
-                                <input type="text" class="form-control" id="vehicle_type" placeholder="Enter Name" wire:model="vehicle_type">
-                                <?php $__errorArgs = ['vehicle_type'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> <span class="text-danger error"><?php echo e($message); ?></span><?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
+                                <input type="hidden" class="form-control" id="id" name="id" wire:model="vehicle_type_id">
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" required>
                             </div>
                         </div>
                         <br/>
@@ -32,7 +24,7 @@ unset($__errorArgs, $__bag); ?>
                        </div>
 
                     <div class="modal-footer">
-                         <button type="submit" class="btn btn-primary close-modal">Update</button>
+                         <button type="submit" class="btn btn-primary close-modal" id="update-btn">Update</button>
                          <button type="button" class="btn btn-secondary close-btn" data-dismiss="modal">Close</button>
                     </div>
                       </form>

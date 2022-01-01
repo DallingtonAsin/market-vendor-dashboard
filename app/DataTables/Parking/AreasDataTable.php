@@ -23,19 +23,12 @@ class AreasDataTable extends DataTable
         ->addIndexColumn()
         ->addColumn('action', function ($parkingArea) {
 
-//             <button type="button" class="btn btn-success btn-sm" 
-// wire:click.prevent="edit(7)" data-toggle="modal"
-//  data-target="#editClient"><i class="fa fa-pencil"></i></button>
-// <button type="button" class="btn btn-danger btn-sm" wire:click="comfirmDelModal(7)"
-//  data-toggle="modal" data-target="#deleteClient"><i class="fa fa-trash"></i></button>
-            
-            $btn = '<div class="row"><a href="javascript:void(0)" data-toggle="modal"
-            data-id="'.$parkingArea->id.'" data-original-title="Edit" 
-            wire:click="edit({{ $parkingArea->id }})" data-target="#editParkingArea"
+            $btn = '<div class="row"><a href="javascript:void(0)" data-toggle="tooltip" 
+            data-id="'.$parkingArea->id.'" data-name="'.$parkingArea->name.'" id="edit-parking-area" data-original-title="Edit" 
             class="btn btn-success btn-sm"><i class="fa fa-pencil"></i></a>
-            <a href="javascript:void(0)" data-toggle="modal" data-target="#deleteParkingArea"
-            data-id="'.$parkingArea->id.'" data-original-title="Delete" 
-            wire:click="delete({{ $parkingArea->id }})" 
+
+          <a href="javascript:void(0)" data-toggle="tooltip" 
+            data-id="'.$parkingArea->id.'" data-name="'.$parkingArea->name.'" id="delete-parking-area"  data-original-title="Delete" 
             class="btn btn-danger btn-sm ml-2"><i class="fa fa-trash"></i></a></div>';
 
            return $btn;
