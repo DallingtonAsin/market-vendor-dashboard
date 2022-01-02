@@ -24,19 +24,31 @@ class ClientsDataTable extends DataTable
         ->addColumn('action', function ($client) {
             $btn = '<div class="row"><a href="javascript:void(0)" data-toggle="tooltip" 
             data-id="'.$client->id.'" data-name="'.$client->name.'" id="edit-client" data-original-title="Edit" 
-            class="btn btn-success btn-sm"><i class="fa fa-pencil"></i></a>
+            class="btn btn-success btn-sm"><i class="fa fa-pencil"></i></a>';
 
-          <a href="javascript:void(0)" data-toggle="tooltip" 
-            data-id="'.$client->id.'" data-name="'.$client->name.'" id="delete-client"  data-original-title="Delete" 
-            class="btn btn-danger btn-sm ml-2"><i class="fa fa-trash"></i></a></div>';
+            $title = $client->is_deleted ? 'Restore' : 'Delete';
+
+            if($client->is_deleted){
+                $btn .= '<a href="javascript:void(0)" data-toggle="tooltip"  data-deleted="'.$client->is_deleted.'"
+                data-id="'.$client->id.'" data-name="'.$client->name.'" id="delete-client"  data-original-title="'.$title.'" 
+                class="btn btn-warning btn-sm ml-2"><i class="fa fa-undo"></i></a></div>';
+            }else{
+                $btn .= '<a href="javascript:void(0)" data-toggle="tooltip"  data-deleted="'.$client->is_deleted.'"
+                data-id="'.$client->id.'" data-name="'.$client->name.'" id="delete-client" data-original-title="'.$title.'"  
+                class="btn btn-danger btn-sm ml-2"><i class="fa fa-trash"></i></a></div>';
+            }
 
            return $btn;
         
 
-        })->addColumn('checkbox', function ($client) {
+        })->editColumn('is_deleted', function ($client) {
+            return ($client->is_deleted)
+              ? '<span class="text-danger">True</span>' 
+              : '<span class="text-success">False</span>';
+         })->addColumn('checkbox', function ($client) {
               $checkBox = '<input type="checkbox" id="'.$client->id.'"/>';
              return $checkBox;
-        })->rawColumns(['action', 'checkbox']);
+        })->rawColumns(['action', 'is_deleted', 'checkbox']);
 
     }
 

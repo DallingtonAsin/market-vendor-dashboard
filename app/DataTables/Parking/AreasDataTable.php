@@ -25,21 +25,33 @@ class AreasDataTable extends DataTable
 
             $btn = '<div class="row"><a href="javascript:void(0)" data-toggle="tooltip" 
             data-id="'.$parkingArea->id.'" data-name="'.$parkingArea->name.'" id="edit-parking-area" data-original-title="Edit" 
-            class="btn btn-success btn-sm"><i class="fa fa-pencil"></i></a>
+            class="btn btn-success btn-sm"><i class="fa fa-pencil"></i></a>';
 
-          <a href="javascript:void(0)" data-toggle="tooltip" 
-            data-id="'.$parkingArea->id.'" data-name="'.$parkingArea->name.'" id="delete-parking-area"  data-original-title="Delete" 
-            class="btn btn-danger btn-sm ml-2"><i class="fa fa-trash"></i></a></div>';
+            $title = $parkingArea->is_deleted ? 'Restore' : 'Delete';
+
+            if($parkingArea->is_deleted){
+                $btn .= '<a href="javascript:void(0)" data-toggle="tooltip"  data-deleted="'.$parkingArea->is_deleted.'"
+                data-id="'.$parkingArea->id.'" data-name="'.$parkingArea->name.'" id="delete-parking-area"  data-original-title="'.$title.'" 
+                class="btn btn-warning btn-sm ml-2"><i class="fa fa-undo"></i></a></div>';
+            }else{
+                $btn .= '<a href="javascript:void(0)" data-toggle="tooltip"  data-deleted="'.$parkingArea->is_deleted.'"
+                data-id="'.$parkingArea->id.'" data-name="'.$parkingArea->name.'" id="delete-parking-area" data-original-title="'.$title.'"  
+                class="btn btn-danger btn-sm ml-2"><i class="fa fa-trash"></i></a></div>';
+            }
 
            return $btn;
 
-        })->addColumn('checkbox', function ($parkingArea) {
+        })->editColumn('is_deleted', function ($parkingArea) {
+            return ($parkingArea->is_deleted)
+              ? '<span class="text-danger">True</span>' 
+              : '<span class="text-success">False</span>';
+         })->addColumn('checkbox', function ($parkingArea) {
               $checkBox = '<input type="checkbox" id="'.$parkingArea->id.'"/>';
              return $checkBox;
         })->addColumn('client', function ($parkingArea) {
             $obj = Client::find($parkingArea->client_id);
              return $obj->name;
-        })->rawColumns(['action', 'checkbox']);
+        })->rawColumns(['action', 'is_deleted', 'checkbox']);
 
     }
 

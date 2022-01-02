@@ -46,6 +46,7 @@
               <th>Name</th>
               <th>Created By</th>
               <th>Created On</th>
+              <th>Is Deleted</th>
               <th>Action</th>
           </tr>
           </thead>
@@ -86,6 +87,7 @@
       {data: 'name', name:'name'},
       {data: 'created_by', name:'created_by'},
       {data: 'created_at', name:'created_at'},
+      {data: 'is_deleted', name:'is_deleted'},
       {data: 'action', name:'action'},
       ];
       makeDataTable(table, title, columns, dataColumns);
@@ -152,8 +154,11 @@
       $('body').on('click', '#delete-role', function (event) {
       let id = $(this).data("id");
       let name = $(this).data("name");
+      let is_deleted = $(this).data("deleted");
+      let activity = is_deleted ? 'restore' : 'delete';
+
       event.preventDefault();
-      if(confirm("Do you want to delete role "+name+"?")){
+      if(confirm("Do you want to "+activity+" role "+name+"?")){
       let deleteUrl = '<?php echo e(route("role.destroy")); ?>';
       $.ajax({
         type: "DELETE",

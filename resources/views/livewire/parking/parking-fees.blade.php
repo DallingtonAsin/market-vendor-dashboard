@@ -50,6 +50,7 @@
                     <th>Parking area</th>
                     <th>Vehicle Categoty</th>
                     <th>Fee</th>
+                    <th>Is Deleted</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -95,6 +96,7 @@
         {data: 'parking_area', name:'parking_area'},
         {data: 'vehicle_category', name:'vehicle_category'},
         {data: 'fee_per_hour', name:'fee_per_hour'},
+        {data: 'is_deleted', name:'is_deleted'},
         {data: 'action', name:'action'},
         ];
         makeDataTable(table, title, columns, dataColumns);
@@ -163,8 +165,11 @@
         let id = $(this).data("id");
         let name = $(this).data("name");
         let vehicleType =  $(this).data("vehicletype");
+        let is_deleted = $(this).data("deleted");
+        let activity = is_deleted ? 'restore' : 'delete';
+
         event.preventDefault();
-        if(confirm("Do you want to delete parking fee for parking area "+name+" for vehicle type "+vehicleType+"?")){
+        if(confirm("Do you want to "+activity+" parking fee for parking area "+name+" for vehicle type "+vehicleType+"?")){
         let deleteUrl = '{{ route("parking-fee.destroy") }}';
         $.ajax({
           type: "DELETE",

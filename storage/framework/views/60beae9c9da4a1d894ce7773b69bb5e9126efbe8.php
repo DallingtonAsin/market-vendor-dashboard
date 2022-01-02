@@ -50,6 +50,7 @@
                   <th>Mobile No</th>
                   <th>Address</th>
                   <th>A/C status</th>
+                  <th>Is Deleted</th>
                   <th>Manage</th>
                   <th>Action</th>
               </tr>
@@ -100,6 +101,7 @@
         {data: 'phone_number', name:'phone_number'},
         {data: 'address', name:'address'},
         {data: 'is_active', name:'is_active'},
+        {data: 'is_deleted', name:'is_deleted'},
         {data: 'account_action', name:'account_action'},
         {data: 'action', name:'action'},
         ];
@@ -172,8 +174,11 @@
         $('body').on('click', '#delete-user', function (event) {
         let id = $(this).data("id");
         let name = $(this).data("name");
+        let is_deleted = $(this).data("deleted");
+        let activity = is_deleted ? 'restore' : 'delete';
+
         event.preventDefault();
-        if(confirm("Do you want to delete user "+name+"?")){
+        if(confirm("Do you want to "+activity+" user "+name+"?")){
         let deleteUrl = '<?php echo e(route("user.destroy")); ?>';
         $.ajax({
           type: "DELETE",

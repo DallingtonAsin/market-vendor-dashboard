@@ -26,11 +26,21 @@ class UsersDataTable extends DataTable
             
             $btn = '<div class="row"><a href="javascript:void(0)" data-toggle="tooltip" 
             data-id="'.$user->id.'" data-name="'.$name.'" id="edit-user" data-original-title="Edit" 
-            class="btn btn-success btn-sm"><i class="fa fa-pencil"></i></a>
+            class="btn btn-success btn-sm"><i class="fa fa-pencil"></i></a>';
 
-          <a href="javascript:void(0)" data-toggle="tooltip" 
-            data-id="'.$user->id.'" data-name="'.$name.'" id="delete-user"  data-original-title="Delete" 
-            class="btn btn-danger btn-sm ml-2"><i class="fa fa-trash"></i></a></div>';
+            $title = $user->is_deleted ? 'Restore' : 'Delete';
+
+            if($user->is_deleted){
+                $btn .= '<a href="javascript:void(0)" data-toggle="tooltip"  data-deleted="'.$user->is_deleted.'"
+                data-id="'.$user->id.'" data-name="'.$name.'" id="delete-user"  data-original-title="'.$title.'" 
+                class="btn btn-warning btn-sm ml-2"><i class="fa fa-undo"></i></a></div>';
+            }else{
+                $btn .= '<a href="javascript:void(0)" data-toggle="tooltip"  data-deleted="'.$user->is_deleted.'"
+                data-id="'.$user->id.'" data-name="'.$name.'" id="delete-user" data-original-title="'.$title.'"  
+                class="btn btn-danger btn-sm ml-2"><i class="fa fa-trash"></i></a></div>';
+            }
+        
+         
 
            return $btn;
 
@@ -41,12 +51,16 @@ class UsersDataTable extends DataTable
            return ($data->is_active)
              ? '<span class="text-success">active</span>' 
              : '<span class="text-danger">inactive</span>';
-        })->editColumn('account_action', function ($data) {
+        })->editColumn('is_deleted', function ($user) {
+            return ($user->is_deleted)
+              ? '<span class="text-danger">True</span>' 
+              : '<span class="text-success">False</span>';
+         })->editColumn('account_action', function ($data) {
             $status = $data->is_active;
            return ($status)
              ? '<a class="btn btn-danger text-white changeAccountBtn" style="width:100px" data-status="'.$data->is_active.'" data-id="'.$data->id.'" data-name="'.$data->name.'" data-status="'.$status.'" id="changeAccountBtn"   >Deactivate</a>' 
              : '<a class="btn btn-success  text-white changeAccountBtn" style="width:100px" data-status="'.$data->is_active.'" data-id="'.$data->id.'" data-name="'.$data->name.'"  data-status="'.$status.'" id="changeAccountBtn" >Activate</a>';
-        })->rawColumns(['action', 'checkbox', 'is_active', 'account_action']);
+        })->rawColumns(['action', 'checkbox', 'is_active', 'is_deleted', 'account_action']);
 
     }
 

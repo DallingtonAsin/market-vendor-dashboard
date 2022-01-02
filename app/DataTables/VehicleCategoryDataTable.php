@@ -24,18 +24,30 @@ class VehicleCategoryDataTable extends DataTable
             
             $btn = '<div class="row"><a href="javascript:void(0)" data-toggle="tooltip" 
             data-id="'.$vehicleCat->id.'" data-name="'.$vehicleCat->name.'" id="edit-vehicle-type" data-original-title="Edit" 
-            class="btn btn-success btn-sm"><i class="fa fa-pencil"></i></a>
+            class="btn btn-success btn-sm"><i class="fa fa-pencil"></i></a>';
 
-          <a href="javascript:void(0)" data-toggle="tooltip" 
-            data-id="'.$vehicleCat->id.'" data-name="'.$vehicleCat->name.'" id="delete-vehicle-type"  data-original-title="Delete" 
-            class="btn btn-danger btn-sm ml-2"><i class="fa fa-trash"></i></a></div>';
+            $title = $vehicleCat->is_deleted ? 'Restore' : 'Delete';
+
+            if($vehicleCat->is_deleted){
+                $btn .= '<a href="javascript:void(0)" data-toggle="tooltip"  data-deleted="'.$vehicleCat->is_deleted.'"
+                data-id="'.$vehicleCat->id.'" data-name="'.$vehicleCat->name.'" id="delete-vehicle-type"  data-original-title="'.$title.'" 
+                class="btn btn-warning btn-sm ml-2"><i class="fa fa-undo"></i></a></div>';
+            }else{
+                $btn .= '<a href="javascript:void(0)" data-toggle="tooltip"  data-deleted="'.$vehicleCat->is_deleted.'"
+                data-id="'.$vehicleCat->id.'" data-name="'.$vehicleCat->name.'" id="delete-vehicle-type" data-original-title="'.$title.'"  
+                class="btn btn-danger btn-sm ml-2"><i class="fa fa-trash"></i></a></div>';
+            }
 
            return $btn;
 
-        })->addColumn('checkbox', function ($vehicleCat) {
+        })->editColumn('is_deleted', function ($vehicleCat) {
+            return ($vehicleCat->is_deleted)
+              ? '<span class="text-danger">True</span>' 
+              : '<span class="text-success">False</span>';
+         })->addColumn('checkbox', function ($vehicleCat) {
               $checkBox = '<input type="checkbox" id="'.$vehicleCat->id.'"/>';
              return $checkBox;
-        })->rawColumns(['action', 'checkbox']);
+        })->rawColumns(['action', 'is_deleted', 'checkbox']);
 
     }
 

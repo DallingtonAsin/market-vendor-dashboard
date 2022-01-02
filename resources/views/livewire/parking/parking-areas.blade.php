@@ -55,6 +55,7 @@
                     <th>Rating</th>
                     <th>Slots</th>
                     <th>Avail.</th>
+                    {{-- <th>Is Deleted</th> --}}
                     <th>Action</th>
                 </tr>
             </thead>
@@ -107,6 +108,7 @@
         {data: 'rating', name:'rating'},
         {data: 'total_space', name:'total_space'},
         {data: 'current_free_space', name:'current_free_space'},
+        // {data: 'is_deleted', name:'is_deleted'},
         {data: 'action', name:'action'},
         ];
         makeDataTable(table, title, columns, dataColumns);
@@ -182,8 +184,11 @@
  $('body').on('click', '#delete-parking-area', function (event) {
         let id = $(this).data("id");
         let name = $(this).data("name");
+        let is_deleted = $(this).data("deleted");
+        let activity = is_deleted ? 'restore' : 'delete';
+
         event.preventDefault();
-        if(confirm("Do you want to delete parking area "+name+"?")){
+        if(confirm("Do you want to "+activity+" parking area "+name+"?")){
         let deleteUrl = '{{ route("parking-area.destroy") }}';
         $.ajax({
           type: "DELETE",

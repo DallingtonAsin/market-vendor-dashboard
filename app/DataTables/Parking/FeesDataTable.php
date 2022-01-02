@@ -31,17 +31,30 @@ class FeesDataTable extends DataTable
 
             $btn = '<div class="row"><a href="javascript:void(0)" data-toggle="tooltip" 
             data-id="'.$parkingFee->id.'" data-name="'.$parking_area.'"  data-vehicletype="'.$vehicleType.'" id="edit-parking-fee" data-original-title="Edit" 
-            class="btn btn-success btn-sm"><i class="fa fa-pencil"></i></a>
+            class="btn btn-success btn-sm"><i class="fa fa-pencil"></i></a>';
 
-          <a href="javascript:void(0)" data-toggle="tooltip" 
-            data-id="'.$parkingFee->id.'" data-name="'.$parking_area.'" data-vehicletype="'.$vehicleType.'" id="delete-parking-fee"  data-original-title="Delete" 
-            class="btn btn-danger btn-sm ml-2"><i class="fa fa-trash"></i></a></div>';
+          
+            $title = $parkingFee->is_deleted ? 'Restore' : 'Delete';
+
+            if($parkingFee->is_deleted){
+                $btn .= '<a href="javascript:void(0)" data-toggle="tooltip"  data-deleted="'.$parkingFee->is_deleted.'"
+                data-id="'.$parkingFee->id.'" data-name="'.$parking_area.'" data-vehicletype="'.$vehicleType.'" id="delete-parking-fee"  data-original-title="'.$title.'" 
+                class="btn btn-warning btn-sm ml-2"><i class="fa fa-undo"></i></a></div>';
+            }else{
+                $btn .= '<a href="javascript:void(0)" data-toggle="tooltip"  data-deleted="'.$parkingFee->is_deleted.'"
+                data-id="'.$parkingFee->id.'" data-name="'.$parking_area.'" data-vehicletype="'.$vehicleType.'" id="delete-parking-fee" data-original-title="'.$title.'"  
+                class="btn btn-danger btn-sm ml-2"><i class="fa fa-trash"></i></a></div>';
+            }
 
            return $btn;
 
         })->editColumn('fee', function ($parkingFee) {
              return number_format($parkingFee->fee);
-        })->addColumn('checkbox', function ($parkingFee) {
+        })->editColumn('is_deleted', function ($parkingFee) {
+            return ($parkingFee->is_deleted)
+              ? '<span class="text-danger">True</span>' 
+              : '<span class="text-success">False</span>';
+         })->addColumn('checkbox', function ($parkingFee) {
               $checkBox = '<input type="checkbox" id="'.$parkingFee->id.'"/>';
              return $checkBox;
         })->addColumn('client', function ($parkingFee) {
@@ -53,7 +66,7 @@ class FeesDataTable extends DataTable
         })->addColumn('vehicle_category', function ($parkingFee) {
             $obj = VehicleCategory::find($parkingFee->vehicle_cat_id);
              return $obj->name;
-        })->rawColumns(['action', 'checkbox']);
+        })->rawColumns(['action', 'is_deleted', 'checkbox']);
 
     }
 

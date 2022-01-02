@@ -52,6 +52,7 @@
                     <th>Telephone No</th>
                     <th>Address</th>
                     <th>Email</th>
+                    <th>Is Deleted</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -99,6 +100,7 @@
           {data: 'mobile_number', name:'mobile_number'},
           {data: 'address', name:'address'},
           {data: 'email', name:'email'},
+          {data: 'is_deleted', name:'is_deleted'},
           {data: 'action', name:'action'},
           ];
           makeDataTable(table, title, columns, dataColumns);
@@ -169,8 +171,11 @@
  $('body').on('click', '#delete-client', function (event) {
         let id = $(this).data("id");
         let name = $(this).data("name");
+        let is_deleted = $(this).data("deleted");
+        let activity = is_deleted ? 'restore' : 'delete';
+
         event.preventDefault();
-        if(confirm("Do you want to delete client "+name+"?")){
+        if(confirm("Do you want to "+activity+" client "+name+"?")){
         let deleteUrl = '<?php echo e(route("client.destroy")); ?>';
         $.ajax({
           type: "DELETE",

@@ -47,6 +47,7 @@
                  <th></th>
                  <th>No</th>
                  <th>Name</th>
+                 <th>Is Deleted</th>
                  <th>Action</th>
              </tr>
          </thead>
@@ -88,6 +89,7 @@
         {data: 'checkbox', name:'checkbox'},
         {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false,  searchable: false },
         {data: 'name', name:'name'},
+        {data: 'is_deleted', name:'is_deleted'},
         {data: 'action', name:'action'},
         ];
         makeDataTable(table, title, columns, dataColumns);
@@ -155,8 +157,11 @@
  $('body').on('click', '#delete-vehicle-type', function (event) {
         let id = $(this).data("id");
         let name = $(this).data("name");
+        let is_deleted = $(this).data("deleted");
+        let activity = is_deleted ? 'restore' : 'delete';
+
         event.preventDefault();
-        if(confirm("Do you want to delete vehicle type "+name+"?")){
+        if(confirm("Do you want to "+activity+" vehicle type "+name+"?")){
         let deleteUrl = '<?php echo e(route("vehicle-type.destroy")); ?>';
         $.ajax({
           type: "DELETE",

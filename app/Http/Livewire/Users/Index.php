@@ -81,11 +81,9 @@ class Index extends Component
         $reqParams = $request->validate([
             'id' => 'required',
         ]);
-        
         try{
             $id = $request->input('id');
             $reqParams['user_id'] = Auth::user()->id;
-            // dd($reqParams);
             $endPoint = "/users/".$id;
             $resp = ApiRequestResponse::deleteDataByEndPoint($endPoint, $reqParams);
             $apiResult = json_decode($resp, true); 
