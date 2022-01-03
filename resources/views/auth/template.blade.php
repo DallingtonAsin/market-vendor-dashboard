@@ -11,10 +11,10 @@
             {{ env('APP_NAME') }}
             @endif
         </title>
-        <link href="{{ asset('css/login/css.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/css.css') }}" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
-        <link href="{{ asset('css/login/nunito.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/login/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/nunito.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         @livewireStyles
     </head>
     <body class="body">

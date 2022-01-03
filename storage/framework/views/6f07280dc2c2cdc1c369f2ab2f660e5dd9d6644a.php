@@ -1,6 +1,6 @@
-@extends('layouts.auth')
 
-@section('content')
+
+<?php $__env->startSection('content'); ?>
 <div class="login-box">
       <div class="login-logo">
         <span>
@@ -9,20 +9,22 @@
       <div class="login-box-body">
             <div class="header nunito-fontjustify-content-center ">
                 <div class="row justify-content-center">
-                  @if(isset($companyData) && isset($companyData['logo']))
-                  <img src="{{ asset('uploads/images/company/logo/'.$companyData['logo'].'') }}" class="co-icon-center" alt="">
-                  @else
-                 <img src="{{ asset('images/icons/default/brand.png') }}" class="co-icon-center"> 
-                  @endif
+                  <?php if(isset($companyData) && isset($companyData['logo'])): ?>
+                  <img src="<?php echo e(asset('uploads/images/company/logo/'.$companyData['logo'].'')); ?>" class="co-icon-center" alt="">
+                  <?php else: ?>
+                 <img src="<?php echo e(asset('images/icons/default/brand.png')); ?>" class="co-icon-center"> 
+                  <?php endif; ?>
                 </div>
           
                 <div class="row justify-content-center">
               <label class="col-form-label text-dark text-md-center font-weight-bold">
-                @if(isset($companyData))
-               {{ $companyData['name'] }}
-               @else
-               {{ env('APP_NAME') }}
-               @endif
+                <?php if(isset($companyData)): ?>
+               <?php echo e($companyData['name']); ?>
+
+               <?php else: ?>
+               <?php echo e(env('APP_NAME')); ?>
+
+               <?php endif; ?>
              
              </label>
                 </div>
@@ -32,8 +34,8 @@
         <p class="login-box-msg">Sign in to start your session</p>
         
         
-        <form class="form-horizontal mx-4" role="form" method="POST" action="{{ route('authenticate') }}">
-          @csrf
+        <form class="form-horizontal mx-4" role="form" method="POST" action="<?php echo e(route('authenticate')); ?>">
+          <?php echo csrf_field(); ?>
           <div class="form-group has-feedback">
             <input type="text" name="username" class="form-control" placeholder="Enter your email or username">
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
@@ -48,9 +50,10 @@
           <div class="form-group">
             <div class="form-check">
               <input class="form-check-input" type="checkbox"
-              name="remember" id="remember" {{ old("remember") ? 'checked' : '' }}>
+              name="remember" id="remember" <?php echo e(old("remember") ? 'checked' : ''); ?>>
               <span class="form-check-label" for="remember">
-                {{ __('Remember me') }}
+                <?php echo e(__('Remember me')); ?>
+
               </span>
             </div>
           </div>
@@ -64,35 +67,38 @@
           <br/>
           
           <div class="form-group px-0 py-0">
-            @if($errors->any())
+            <?php if($errors->any()): ?>
             <span class="login-error nunito-font">
-              <span>{{$errors->first()}}</span>
+              <span><?php echo e($errors->first()); ?></span>
             </span>
-            @endif
+            <?php endif; ?>
             
-            @if(session()->get('loginErr'))
+            <?php if(session()->get('loginErr')): ?>
             <span class="login-error nunito-font">
-              {{ session()->get('loginErr') }}
+              <?php echo e(session()->get('loginErr')); ?>
+
             </span>
-            @endif
+            <?php endif; ?>
             
-            @if(session()->get('sessionExpiredMessage'))
+            <?php if(session()->get('sessionExpiredMessage')): ?>
             <span class="login-error nunito-font">
-              {{ session()->get('sessionExpiredMessage') }}
+              <?php echo e(session()->get('sessionExpiredMessage')); ?>
+
             </span>
-            @endif
+            <?php endif; ?>
             
           </div>
           
-          @if(count($errors) > 0)
-          @foreach( $errors->all() as $message )
+          <?php if(count($errors) > 0): ?>
+          <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $message): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
           <div class="alert alert-danger display-hiden pt-2">
             <button class="close" data-close="alert"></button>
-            <span>{{ $message }}</span>
+            <span><?php echo e($message); ?></span>
           </div>
-          @endforeach
-          @endif
+          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+          <?php endif; ?>
         </form>
         
       </div>
-      @endsection
+      <?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.auth', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\ppd\resources\views/auth/login.blade.php ENDPATH**/ ?>
