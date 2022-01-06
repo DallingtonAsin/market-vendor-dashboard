@@ -38,7 +38,7 @@ class ActivityLogsDataTable extends DataTable
     public function query(ActivityLog $model)
     {
         
-            $endPoint = '/logs';
+            $endPoint = '/reports/system-audit';
             $resp = ApiRequestResponse::GetDataByEndPoint($endPoint);
             $apiResult = json_decode($resp, true);
             $data = $apiResult['data'];
