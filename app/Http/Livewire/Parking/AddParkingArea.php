@@ -9,7 +9,7 @@ use App\Models\Client;
 class AddParkingArea extends Component
 {
 
-    public $client_id, $name, $address, $description, $opens_at, $closes_at,
+    public $client_id, $name, $phone_number, $address, $description, $opens_at, $closes_at,
     $latitude, $longitude, $total_space;
     public function render()
     {
@@ -22,6 +22,7 @@ class AddParkingArea extends Component
     public function resetInputFields(){
         $this->client_id = '';
         $this->name = '';
+        $this->phone_number = '';
         $this->address = '';
         $this->description = '';
         $this->opens_at = '';
@@ -36,6 +37,7 @@ class AddParkingArea extends Component
         $reqParams = $this->validate([
           'client_id' => 'required',
           'name' => 'required',
+          'phone_number' => 'required',
           'address' => 'required',
           'description' => 'required',
           'opens_at' => 'required',
@@ -47,7 +49,7 @@ class AddParkingArea extends Component
         // dd($reqParams);
         try{
 
-            $endPoint = '/parking_areas';
+            $endPoint = '/parking-areas';
             $resp = ApiRequestResponse::PostDataByEndPoint($endPoint, $reqParams);
             $apiResult = json_decode($resp, true);
             $statusCode = $apiResult['statusCode'];

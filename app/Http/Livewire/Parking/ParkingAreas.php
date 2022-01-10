@@ -9,7 +9,7 @@ use Auth;
 
 class ParkingAreas extends Component
 {
-    public $user_id, $name, $address, $description,
+    public $user_id, $name, $phone_number, $address, $description,
     $opens_at, $closes_at, $latitude, $longitude, $slots;
 
     public function render()
@@ -19,6 +19,7 @@ class ParkingAreas extends Component
 
     private function resetInputFields(){
         $this->name = '';
+        $this->phone_number = '';
         $this->address = '';
         $this->description = '';
         $this->opens_at = '';
@@ -45,6 +46,7 @@ class ParkingAreas extends Component
         $reqParams = $request->validate([
             'id' => 'required',
             'name' => 'required',
+            'phone_number' => 'required',
             'address' => 'required',
             'description' => 'required',
             'opens_at' => 'required',

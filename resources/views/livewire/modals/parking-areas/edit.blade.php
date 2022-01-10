@@ -23,6 +23,18 @@
                         </div>
                         <br/>
 
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label for="phone_number">Phone Number</label>
+                            </div>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" id="phone_number" 
+                                    placeholder="Enter phone number"
+                                     name="phone_number">
+                                </div>
+                            </div>
+                            <br/>
+
 
                         <div class="row">
                             <div class="col-md-3">

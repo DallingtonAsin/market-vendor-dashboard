@@ -37,7 +37,7 @@ class AddParkingFee extends Component
 
         try{
 
-            $endPoint = '/parking_fees';
+            $endPoint = '/parking-fees';
             $resp = ApiRequestResponse::PostDataByEndPoint($endPoint, $reqParams);
             $apiResult = json_decode($resp, true);
             $statusCode = $apiResult['statusCode'];

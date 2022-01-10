@@ -47,12 +47,13 @@
                     <th></th>
                     <th>Client</th>
                     <th>Name</th>
+                    <th>Phone Number</th>
                     <th>Address</th>
                     <th>OpensAt</th>
                     <th>ClosesAt</th>
                     <th>Lat</th>
                     <th>Long</th>
-                    <th>Rating</th>
+                    {{-- <th>Rating</th> --}}
                     <th>Slots</th>
                     <th>Avail.</th>
                     {{-- <th>Is Deleted</th> --}}
@@ -100,12 +101,13 @@
         // {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false,  searchable: false },
         {data: 'client', name:'client'},
         {data: 'name', name:'name'},
+        {data: 'phone_number', name:'phone_number'},
         {data: 'address', name:'address'},
         {data: 'opens_at', name:'opens_at'},
         {data: 'closes_at', name:'closes_at'},
         {data: 'latitude', name:'latitude'},
         {data: 'longitude', name:'longitude'},
-        {data: 'rating', name:'rating'},
+        // {data: 'rating', name:'rating'},
         {data: 'total_space', name:'total_space'},
         {data: 'current_free_space', name:'current_free_space'},
         // {data: 'is_deleted', name:'is_deleted'},
@@ -131,6 +133,7 @@
             console.log("parking-area data", data);
             $('#id').val(data.id);
             $('#name').val(data.name);
+            $('#phone_number').val(data.phone_number);
             $('#address').val(data.address);
             $('#description').val(data.description);
             $('#opens_at').val(data.opens_at);
@@ -219,6 +222,7 @@
       {
             $('#id').val('');
             $('#name').val('');
+            $('#phone_number').val('');
             $('#address').val('');
             $('#description').val('');
             $('#opens_at').val('');

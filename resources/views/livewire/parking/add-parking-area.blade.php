@@ -36,9 +36,17 @@
              <div class="col col-md-3"><label for="text-input" class=" form-control-label">Parking Area</label></div>
              <div class="col-12 col-md-9">
                  <input type="text" id="parking_area" wire:model="name" class="form-control" placeholder="Parking area">
-                 @error('parking_area') <span class="text-danger">{{ $message }}</span> @enderror
+                 @error('name') <span class="text-danger">{{ $message }}</span> @enderror
              </div>
          </div>
+
+         <div class="row form-group">
+            <div class="col col-md-3"><label for="text-input" class=" form-control-label">Phone Number</label></div>
+            <div class="col-12 col-md-9">
+                <input type="text" id="phone_number" wire:model="phone_number" class="form-control" placeholder="Phone Number">
+                @error('phone_number') <span class="text-danger">{{ $message }}</span> @enderror
+            </div>
+        </div>
 
          <div class="row form-group">
              <div class="col col-md-3"><label for="text-input" class=" form-control-label">Address</label></div>

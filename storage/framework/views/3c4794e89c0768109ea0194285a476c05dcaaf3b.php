@@ -43,7 +43,7 @@ unset($__errorArgs, $__bag); ?>
              <div class="col col-md-3"><label for="text-input" class=" form-control-label">Parking Area</label></div>
              <div class="col-12 col-md-9">
                  <input type="text" id="parking_area" wire:model="name" class="form-control" placeholder="Parking area">
-                 <?php $__errorArgs = ['parking_area'];
+                 <?php $__errorArgs = ['name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -53,6 +53,21 @@ endif;
 unset($__errorArgs, $__bag); ?>
              </div>
          </div>
+
+         <div class="row form-group">
+            <div class="col col-md-3"><label for="text-input" class=" form-control-label">Phone Number</label></div>
+            <div class="col-12 col-md-9">
+                <input type="text" id="phone_number" wire:model="phone_number" class="form-control" placeholder="Phone Number">
+                <?php $__errorArgs = ['phone_number'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> <span class="text-danger"><?php echo e($message); ?></span> <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+            </div>
+        </div>
 
          <div class="row form-group">
              <div class="col col-md-3"><label for="text-input" class=" form-control-label">Address</label></div>

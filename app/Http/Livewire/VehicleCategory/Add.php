@@ -27,7 +27,7 @@ class Add extends Component
 
         try{
 
-            $endPoint = '/vehicle_category';
+            $endPoint = '/vehicle-category';
             $resp = ApiRequestResponse::PostDataByEndPoint($endPoint, $reqParams);
             $apiResult = json_decode($resp, true);
             $statusCode = $apiResult['statusCode'];
