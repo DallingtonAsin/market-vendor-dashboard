@@ -43,7 +43,7 @@
                   <th>Items</th>
                   <th>Address</th>
                   <th>Status</th>
-                  <th>Delivered On</th>
+                  <!-- <th>Delivered On</th> -->
                   <th>Action</th>
               </tr>
           </thead>
@@ -92,7 +92,7 @@
         {data: 'items', name:'items'},
         {data: 'address', name:'address'},
         {data: 'status', name:'status'},
-        {data: 'delivered_on', name:'delivered_on'},
+        // {data: 'delivered_on', name:'delivered_on'},
         {data: 'action', name:'action'},
         ];
         makeDataTable(table, title, columns, dataColumns);

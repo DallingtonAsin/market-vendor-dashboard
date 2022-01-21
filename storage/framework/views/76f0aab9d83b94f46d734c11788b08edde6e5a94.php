@@ -52,7 +52,7 @@
         
         
         <li class="treeview">
-          <a href="#"><i class="fa fa-users fa-lg"></i> <span class="ml-2"> Market vendors</span>
+          <a href="#"><i class="fa fa-users fa-lg"></i> <span class="ml-2"> Vendors</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -73,7 +73,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo e(route('shopping.lists.index')); ?>"><i class="fa fa-list"></i> Submited Lists</a></li>
+            <li><a href="<?php echo e(route('shopping.lists.index')); ?>"><i class="fa fa-list"></i> Submitted lists</a></li>
 
           </ul>
         </li>
