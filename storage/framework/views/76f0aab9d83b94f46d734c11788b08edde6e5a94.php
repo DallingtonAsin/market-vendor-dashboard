@@ -89,8 +89,21 @@
           </ul>
         </li>
 
-      
+           
         <li class="treeview">
+          <a href="#"><i class="fa fa-download fa-lg"></i> <span class="ml-2"> System audit</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+          <li><a href="<?php echo e(route('logs.index')); ?>"><i class="fa fa-home"></i> Activity Logs</a></li>
+
+          </ul>
+        </li>
+
+      
+        <!-- <li class="treeview">
           <a href="#"><i class="fa fa-line-chart fa-lg"></i> <span class="ml-2">Reports </span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
@@ -125,18 +138,18 @@
             </li>
           </ul>
         </li>
-        
+         -->
         
         <li class="treeview">
-          <a href="#"><i class="fa fa-cog fa-lg"></i> <span class="ml-2"> Others </span>
+          <a href="#"><i class="fa fa-cog fa-lg"></i> <span class="ml-2"> Settings </span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo e(route('company.add-edit')); ?>"><i class="fa fa-user"></i> Settings</a></li>
+            <li><a href="<?php echo e(route('company.add-edit')); ?>"><i class="fa fa-user"></i> Company</a></li>
             <li><a href="<?php echo e(route('password.edit')); ?>"><i class="fa fa-home"></i> Change Password</a></li>
-            <li><a href="<?php echo e(route('logs.index')); ?>"><i class="fa fa-home"></i> Activity Logs</a></li>
+           
       
           </ul>
         </li>
