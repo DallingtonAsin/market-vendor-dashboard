@@ -89,7 +89,7 @@
         var dataColumns = [
         {data: 'checkbox', name:'checkbox'},
         {data: 'order_no', name:'order_no'},
-        {data: 'name', name:'name'},
+        {data: 'customer_name', name:'customer_name'},
         {data: 'phone_number', name:'phone_number'},
         {data: 'items', name:'items'},
         {data: 'address', name:'address'},
