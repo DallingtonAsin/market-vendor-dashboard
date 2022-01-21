@@ -39,7 +39,7 @@
 
 
       <!-- /.col -->
-      <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="">
+      <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="{{ route('vendors-list.index') }}">
         <div class="info-box">
           <span class="info-box-icon bg-blue"><i class="fa fa-users"></i></span>
 
@@ -57,7 +57,7 @@
 </a>
       
 
-      <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="">
+      <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="{{ route('logs.index') }}">
         <div class="info-box">
           <span class="info-box-icon bg-black"><i class="fa fa-file-archive-o"></i></span>
 
@@ -76,7 +76,7 @@
     <!-- fix for small devices only -->
       <div class="clearfix visible-sm-block"></div>
 
-      <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="">
+      <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="{{ route('customers.index') }}">
         <div class="info-box">
           <span class="info-box-icon bg-green"><i class="fa fa-user"></i></span>
 
@@ -93,7 +93,7 @@
         <!-- /.info-box -->
        </a>
 
-    <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="">
+    <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="{{ route('roles.index') }}">
       <div class="info-box">
         <span class="info-box-icon bg-red"><i class="fa fa-file-archive-o"></i></span>
 
@@ -109,7 +109,7 @@
      </a>
 
 
-     <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="">
+     <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="{{ route('shopping.lists.index') }}">
       <div class="info-box">
         <span class="info-box-icon bg-orange"><i class="fa fa-file-archive-o"></i></span>
 
