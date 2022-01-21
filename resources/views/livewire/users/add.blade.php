@@ -97,7 +97,7 @@
            <img src="{{ $photo->temporaryUrl() }}" width="80" height="80">
            @endif
        </div>
-   </div>
+       </div>
 
 
    <div class="form-group">

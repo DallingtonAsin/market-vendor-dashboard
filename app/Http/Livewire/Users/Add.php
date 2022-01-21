@@ -13,7 +13,7 @@ class Add extends Component
 {
     use WithFileUploads;
 
-    public $first_name, $last_name, $email, $user_id,$photo,
+    public $first_name, $last_name, $email, $user_id, $photo,
     $gender, $mobile_no, $user_role, $address, $genderOptions;
     public $updateMode = false;
 

@@ -112,6 +112,22 @@
              </div>
          </div>
 
+         <div class="row form-group">
+            <div class="col col-md-3"><label for="photo" class=" form-control-label">Photo</label></div>
+            <div class="col-12 col-md-7">
+                <div class="custom-file">
+                    <input type="file" id="photo" wire:model="photo" class="custom-file-input" />
+                    @error('photo') <span class="text-danger">{{ $message }}</span> @enderror
+                </div>
+        </div>
+
+        <div class="col-md-2">
+           @if($photo)
+           <img src="{{ $photo->temporaryUrl() }}" width="80" height="80">
+           @endif
+       </div>
+       </div>
+
          <p style="text-align: center;"> <button type="submit" class="btn btn-primary btn-md" name="submit" wire:model="submit" >Add</button></p>
      </form>
 </div>
