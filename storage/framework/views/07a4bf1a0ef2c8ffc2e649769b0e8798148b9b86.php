@@ -3,15 +3,15 @@
     <!-- Info boxes -->
     <div class="row">
        <!-- /.col -->
-       <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="<?php echo e(route('requests.pending.index')); ?>">
+       <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="">
         <div class="info-box">
           <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
 
           <div class="info-box-content">
             <span class="info-box-text">Pending Shopping Lists</span>
             <span class="info-box-number">
-                <?php if(isset($data['total_pending_requests'])): ?>
-                <?php echo e(number_format($data['total_pending_requests'])); ?>
+                <?php if(isset($data['total_pending_shopping_lists'])): ?>
+                <?php echo e(number_format($data['total_pending_shopping_lists'])); ?>
 
                 <?php endif; ?>
             </span>
@@ -22,14 +22,14 @@
 </a>
       <!-- /.col -->
      
-        <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="<?php echo e(route('requests.approved.index')); ?>">
+        <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="">
         <div class="info-box">
           <span class="info-box-icon bg-green"><i class="ion ion-ios-gear-outline"></i></span>
           <div class="info-box-content">
-            <span class="info-box-text">Delivered Shopping Lists</span>
+            <span class="info-box-text">Processed Shopping Lists</span>
             <span class="info-box-number">
-                <?php if(isset($data['total_approved_requests'])): ?>
-                <?php echo e(number_format($data['total_approved_requests'])); ?>
+                <?php if(isset($data['total_processed_shopping_lists'])): ?>
+                <?php echo e(number_format($data['total_processed_shopping_lists'])); ?>
 
                 <?php endif; ?>
             </span>
@@ -41,15 +41,15 @@
 
 
       <!-- /.col -->
-      <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="<?php echo e(route('clients.index')); ?>">
+      <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="">
         <div class="info-box">
           <span class="info-box-icon bg-blue"><i class="fa fa-users"></i></span>
 
           <div class="info-box-content">
-            <span class="info-box-text">Total Users</span>
+            <span class="info-box-text">Total Vendors</span>
             <span class="info-box-number">
-              <?php if(isset($data['total_clients'])): ?>
-              <?php echo e(number_format($data['total_clients'])); ?>
+              <?php if(isset($data['total_vendors'])): ?>
+              <?php echo e(number_format($data['total_vendors'])); ?>
 
               <?php endif; ?>
             </span>
@@ -60,15 +60,15 @@
 </a>
       
 
-      <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="<?php echo e(route('parking.areas.index')); ?>">
+      <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="">
         <div class="info-box">
           <span class="info-box-icon bg-black"><i class="fa fa-file-archive-o"></i></span>
 
           <div class="info-box-content">
             <span class="info-box-text">System Audit</span>
             <span class="info-box-number">
-              <?php if(isset($data['total_parking_areas'])): ?>
-              <?php echo e(number_format($data['total_parking_areas'])); ?>
+              <?php if(isset($data['total_logs'])): ?>
+              <?php echo e(number_format($data['total_logs'])); ?>
 
               <?php endif; ?>
             </span>

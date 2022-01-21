@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Users;
+namespace App\Http\Livewire\Vendor;
 
 use Livewire\Component;
 use App\DataTables\UsersDataTable;
@@ -16,13 +16,10 @@ class Index extends Component
     public $user_id, $first_name, $last_name,$genderOptions,
     $phone_number, $gender, $email, $address;
     
-    public function mount(){
-        $this->genderOptions = ['Male', 'Female'];
-    }
-    
+   
     public function render()
     {
-        return view('livewire.users.index');
+        return view('livewire.vendors.index');
     }
     
     private function resetInputFields(){

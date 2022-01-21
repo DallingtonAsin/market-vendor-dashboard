@@ -71,7 +71,7 @@
         {data: 'date', name:'date'},
         {data: 'time', name:'time'},
         ];
-        makeDataTable(table, title, columns, dataColumns);
+        makeDataTable2(table, title, columns, dataColumns);
     });
 </script>
 

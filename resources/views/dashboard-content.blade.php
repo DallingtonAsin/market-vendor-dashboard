@@ -3,15 +3,15 @@
     <!-- Info boxes -->
     <div class="row">
        <!-- /.col -->
-       <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="{{ route('requests.pending.index') }}">
+       <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="">
         <div class="info-box">
           <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
 
           <div class="info-box-content">
             <span class="info-box-text">Pending Shopping Lists</span>
             <span class="info-box-number">
-                @isset($data['total_pending_requests'])
-                {{ number_format($data['total_pending_requests']) }}
+                @isset($data['total_pending_shopping_lists'])
+                {{ number_format($data['total_pending_shopping_lists']) }}
                 @endisset
             </span>
           </div>
@@ -21,14 +21,14 @@
 </a>
       <!-- /.col -->
      
-        <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="{{ route('requests.approved.index') }}">
+        <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="">
         <div class="info-box">
           <span class="info-box-icon bg-green"><i class="ion ion-ios-gear-outline"></i></span>
           <div class="info-box-content">
-            <span class="info-box-text">Delivered Shopping Lists</span>
+            <span class="info-box-text">Processed Shopping Lists</span>
             <span class="info-box-number">
-                @isset($data['total_approved_requests'])
-                {{ number_format($data['total_approved_requests']) }}
+                @isset($data['total_processed_shopping_lists'])
+                {{ number_format($data['total_processed_shopping_lists']) }}
                 @endisset
             </span>
           </div>
@@ -39,15 +39,15 @@
 
 
       <!-- /.col -->
-      <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="{{ route('clients.index') }}">
+      <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="">
         <div class="info-box">
           <span class="info-box-icon bg-blue"><i class="fa fa-users"></i></span>
 
           <div class="info-box-content">
-            <span class="info-box-text">Total Users</span>
+            <span class="info-box-text">Total Vendors</span>
             <span class="info-box-number">
-              @isset($data['total_clients'])
-              {{ number_format($data['total_clients']) }}
+              @isset($data['total_vendors'])
+              {{ number_format($data['total_vendors']) }}
               @endisset
             </span>
           </div>
@@ -57,15 +57,15 @@
 </a>
       
 
-      <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="{{ route('parking.areas.index') }}">
+      <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="">
         <div class="info-box">
           <span class="info-box-icon bg-black"><i class="fa fa-file-archive-o"></i></span>
 
           <div class="info-box-content">
             <span class="info-box-text">System Audit</span>
             <span class="info-box-number">
-              @isset($data['total_parking_areas'])
-              {{ number_format($data['total_parking_areas']) }}
+              @isset($data['total_logs'])
+              {{ number_format($data['total_logs']) }}
               @endisset
             </span>
           </div>

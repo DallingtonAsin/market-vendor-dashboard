@@ -14,7 +14,7 @@
 <!-- Main content -->
 <section class="content">
   <div class="box">
-    @include('components.message')
+    <?php echo $__env->make('components.message', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <div class="box-header">
       <div class="row">
         <div class="col-sm-4">
@@ -25,7 +25,7 @@
         
      
       <div class="col-sm-4">
-        <a type="button" href={{route('users.add')}} class="btn btn-info pull-right">
+        <a type="button" href=<?php echo e(route('vendors.add')); ?> class="btn btn-info pull-right">
         <i class="fa fa-plus-circle"></i> Add Vendor
       </a>
     </div>
@@ -41,12 +41,12 @@
   <div class="row">
     <div class="col-sm-12">
       <div class="table-responsive">
-        <table class="table" id="users-table">
+        <table class="table" id="vendors-table">
             <thead>
                <tr>
                   <th></th>
                   <th>Name</th>
-                  <th>Username</th>
+                  <th>vendorname</th>
                   <th>Mobile No</th>
                   <th>A/C status</th>
                   <th>Is Deleted</th>
@@ -55,7 +55,7 @@
               </tr>
           </thead>
       </table>
-      @include('livewire.modals.users.edit')
+      <?php echo $__env->make('livewire.modals.vendors.edit', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
       </div>
     </div>
   </div>
@@ -64,11 +64,11 @@
 </div>
   </div>
 
-  <script src="{{ asset('vendors/notify/notify.js') }}"></script>
+  <script src="<?php echo e(asset('vendors/notify/notify.js')); ?>"></script>
   <script>
     window.addEventListener('closeModal', event=>{
-      $('#editUser').modal('hide');
-      $('#deleteUser').modal('hide');
+      $('#editvendor').modal('hide');
+      $('#deletevendor').modal('hide');
     });
 
   </script>
@@ -77,9 +77,9 @@
   <script>
     var $=jQuery.noConflict();
 
-    const ajaxUrl =   @json(route('users.ajax.fetch'));
-    const cat = 'users';
-    const token = "{{ csrf_token() }}";
+    const ajaxUrl =   <?php echo json_encode(route('vendors.ajax.fetch'), 15, 512) ?>;
+    const cat = 'vendors';
+    const token = "<?php echo e(csrf_token()); ?>";
 
     jQuery(document).ready(function($){
 
@@ -89,9 +89,9 @@
         }
       });
 
-      // populating users table
-        var table = $('#users-table');
-        var title = "List of users";
+      // populating vendors table
+        var table = $('#vendors-table');
+        var title = "List of vendors";
         var columns = [1,2,3,4,5];
         var dataColumns = [
         {data: 'checkbox', name:'checkbox'},
@@ -105,11 +105,11 @@
         ];
         makeDataTable(table, title, columns, dataColumns);
 
-      // method to populate user information on editing
-     $('body').on('click', '#edit-user', function (event) {
+      // method to populate vendor information on editing
+     $('body').on('click', '#edit-vendor', function (event) {
         var id = $(this).data('id');
         event.preventDefault();
-        var Url = "{{ route('user.show', ':id') }}";
+        var Url = "<?php echo e(route('vendor.show', ':id')); ?>";
         Url = Url.replace(':id', id);
         $.ajax({
 
@@ -118,7 +118,7 @@
           dataType: 'json',
           success: function (data) {
 
-            console.log("User data", data);
+            console.log("vendor data", data);
             $('#id').val(data.id);
             $('#first_name').val(data.first_name);
             $('#last_name').val(data.last_name);
@@ -126,7 +126,7 @@
             $('#email').val(data.email);
             $('#address').val(data.address);
             $('#gender').val(data.gender);
-            $('#editUser').modal('show');
+            $('#editvendor').modal('show');
           },
           error: function (data) {
             console.log('Error:', data.error);
@@ -135,24 +135,24 @@
 
       });
 
-      // method to update user information
+      // method to update vendor information
       $('body').on('click', '#update-btn', function (event) {
         event.preventDefault();
         let id =  $('#id').val();
-        let updateUrl =  '{{ route("user.update") }}';
+        let updateUrl =  '<?php echo e(route("vendor.update")); ?>';
         $('#update-btn').html('Updating...');
         $.ajax({
-          data: $('#usersForm').serialize(),
+          data: $('#vendorsForm').serialize(),
           url: updateUrl ,
           type: "PUT",
           dataType: 'json',
           success: function (data) {
-            $('#usersForm').trigger("reset");
-            $('#editUser').modal("hide");
+            $('#vendorsForm').trigger("reset");
+            $('#editvendor').modal("hide");
             var resp = data.message;
             ShowResponse('.response', resp, 'success');
             ResetInfo();
-            var tbl = $('#users-table').DataTable();
+            var tbl = $('#vendors-table').DataTable();
             tbl.ajax.reload();
             $('#update-btn').html('Update');
 
@@ -168,16 +168,16 @@
       });
 
       
-    //this pops up confirm delete user
-        $('body').on('click', '#delete-user', function (event) {
+    //this pops up confirm delete vendor
+        $('body').on('click', '#delete-vendor', function (event) {
         let id = $(this).data("id");
         let name = $(this).data("name");
         let is_deleted = $(this).data("deleted");
         let activity = is_deleted ? 'restore' : 'delete';
 
         event.preventDefault();
-        if(confirm("Do you want to "+activity+" user "+name+"?")){
-        let deleteUrl = '{{ route("user.destroy") }}';
+        if(confirm("Do you want to "+activity+" vendor "+name+"?")){
+        let deleteUrl = '<?php echo e(route("vendor.destroy")); ?>';
         $.ajax({
           type: "DELETE",
           url: deleteUrl,
@@ -188,7 +188,7 @@
             var resp = data.message;
             ShowResponse('.response', resp, 'success');
             ResetInfo(data);
-            var tbl = $('#users-table').DataTable();
+            var tbl = $('#vendors-table').DataTable();
             tbl.ajax.reload();
           },
           error: function (data) {
@@ -201,15 +201,15 @@
         }
       });
 
-       //alert to change user account status
+       //alert to change vendor account status
        $('body').on('click', '.changeAccountBtn', function (event) {
         let id = $(this).data("id");
         let status = $(this).data("status");
         let statusAction = status == 1 ? 'deactivate' : 'activate';
         event.preventDefault();
         if(confirm("Do you want to "+statusAction+" this account?")){
-          console.log("user id "+id+" and status "+status);
-          let postUrl = '{{ route("user.account.change") }}';
+          console.log("vendor id "+id+" and status "+status);
+          let postUrl = '<?php echo e(route("vendor.account.change")); ?>';
           $.ajax({
           type: "POST",
           url: postUrl,
@@ -220,9 +220,9 @@
           success: function (data) {
             console.log("Results", data);
             var resp = data.message;
-            $('#deleteUser').modal("hide");
+            $('#deletevendor').modal("hide");
             ShowResponse('.response', resp, 'success');
-            var tbl = $('#users-table').DataTable();
+            var tbl = $('#vendors-table').DataTable();
             tbl.ajax.reload();
           },
           error: function (data) {
@@ -264,3 +264,4 @@
     });
 </script>
 
+<?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/mkv-ms/resources/views/livewire/vendors/index.blade.php ENDPATH**/ ?>

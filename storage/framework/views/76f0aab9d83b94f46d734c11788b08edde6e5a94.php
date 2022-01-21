@@ -58,8 +58,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo e(route('users.add')); ?>"><i class="fa fa-plus-circle"></i> Create</a></li>
-            <li><a href="<?php echo e(route('users.index')); ?>"><i class="fa fa-list"></i> List of vendors</a></li>
+            <li><a href="<?php echo e(route('vendors.add')); ?>"><i class="fa fa-plus-circle"></i> Create</a></li>
+            <li><a href="<?php echo e(route('vendors-list.index')); ?>"><i class="fa fa-list"></i> List of vendors</a></li>
           </ul>
         </li>
 
@@ -73,7 +73,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo e(route('clients.index')); ?>"><i class="fa fa-list"></i> Submited Lists</a></li>
+            <li><a href=""><i class="fa fa-list"></i> Submited Lists</a></li>
 
           </ul>
         </li>
@@ -92,7 +92,7 @@
    
           <ul class="treeview-menu">
             <li class="treeview">
-              <a href="#"><i class="fa fa-balance-scale"></i> <span> Requests </span>
+              <a href="#"><i class="fa fa-balance-scale"></i> <span> Shopping Requests </span>
                 <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
@@ -106,7 +106,7 @@
           
           <ul class="treeview-menu">
             <li class="treeview">
-              <a href="#"><i class="fa fa-calendar"></i> <span> Income </span>
+              <a href="#"><i class="fa fa-calendar"></i> <span> Shopping Revenue </span>
                 <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
