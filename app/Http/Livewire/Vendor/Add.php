@@ -30,7 +30,7 @@ class Add extends Component
     
     public function store(){
         
-        $formData = $this->validate([
+        $reqParams = $this->validate([
             'first_name' => 'required',
             'last_name' => 'required',
             'mobile_no' => 'required',
@@ -41,9 +41,19 @@ class Add extends Component
             $reqParams['user_id'] = Auth::user()->id;
             $endPoint = "/users";
             $resp = ApiRequestResponse::PostDataByEndPoint($endPoint, $reqParams);
-            $apiResult = json_decode($resp, true); 
+            $apiResult = json_decode($resp, true);
             $statusCode = $apiResult['statusCode'];
             $message = $apiResult['message'];
+            $data = $apiResult['data'];
+            
+            if($statusCode == '1'){
+                session()->flash('success', $message);
+                $this->resetInputFields();
+            }else{
+                session()->flash('error',   $message);
+            }
+
+
         }catch(\Exception $ex){
             session()->flash('error',   $ex->getMessage());
         }

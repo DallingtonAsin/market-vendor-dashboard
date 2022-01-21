@@ -7,7 +7,7 @@ use App\Models\User;
 use Helper;
 
 
-class UsersDataTable extends DataTable
+class VendorsDataTable extends DataTable
 {
     /**
      * Build DataTable class.

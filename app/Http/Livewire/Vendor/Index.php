@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\Vendor;
 
 use Livewire\Component;
-use App\DataTables\UsersDataTable;
+use App\DataTables\VendorsDataTable;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Helpers\ApiRequestResponse;
@@ -31,7 +31,7 @@ class Index extends Component
         $this->address = '';
     }
     
-    public function fetchAjaxRequest(UsersDataTable $dataTable){
+    public function fetchAjaxRequest(VendorsDataTable $dataTable){
         return $dataTable->render('livewire.users.index');
     }
     
@@ -96,7 +96,7 @@ class Index extends Component
         ]);
     }
 
-    public function changeUserAccountStatus(Request $request){
+    public function changeVendorAccountStatus(Request $request){
         $reqParams = $request->validate([
             'id' => 'required',
             'status' => 'required',

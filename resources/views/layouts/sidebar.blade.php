@@ -84,16 +84,12 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href=""><i class="fa fa-list"></i> Submited Lists</a></li>
+            <li><a href="{{ route('shopping.lists.index') }}"><i class="fa fa-list"></i> Submited Lists</a></li>
 
           </ul>
         </li>
 
       
-        
-     
-        
-        @cannot('isStaff')
         <li class="treeview">
           <a href="#"><i class="fa fa-line-chart fa-lg"></i> <span class="ml-2">Reports </span>
             <span class="pull-right-container">
@@ -129,7 +125,6 @@
             </li>
           </ul>
         </li>
-        @endcannot
         
         
         <li class="treeview">
