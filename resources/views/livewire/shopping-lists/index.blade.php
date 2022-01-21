@@ -34,16 +34,16 @@
   <div class="row">
     <div class="col-sm-12">
       <div class="table-responsive">
-        <table class="table" id="vendors-table">
+        <table class="table" id="shopping-list-table">
             <thead>
                <tr>
                   <th></th>
                   <th>Name</th>
-                  <th>vendorname</th>
-                  <th>Mobile No</th>
-                  <th>A/C status</th>
-                  <th>Is Deleted</th>
-                  <th>Manage</th>
+                  <th>Phone No</th>
+                  <th>Items</th>
+                  <th>Address</th>
+                  <th>Status</th>
+                  <th>Delivered On</th>
                   <th>Action</th>
               </tr>
           </thead>
@@ -70,7 +70,7 @@
     var $=jQuery.noConflict();
 
     const ajaxUrl =   @json(route('shopping.lists.fetch'));
-    const cat = 'vendors';
+    const cat = 'shopping-lists';
     const token = "{{ csrf_token() }}";
 
     jQuery(document).ready(function($){
@@ -82,17 +82,17 @@
       });
 
       // populating vendors table
-        var table = $('#vendors-table');
-        var title = "List of vendors";
+        var table = $('#shopping-list-table');
+        var title = "List of shopping lists";
         var columns = [1,2,3,4,5];
         var dataColumns = [
         {data: 'checkbox', name:'checkbox'},
         {data: 'name', name:'name'},
-        {data: 'username', name:'username'},
         {data: 'phone_number', name:'phone_number'},
-        {data: 'is_active', name:'is_active'},
-        {data: 'is_deleted', name:'is_deleted'},
-        {data: 'account_action', name:'account_action'},
+        {data: 'items', name:'items'},
+        {data: 'address', name:'address'},
+        {data: 'status', name:'status'},
+        {data: 'delivered_on', name:'delivered_on'},
         {data: 'action', name:'action'},
         ];
         makeDataTable(table, title, columns, dataColumns);
@@ -144,7 +144,7 @@
             var resp = data.message;
             ShowResponse('.response', resp, 'success');
             ResetInfo();
-            var tbl = $('#vendors-table').DataTable();
+            var tbl = $('#shopping-list-table').DataTable();
             tbl.ajax.reload();
             $('#update-btn').html('Update');
 
@@ -180,7 +180,7 @@
             var resp = data.message;
             ShowResponse('.response', resp, 'success');
             ResetInfo(data);
-            var tbl = $('#vendors-table').DataTable();
+            var tbl = $('#shopping-list-table').DataTable();
             tbl.ajax.reload();
           },
           error: function (data) {
@@ -214,7 +214,7 @@
             var resp = data.message;
             $('#deletevendor').modal("hide");
             ShowResponse('.response', resp, 'success');
-            var tbl = $('#vendors-table').DataTable();
+            var tbl = $('#shopping-list-table').DataTable();
             tbl.ajax.reload();
           },
           error: function (data) {
