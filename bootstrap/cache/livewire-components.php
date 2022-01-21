@@ -18,6 +18,8 @@
   'requests.approved' => 'App\\Http\\Livewire\\Requests\\Approved',
   'requests.pending' => 'App\\Http\\Livewire\\Requests\\Pending',
   'requests.rejected' => 'App\\Http\\Livewire\\Requests\\Rejected',
+  'roles.add' => 'App\\Http\\Livewire\\Roles\\Add',
+  'roles.index' => 'App\\Http\\Livewire\\Roles\\Index',
   'settings.company' => 'App\\Http\\Livewire\\Settings\\Company',
   'shopping-lists.index' => 'App\\Http\\Livewire\\ShoppingLists\\Index',
   'user-datatables' => 'App\\Http\\Livewire\\UserDatatables',

@@ -60,6 +60,11 @@ Route::get('logs/ajax/',[ActivityLogs::class, 'fetchAjaxRequest'])->name('logs.a
 
 Route::get('requests/approve/',[App\Http\Livewire\Requests\Pending::class, 'approveSelected'])->name('requests.pending.approve');
 
+// Roles ajax
+Route::get('roles/ajax/',[App\Http\Livewire\Roles\Index::class, 'fetchAjaxRequest'])->name('roles.ajax.fetch');
+Route::get('role/show/{id}',[App\Http\Livewire\Roles\Index::class, 'show'])->name('role.show');
+Route::put('role/update',[App\Http\Livewire\Roles\Index::class, 'update'])->name('role.update');
+Route::delete('role/delete',[App\Http\Livewire\Roles\Index::class, 'destroy'])->name('role.destroy');
 
 
 Route::group(["middleware" => "restricted"], function(){
@@ -112,7 +117,9 @@ Route::group(["middleware" => "restricted"], function(){
     // Logs
     Route::get('logs', ActivityLogs::class)->name('logs.index');
     
-    
+    Route::get('roles', App\Http\Livewire\Roles\Index::class)->name('roles.index');
+    Route::get('role/create/',App\Http\Livewire\Roles\Add::class)->name('roles.add');
+
     // Company
     Route::get('settings/company', Company::class)->name('company.add-edit');
     

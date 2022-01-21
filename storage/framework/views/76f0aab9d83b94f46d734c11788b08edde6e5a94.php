@@ -45,6 +45,17 @@
         <li><a href="<?php echo e(route('home')); ?>"><i class="fa fa-home fa-lg">
         </i> <span class="ml-2">Home</span></a></li>
    
+        <li class="treeview">
+          <a href="#"><i class="fa fa-tasks fa-lg"></i> <span class="ml-2"> Roles</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="<?php echo e(route('roles.add')); ?>"><i class="fa fa-plus-circle"></i> Create</a></li>
+            <li><a href="<?php echo e(route('roles.index')); ?>"><i class="fa fa-list"></i> List of roles</a></li>
+          </ul>
+        </li>
         
      
         

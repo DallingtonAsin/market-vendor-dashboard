@@ -3,11 +3,12 @@
 namespace App\DataTables;
 use Yajra\DataTables\Services\DataTable;
 use App\Helpers\ApiRequestResponse;
-use App\Models\ShoppingOrder;
+use App\Models\Role;
+use Livewire\Livewire;
 use Helper;
 
 
-class ShoppingListsDataTable extends DataTable
+class RolesDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -20,34 +21,37 @@ class ShoppingListsDataTable extends DataTable
 
          return datatables($query)
         ->addIndexColumn()
-        ->addColumn('action', function ($data) {
-
-    
+        ->addColumn('action', function ($role) {
             $btn = '<div class="row"><a href="javascript:void(0)" data-toggle="tooltip" 
-            data-id="'.$data->id.'" id="edit-data" data-original-title="Edit" 
+            data-id="'.$role->id.'" data-name="'.$role->name.'" id="edit-role" data-original-title="Edit" 
             class="btn btn-success btn-sm"><i class="fa fa-pencil"></i></a>';
 
-            $title = $data->is_deleted ? 'Restore' : 'Delete';
+            $title = $role->is_deleted ? 'Restore' : 'Delete';
 
-            if($data->is_deleted){
-                $btn .= '<a href="javascript:void(0)" data-toggle="tooltip"  data-deleted="'.$data->is_deleted.'"
-                data-id="'.$data->id.'"  id="delete-data"  data-original-title="'.$title.'" 
+            if($role->is_deleted){
+                $btn .= '<a href="javascript:void(0)" data-toggle="tooltip"  data-deleted="'.$role->is_deleted.'"
+                data-id="'.$role->id.'" data-name="'.$role->name.'" id="delete-role"  data-original-title="'.$title.'" 
                 class="btn btn-warning btn-sm ml-2"><i class="fa fa-undo"></i></a></div>';
             }else{
-                $btn .= '<a href="javascript:void(0)" data-toggle="tooltip"  data-deleted="'.$data->is_deleted.'"
-                data-id="'.$data->id.'" id="delete-data" data-original-title="'.$title.'"  
+                $btn .= '<a href="javascript:void(0)" data-toggle="tooltip"  data-deleted="'.$role->is_deleted.'"
+                data-id="'.$role->id.'" data-name="'.$role->name.'" id="delete-role" data-original-title="'.$title.'"  
                 class="btn btn-danger btn-sm ml-2"><i class="fa fa-trash"></i></a></div>';
             }
-           return $btn;
+        
 
-        })->addColumn('checkbox', function ($data) {
-              $checkBox = '<input type="checkbox" id="'.$data->id.'"/>';
-             return $checkBox;
-        })->editColumn('is_deleted', function ($data) {
-            return ($data->is_deleted)
+           return $btn;
+        
+
+        })->editColumn('is_deleted', function ($role) {
+            return ($role->is_deleted)
               ? '<span class="text-danger">True</span>' 
               : '<span class="text-success">False</span>';
-         })->rawColumns(['action', 'checkbox', 'is_active', 'is_deleted']);
+         })->addColumn('created_at', function ($role) {
+           return date('Y-m-d H:i A', strtotime($role->created_at));
+      })->addColumn('checkbox', function ($role) {
+              $checkBox = '<input type="checkbox" id="'.$role->id.'"/>';
+             return $checkBox;
+        })->rawColumns(['action', 'is_deleted', 'checkbox']);
 
     }
 
@@ -57,14 +61,13 @@ class ShoppingListsDataTable extends DataTable
      * @param \request $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(ShoppingOrder $model)
+    public function query(Role $model)
     {
-        
-            $endPoint = '/shopping-lists';
+            $endPoint = '/roles';
             $resp = ApiRequestResponse::GetDataByEndPoint($endPoint);
             $apiResult = json_decode($resp, true);
             $data = $apiResult['data'];
-            $data = ShoppingOrder::hydrate($data);
+            $data = Role::hydrate($data);
             return $data; 
     }
 
@@ -76,7 +79,7 @@ class ShoppingListsDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-                    ->setTableId('ShoppingListsDatatable')
+                    ->setTableId('clientsDatatable')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->dom('Bfrtip')
@@ -98,6 +101,10 @@ class ShoppingListsDataTable extends DataTable
     protected function getColumns()
     {
         return [
+            'id',
+            'name',
+            'created_at',
+            'updated_at'
         ];
     }
 
@@ -108,7 +115,7 @@ class ShoppingListsDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'ShoppingLists_' . date('YmdHis');
+        return 'Roles_' . date('YmdHis');
     }
 }
 
