@@ -8,10 +8,10 @@
           <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
 
           <div class="info-box-content">
-            <span class="info-box-text">Pending Shopping Lists</span>
+            <span class="info-box-text">Pending Orders</span>
             <span class="info-box-number">
-                <?php if(isset($data['total_pending_shopping_lists'])): ?>
-                <?php echo e(number_format($data['total_pending_shopping_lists'])); ?>
+                <?php if(isset($data['total_pending_shopping_orders'])): ?>
+                <?php echo e(number_format($data['total_pending_shopping_orders'])); ?>
 
                 <?php endif; ?>
             </span>
@@ -26,10 +26,10 @@
         <div class="info-box">
           <span class="info-box-icon bg-green"><i class="ion ion-ios-gear-outline"></i></span>
           <div class="info-box-content">
-            <span class="info-box-text">Processed Shopping Lists</span>
+            <span class="info-box-text">Processed Orders</span>
             <span class="info-box-number">
-                <?php if(isset($data['total_processed_shopping_lists'])): ?>
-                <?php echo e(number_format($data['total_processed_shopping_lists'])); ?>
+                <?php if(isset($data['total_processed_shopping_orders'])): ?>
+                <?php echo e(number_format($data['total_processed_shopping_orders'])); ?>
 
                 <?php endif; ?>
             </span>
@@ -75,7 +75,80 @@
           </div>
         </div>
        </a>
-   
+
+
+    <!-- fix for small devices only -->
+      <div class="clearfix visible-sm-block"></div>
+
+      <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="">
+        <div class="info-box">
+          <span class="info-box-icon bg-green"><i class="fa fa-user"></i></span>
+
+          <div class="info-box-content">
+            <span class="info-box-text">Total  Customers</span>
+            <span class="info-box-number">
+              <?php if(isset($data['total_customers'])): ?>
+              <?php echo e(number_format($data['total_customers'])); ?>
+
+              <?php endif; ?>
+            </span>
+          </div>
+          <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+       </a>
+
+    <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="">
+      <div class="info-box">
+        <span class="info-box-icon bg-red"><i class="fa fa-file-archive-o"></i></span>
+
+        <div class="info-box-content">
+          <span class="info-box-text">User Roles</span>
+          <span class="info-box-number">
+            <?php if(isset($data['total_roles'])): ?>
+            <?php echo e(number_format($data['total_roles'])); ?>
+
+            <?php endif; ?>
+          </span>
+        </div>
+      </div>
+     </a>
+
+
+     <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="">
+      <div class="info-box">
+        <span class="info-box-icon bg-orange"><i class="fa fa-file-archive-o"></i></span>
+
+        <div class="info-box-content">
+          <span class="info-box-text">Total Orders</span>
+          <span class="info-box-number">
+            <?php if(isset($data['total_orders'])): ?>
+            <?php echo e(number_format($data['total_orders'])); ?>
+
+            <?php endif; ?>
+          </span>
+        </div>
+      </div>
+     </a>
+
+     <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="">
+      <div class="info-box">
+        <span class="info-box-icon bg-blue"><i class="fa fa-file-archive-o"></i></span>
+
+        <div class="info-box-content">
+          <span class="info-box-text"> Total Revenue </span>
+          <span class="info-box-number">
+            <?php if(isset($data['total_revenue'])): ?>
+            <?php echo e(number_format($data['total_revenue'])); ?>
+
+            <?php endif; ?>
+          </span>
+        </div>
+      </div>
+     </a>
+
+    </div>
+
 
     <div class="row">
 

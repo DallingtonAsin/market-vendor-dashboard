@@ -8,10 +8,10 @@
           <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
 
           <div class="info-box-content">
-            <span class="info-box-text">Pending Shopping Lists</span>
+            <span class="info-box-text">Pending Orders</span>
             <span class="info-box-number">
-                @isset($data['total_pending_shopping_lists'])
-                {{ number_format($data['total_pending_shopping_lists']) }}
+                @isset($data['total_pending_shopping_orders'])
+                {{ number_format($data['total_pending_shopping_orders']) }}
                 @endisset
             </span>
           </div>
@@ -25,10 +25,10 @@
         <div class="info-box">
           <span class="info-box-icon bg-green"><i class="ion ion-ios-gear-outline"></i></span>
           <div class="info-box-content">
-            <span class="info-box-text">Processed Shopping Lists</span>
+            <span class="info-box-text">Processed Orders</span>
             <span class="info-box-number">
-                @isset($data['total_processed_shopping_lists'])
-                {{ number_format($data['total_processed_shopping_lists']) }}
+                @isset($data['total_processed_shopping_orders'])
+                {{ number_format($data['total_processed_shopping_orders']) }}
                 @endisset
             </span>
           </div>
@@ -71,7 +71,76 @@
           </div>
         </div>
        </a>
-   
+
+
+    <!-- fix for small devices only -->
+      <div class="clearfix visible-sm-block"></div>
+
+      <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="">
+        <div class="info-box">
+          <span class="info-box-icon bg-green"><i class="fa fa-user"></i></span>
+
+          <div class="info-box-content">
+            <span class="info-box-text">Total  Customers</span>
+            <span class="info-box-number">
+              @isset($data['total_customers'])
+              {{ number_format($data['total_customers']) }}
+              @endisset
+            </span>
+          </div>
+          <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+       </a>
+
+    <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="">
+      <div class="info-box">
+        <span class="info-box-icon bg-red"><i class="fa fa-file-archive-o"></i></span>
+
+        <div class="info-box-content">
+          <span class="info-box-text">User Roles</span>
+          <span class="info-box-number">
+            @isset($data['total_roles'])
+            {{ number_format($data['total_roles']) }}
+            @endisset
+          </span>
+        </div>
+      </div>
+     </a>
+
+
+     <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="">
+      <div class="info-box">
+        <span class="info-box-icon bg-orange"><i class="fa fa-file-archive-o"></i></span>
+
+        <div class="info-box-content">
+          <span class="info-box-text">Total Orders</span>
+          <span class="info-box-number">
+            @isset($data['total_orders'])
+            {{ number_format($data['total_orders']) }}
+            @endisset
+          </span>
+        </div>
+      </div>
+     </a>
+
+     <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="">
+      <div class="info-box">
+        <span class="info-box-icon bg-blue"><i class="fa fa-file-archive-o"></i></span>
+
+        <div class="info-box-content">
+          <span class="info-box-text"> Total Revenue </span>
+          <span class="info-box-number">
+            @isset($data['total_revenue'])
+            {{ number_format($data['total_revenue']) }}
+            @endisset
+          </span>
+        </div>
+      </div>
+     </a>
+
+    </div>
+
 
     <div class="row">
 

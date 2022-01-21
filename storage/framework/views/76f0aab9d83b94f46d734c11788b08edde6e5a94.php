@@ -74,6 +74,17 @@
           </ul>
         </li>
 
+        <li class="treeview">
+          <a href="#"><i class="fa fa-users fa-lg"></i> <span class="ml-2"> Customers</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="<?php echo e(route('customers.index')); ?>"><i class="fa fa-list"></i> List of customers</a></li>
+          </ul>
+        </li>
+
 
 
         

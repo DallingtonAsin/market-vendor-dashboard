@@ -29,10 +29,6 @@ Auth::routes();
 Route::post('/auth', [CustomLoginController::class, 'authenticate'])->name('authenticate');
 Route::get('/logout', [CustomLoginController::class, 'logout'])->name('signout');
 
-// Requests Ajax
-Route::get('pending/requests/ajax/',[App\Http\Livewire\Requests\Pending::class, 'fetchAjaxRequest'])->name('pending.requests.fetch');
-Route::get('approved/requests/ajax/',[App\Http\Livewire\Requests\Approved::class, 'fetchAjaxRequest'])->name('approved.requests.fetch');
-Route::get('rejected/requests/ajax/',[App\Http\Livewire\Requests\Rejected::class, 'fetchAjaxRequest'])->name('rejected.requests.fetch');
 
 Route::get('shopping-lists/ajax/',[App\Http\Livewire\ShoppingLists\Index::class, 'fetchAjaxRequest'])->name('shopping.lists.fetch');
 
@@ -58,13 +54,16 @@ Route::get('income/monthly/ajax/',[IncomeMonthlyReview::class, 'fetchAjaxRequest
 // Logs ajax
 Route::get('logs/ajax/',[ActivityLogs::class, 'fetchAjaxRequest'])->name('logs.ajax.fetch');
 
-Route::get('requests/approve/',[App\Http\Livewire\Requests\Pending::class, 'approveSelected'])->name('requests.pending.approve');
 
 // Roles ajax
 Route::get('roles/ajax/',[App\Http\Livewire\Roles\Index::class, 'fetchAjaxRequest'])->name('roles.ajax.fetch');
 Route::get('role/show/{id}',[App\Http\Livewire\Roles\Index::class, 'show'])->name('role.show');
 Route::put('role/update',[App\Http\Livewire\Roles\Index::class, 'update'])->name('role.update');
 Route::delete('role/delete',[App\Http\Livewire\Roles\Index::class, 'destroy'])->name('role.destroy');
+
+// customers
+Route::get('customers/ajax/',[App\Http\Livewire\Customers\Index::class, 'fetchAjaxRequest'])->name('customers.ajax.fetch');
+
 
 
 Route::group(["middleware" => "restricted"], function(){
@@ -82,6 +81,9 @@ Route::group(["middleware" => "restricted"], function(){
     Route::get('vendors/add',App\Http\Livewire\Vendor\Add::class)->name('vendors.add');
     Route::get('vendors/show/{id}',[App\Http\Livewire\Vendor\Index::class, 'show'])->name('vendor.show');
 
+    // customers
+    Route::get('customers',App\Http\Livewire\Customers\Index::class)->name('customers.index');
+
     
     Route::put('vendor/update',[App\Http\Livewire\Vendor\Index::class, 'update'])->name('vendor.update');
     Route::delete('vendor/delete',[App\Http\Livewire\Vendor\Index::class, 'destroy'])->name('vendor.destroy');
@@ -93,11 +95,7 @@ Route::group(["middleware" => "restricted"], function(){
 
     Route::get('shopping/lists',App\Http\Livewire\ShoppingLists\Index::class)->name('shopping.lists.index');
     
-    // Parking requests
-    Route::get('requests/pending/',App\Http\Livewire\Requests\Pending::class)->name('requests.pending.index');
-    Route::get('requests/approved/',App\Http\Livewire\Requests\Approved::class)->name('requests.approved.index');
-    Route::get('requests/rejected/',App\Http\Livewire\Requests\Rejected::class)->name('requests.rejected.index');
-    
+ 
     
     // User account
     Route::get('profile',App\Http\Livewire\Profile\Index::class)->name('profile.index');

@@ -1,5 +1,6 @@
 <?php return array (
   'actions.clients.index' => 'App\\Http\\Livewire\\Actions\\clients\\Index',
+  'customers.index' => 'App\\Http\\Livewire\\Customers\\Index',
   'home' => 'App\\Http\\Livewire\\Home',
   'modals.clients.delete' => 'App\\Http\\Livewire\\Modals\\Clients\\Delete',
   'modals.requests.approve' => 'App\\Http\\Livewire\\Modals\\Requests\\Approve',
