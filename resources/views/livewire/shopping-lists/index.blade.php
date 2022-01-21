@@ -38,13 +38,14 @@
             <thead>
                <tr>
                   <th></th>
+                  <th>Order No</th>
                   <th>Name</th>
                   <th>Phone No</th>
                   <th>Items</th>
                   <th>Address</th>
                   <th>Status</th>
-                  <!-- <th>Delivered On</th> -->
-                  <th>Action</th>
+                  <th>Order State Action</th>
+                  <!-- <th>Action</th> -->
               </tr>
           </thead>
       </table>
@@ -87,15 +88,16 @@
         var columns = [1,2,3,4,5];
         var dataColumns = [
         {data: 'checkbox', name:'checkbox'},
+        {data: 'order_no', name:'order_no'},
         {data: 'name', name:'name'},
         {data: 'phone_number', name:'phone_number'},
         {data: 'items', name:'items'},
         {data: 'address', name:'address'},
         {data: 'status', name:'status'},
-        // {data: 'delivered_on', name:'delivered_on'},
-        {data: 'action', name:'action'},
+        {data: 'action_status', name:'action_status'},
+        // {data: 'action', name:'action'},
         ];
-        makeDataTable(table, title, columns, dataColumns);
+        makeDataTable2(table, title, columns, dataColumns);
 
       // method to populate vendor information on editing
      $('body').on('click', '#edit-vendor', function (event) {
@@ -225,9 +227,42 @@
         }else{
           console.log("Do nothing");
         }
-
        });
 
+
+ //alert to change vendor account status
+ $('body').on('click', '#change-order-status', function (event) {
+        let id = $(this).data("id");
+        let status = $(this).data("status");
+        let statusAction = status == 'Pending' ? 'processed' : 'pending';
+        event.preventDefault();
+        if(confirm("Are you sure you want to mark this order "+statusAction+"?")){
+          console.log("vendor id "+id+" and status "+status);
+          let postUrl = '{{ route("order.status.change") }}';
+          $.ajax({
+          type: "POST",
+          url: postUrl,
+          data: {
+            'id': id,
+            'status': status,
+          },
+          success: function (data) {
+            console.log("Results", data);
+            var resp = data.message;
+            $('#deletevendor').modal("hide");
+            ShowResponse('.response', resp, 'success');
+            var tbl = $('#shopping-list-table').DataTable();
+            tbl.ajax.reload();
+          },
+          error: function (data) {
+            console.log('Error:', data);
+            ShowResponse('.response', data.error, 'error');
+          }
+        });
+        }else{
+          console.log("Do nothing");
+        }
+       });
 
       // this resets form data
       function ResetInfo(response)

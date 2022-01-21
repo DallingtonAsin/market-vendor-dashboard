@@ -86,6 +86,7 @@ Route::group(["middleware" => "restricted"], function(){
     Route::put('vendor/update',[App\Http\Livewire\Vendor\Index::class, 'update'])->name('vendor.update');
     Route::delete('vendor/delete',[App\Http\Livewire\Vendor\Index::class, 'destroy'])->name('vendor.destroy');
     Route::post('vendor/account/change',[App\Http\Livewire\Vendor\Index::class, 'changeVendorAccountStatus'])->name('vendor.account.change');
+    Route::post('order/status/change',[App\Http\Livewire\ShoppingLists\Index::class, 'changeOrderStatus'])->name('order.status.change');
     
 
     // Shopping Lists

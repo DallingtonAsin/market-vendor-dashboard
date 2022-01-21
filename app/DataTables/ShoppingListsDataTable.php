@@ -40,14 +40,31 @@ class ShoppingListsDataTable extends DataTable
             }
            return $btn;
 
-        })->addColumn('checkbox', function ($data) {
+        })->editColumn('status', function ($data) {
+            return ($data->status == 'PENDING')
+              ? '<span class="text-danger">PENDING</span>' 
+              : '<span class="text-success">PROCESSED</span>';
+         })->addColumn('checkbox', function ($data) {
               $checkBox = '<input type="checkbox" id="'.$data->id.'"/>';
              return $checkBox;
-        })->editColumn('is_deleted', function ($data) {
+        })->addColumn('action_status', function ($data) {
+            $btn = "";
+            $title = $data->status == 'PENDING' ? 'Mark processed' : 'Mark Pending';
+            if($data->status == 'PENDING'){
+                $btn .= '<a href="javascript:void(0)" data-toggle="tooltip"  data-status="'.$data->status.'"
+                data-id="'.$data->id.'"  id="change-order-status"  data-original-title="'.$title.'" 
+                class="btn btn-success btn-sm ml-2">Mark processed</a></div>';
+            }else{
+                $btn .= '<a href="javascript:void(0)" data-toggle="tooltip"  data-status="'.$data->status.'"
+                data-id="'.$data->id.'" id="change-order-status" data-original-title="'.$title.'"  
+                class="btn btn-warning btn-sm ml-2"><i class="fa fa-undo"></i> Mark pending</a></div>';
+            }
+            return $btn;
+      })->editColumn('is_deleted', function ($data) {
             return ($data->is_deleted)
               ? '<span class="text-danger">True</span>' 
               : '<span class="text-success">False</span>';
-         })->rawColumns(['action', 'checkbox', 'is_active', 'is_deleted']);
+         })->rawColumns(['action', 'checkbox', 'is_active', 'is_deleted', 'status', 'action_status']);
 
     }
 
@@ -60,7 +77,7 @@ class ShoppingListsDataTable extends DataTable
     public function query(ShoppingOrder $model)
     {
         
-            $endPoint = '/shopping-lists';
+            $endPoint = '/shopping-orders';
             $resp = ApiRequestResponse::GetDataByEndPoint($endPoint);
             $apiResult = json_decode($resp, true);
             $data = $apiResult['data'];
