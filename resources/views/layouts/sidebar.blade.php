@@ -55,44 +55,22 @@
         <!-- Optionally, you can add icons to the links -->
         <li><a href="{{ route('home') }}"><i class="fa fa-home fa-lg">
         </i> <span class="ml-2">Home</span></a></li>
+   
         
-        {{-- @cannot('isStaff')
-        <li class="treeview">
-          <a href="#"><i class="fa fa-tasks fa-lg active"></i> <span> Roles</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="{{ route('roles.index') }}">Roles</a></li>
-          </ul>
-        </li>
-        @endcannot --}}
-        
-        <li class="treeview">
-          <a href="#"><i class="fa fa-tasks fa-lg"></i> <span class="ml-2"> Roles</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="{{ route('roles.add') }}"><i class="fa fa-plus-circle"></i> Create</a></li>
-            <li><a href="{{ route('roles.index') }}"><i class="fa fa-list"></i> List of roles</a></li>
-          </ul>
-        </li>
+     
         
         
         
         
         <li class="treeview">
-          <a href="#"><i class="fa fa-users fa-lg"></i> <span class="ml-2"> Users</span>
+          <a href="#"><i class="fa fa-users fa-lg"></i> <span class="ml-2"> Market vendors</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
             <li><a href="{{ route('users.add') }}"><i class="fa fa-plus-circle"></i> Create</a></li>
-            <li><a href="{{ route('users.index') }}"><i class="fa fa-list"></i> List of users</a></li>
+            <li><a href="{{ route('users.index') }}"><i class="fa fa-list"></i> List of vendors</a></li>
           </ul>
         </li>
 
@@ -100,77 +78,24 @@
 
         
         <li class="treeview">
-          <a href="#"><i class="fa fa-user fa-lg"></i> <span class="ml-2"> Clients</span>
+          <a href="#"><i class="fa fa-shopping-cart fa-lg"></i> <span class="ml-2"> Shopping</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{ route('clients.add') }}"><i class="fa fa-plus-circle"></i> Create</a></li>
-            <li><a href="{{ route('clients.index') }}"><i class="fa fa-list"></i> List of clients</a></li>
+            <li><a href="{{ route('clients.index') }}"><i class="fa fa-list"></i> Submited Lists</a></li>
 
           </ul>
         </li>
 
-        <li class="treeview">
-          <a href="#"><i class="fa fa-bus fa-lg"></i> <span class="ml-2"> Vehicle types</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="{{ route('vehicle.category.add') }}"><i class="fa fa-plus-circle"></i> Add category</a></li>
-            <li><a href="{{ route('vehicle.category.index') }}"><i class="fa fa-list"></i> List of vehicle types</a></li>
-
-          </ul>
-        </li>
-
-
-        <li class="treeview">
-          <a href="#"><i class="fa fa-map-marker fa-lg"></i> <span class="ml-2"> Parking Areas</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="{{ route('parking.area.create') }}"><i class="fa fa-plus-circle"></i> Add parking</a></li>
-            <li><a href="{{ route('parking.areas.index') }}"><i class="fa fa-list"></i> Manage parking</a></li>
-
-          </ul>
-        </li>
-
-        <li class="treeview">
-          <a href="#"><i class="fa fa-dollar fa-lg"></i> <span class="ml-2"> Parking Fees</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="{{ route('parking.fees.create') }}"><i class="fa fa-plus-circle"></i> Add fee</a></li>
-            <li><a href="{{ route('parking.fees.index') }}"><i class="fa fa-list"></i> Manage fees</a></li>
-
-          </ul>
-        </li>
-
-        <li class="treeview">
-          <a href="#"><i class="fa fa-paper-plane fa-lg"></i> <span class="ml-2">Parking Requests</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="{{ route('requests.pending.index') }}"><i class="fa fa-clock-o"></i>Pending</a></li>
-            <li><a href="{{ route('requests.rejected.index') }}"><i class="fa fa-times-circle"></i> Rejected</a></li>
-            <li><a href="{{ route('requests.approved.index') }}"><i class="fa fa-check-circle"></i> Approved</a></li>
-
-          </ul>
-        </li>
+      
         
      
         
         @cannot('isStaff')
         <li class="treeview">
-          <a href="#"><i class="fa fa-line-chart fa-lg"></i> <span class="ml-2"> Analytical Reports </span>
+          <a href="#"><i class="fa fa-line-chart fa-lg"></i> <span class="ml-2">Reports </span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -203,11 +128,6 @@
               </ul>
             </li>
           </ul>
-          
-          
-          
-          
-          
         </li>
         @endcannot
         

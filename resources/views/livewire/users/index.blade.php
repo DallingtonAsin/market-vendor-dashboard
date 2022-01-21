@@ -2,11 +2,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1 style="font-weight:bolder; text-transform:uppercase; font-family: 'Times New Roman', Times, serif">
-        User Mangement
+      Market Vendor Mangement
       </h1>
       <ol class="breadcrumb">
         <!-- li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li-->
-        <li class="active">User Mangement</li>
+        <li class="active">Market Vendor Mangement</li>
       </ol>
     </section>
 
@@ -19,14 +19,14 @@
       <div class="row">
         <div class="col-sm-4">
           <h3 class="box-title" style="font-weight:bolder; text-transform:uppercase; 
-          font-family: 'Times New Roman', Times, serif">List of system users</h3>
+          font-family: 'Times New Roman', Times, serif">List of market vendors</h3>
             <span class="pl-0 mt-4 response"></span>
         </div>
         
      
       <div class="col-sm-4">
         <a type="button" href={{route('users.add')}} class="btn btn-info pull-right">
-        <i class="fa fa-plus-circle"></i> Add User
+        <i class="fa fa-plus-circle"></i> Add Vendor
       </a>
     </div>
   </div>
@@ -48,7 +48,6 @@
                   <th>Name</th>
                   <th>Username</th>
                   <th>Mobile No</th>
-                  <th>Address</th>
                   <th>A/C status</th>
                   <th>Is Deleted</th>
                   <th>Manage</th>
@@ -99,7 +98,6 @@
         {data: 'name', name:'name'},
         {data: 'username', name:'username'},
         {data: 'phone_number', name:'phone_number'},
-        {data: 'address', name:'address'},
         {data: 'is_active', name:'is_active'},
         {data: 'is_deleted', name:'is_deleted'},
         {data: 'account_action', name:'account_action'},

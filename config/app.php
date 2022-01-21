@@ -13,8 +13,8 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'ParkPro'),
-    'abbrv' => env('APP_ABBRV', 'ParkPro'),
+    'name' => env('APP_NAME', 'Market Vendor MS'),
+    'abbrv' => env('APP_ABBRV', 'Market Vendor MS'),
 
     'APP_API' => env('APP_API'),
     'API_BASE_URL' => env('API_BASE_URL'),

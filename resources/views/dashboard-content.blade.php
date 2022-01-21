@@ -8,7 +8,7 @@
           <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
 
           <div class="info-box-content">
-            <span class="info-box-text">Pending ReQs</span>
+            <span class="info-box-text">Pending Shopping Lists</span>
             <span class="info-box-number">
                 @isset($data['total_pending_requests'])
                 {{ number_format($data['total_pending_requests']) }}
@@ -23,9 +23,9 @@
      
         <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="{{ route('requests.approved.index') }}">
         <div class="info-box">
-          <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
+          <span class="info-box-icon bg-green"><i class="ion ion-ios-gear-outline"></i></span>
           <div class="info-box-content">
-            <span class="info-box-text">Approved ReQs</span>
+            <span class="info-box-text">Delivered Shopping Lists</span>
             <span class="info-box-number">
                 @isset($data['total_approved_requests'])
                 {{ number_format($data['total_approved_requests']) }}
@@ -41,10 +41,10 @@
       <!-- /.col -->
       <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="{{ route('clients.index') }}">
         <div class="info-box">
-          <span class="info-box-icon bg-red"><i class="fa fa-balance-scale"></i></span>
+          <span class="info-box-icon bg-blue"><i class="fa fa-users"></i></span>
 
           <div class="info-box-content">
-            <span class="info-box-text">clients</span>
+            <span class="info-box-text">Total Users</span>
             <span class="info-box-number">
               @isset($data['total_clients'])
               {{ number_format($data['total_clients']) }}
@@ -62,7 +62,7 @@
           <span class="info-box-icon bg-black"><i class="fa fa-file-archive-o"></i></span>
 
           <div class="info-box-content">
-            <span class="info-box-text">Parking Areas</span>
+            <span class="info-box-text">System Audit</span>
             <span class="info-box-number">
               @isset($data['total_parking_areas'])
               {{ number_format($data['total_parking_areas']) }}
@@ -73,90 +73,18 @@
        </a>
    
 
-
-
-
-      <!-- fix for small devices only -->
-      <div class="clearfix visible-sm-block"></div>
-
-      <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="{{ route('users.index') }}">
-        <div class="info-box">
-          <span class="info-box-icon bg-green"><i class="fa fa-user"></i></span>
-
-          <div class="info-box-content">
-            <span class="info-box-text">Total  Users</span>
-            <span class="info-box-number">
-              @isset($data['total_users'])
-              {{ number_format($data['total_users']) }}
-              @endisset
-            </span>
-          </div>
-          <!-- /.info-box-content -->
-        </div>
-        <!-- /.info-box -->
-       </a>
-
-    <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="{{ route('vehicle.category.index') }}">
-      <div class="info-box">
-        <span class="info-box-icon bg-red"><i class="fa fa-file-archive-o"></i></span>
-
-        <div class="info-box-content">
-          <span class="info-box-text">Vehicle Types</span>
-          <span class="info-box-number">
-            @isset($data['total_parking_areas'])
-            {{ number_format($data['total_parking_areas']) }}
-            @endisset
-          </span>
-        </div>
-      </div>
-     </a>
-
-
-     <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="">
-      <div class="info-box">
-        <span class="info-box-icon bg-orange"><i class="fa fa-file-archive-o"></i></span>
-
-        <div class="info-box-content">
-          <span class="info-box-text">Monthly income</span>
-          <span class="info-box-number">
-            @isset($data['current_month_income'])
-            {{ number_format($data['current_month_income']) }}
-            @endisset
-          </span>
-        </div>
-      </div>
-     </a>
-
-     <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="">
-      <div class="info-box">
-        <span class="info-box-icon bg-blue"><i class="fa fa-file-archive-o"></i></span>
-
-        <div class="info-box-content">
-          <span class="info-box-text"> Last month </span>
-          <span class="info-box-number">
-            @isset($data['total_clients'])
-            {{ number_format($data['last_month_income']) }}
-            @endisset
-          </span>
-        </div>
-      </div>
-     </a>
-
-    </div>
-
-
     <div class="row">
 
       <div class="col-md-6 col-sm-6 col-xs-12 homelink">
        <div class="info-box">
-                 <span class="info-box-text text-center">Barchart of approved parking requests Vs months</span>
+                 <span class="info-box-text text-center">Barchart of delivered shopping lists Vs months</span>
                    <canvas id="bar_chart_canvas" height="300" width="600" class="nunito-font"></canvas>
        </div>
    </div>
 
    <div class="col-md-6 col-sm-6 col-xs-12 homelink">
        <div class="info-box">
-                   <span class="info-box-text text-center">Areachart showing income generated over months</span>
+                   <span class="info-box-text text-center">Areachart showing income from shopping generated over months</span>
                    <canvas id="line_graph_canvas" height="300" width="600" class="nunito-font"></canvas>
           
        </div>

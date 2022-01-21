@@ -40,7 +40,7 @@ class CustomLoginController extends Controller
 		try{
 
 			$login = $reqParams['username'];
-			$endPoint = '/user/login';
+			$endPoint = '/vendor/login';
 			$resp = ApiRequestResponse::PostDataByEndPoint($endPoint, $reqParams);
 			$apiResult = json_decode($resp, true);
 			$statusCode = $apiResult['statusCode'];

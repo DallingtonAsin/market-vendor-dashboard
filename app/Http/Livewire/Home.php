@@ -16,18 +16,11 @@ class Home extends Component
         $statusCode = $apiResult['statusCode'];
         $message = $apiResult['message'];
         $data = $apiResult['data'];
-
-        $arr = $this->getMonthlyData();
-        $request_data = $arr[0];
-        $income_data = $arr[1];
+        $request_data = [];
+        $income_data = [];
 
         return view('livewire.home')
                ->with(compact('data', 'request_data', 'income_data'));
     }
 
-     public function getMonthlyData(){
-            $request_data = Helper::getMonthlyRequestReviewData();
-            $income_data = Helper::getMonthlyIncomeReviewData();
-            return [$request_data, $income_data];
-     }
 }
