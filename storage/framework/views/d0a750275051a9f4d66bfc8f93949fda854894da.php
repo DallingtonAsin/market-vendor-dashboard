@@ -110,7 +110,7 @@
 -->
 
 
-<body class="hold-transition skin-blue sidebar-boxed">
+<body class="hold-transition skin-green sidebar-boxed">
   <div class="wrapper">
     <?php echo $__env->make('layouts.header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <?php echo $__env->make('layouts.sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>

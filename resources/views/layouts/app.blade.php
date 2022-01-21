@@ -108,7 +108,7 @@
 -->
 
 
-<body class="hold-transition skin-blue sidebar-boxed">
+<body class="hold-transition skin-green sidebar-boxed">
   <div class="wrapper">
     @include('layouts.header')
     @include('layouts.sidebar')
