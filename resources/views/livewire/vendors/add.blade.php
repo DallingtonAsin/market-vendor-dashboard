@@ -72,16 +72,7 @@
             </div>
         </div>
 
-        <!-- <div class="row form-group">
-            <div class="col col-md-3"><label for="photo" class=" form-control-label">Photo</label></div>
-            <div class="col-12 col-md-7">
-                <div class="custom-file">
-                    <input type="file" id="photo" wire:model="photo" class="custom-file-input" />
-                </div>
-        </div> -->
-
-     
-       </div>
+       
 
 
    <div class="form-group">

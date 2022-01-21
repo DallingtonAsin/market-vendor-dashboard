@@ -79,7 +79,7 @@ class RolesDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-                    ->setTableId('clientsDatatable')
+                    ->setTableId('RolesDatatable')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->dom('Bfrtip')

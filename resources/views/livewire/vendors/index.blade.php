@@ -44,7 +44,7 @@
         <table class="table" id="vendors-table">
             <thead>
                <tr>
-                  <th></th>
+                  {{-- <th></th> --}}
                   <th>Name</th>
                   <th>vendorname</th>
                   <th>Mobile No</th>
@@ -94,7 +94,7 @@
         var title = "List of vendors";
         var columns = [1,2,3,4,5];
         var dataColumns = [
-        {data: 'checkbox', name:'checkbox'},
+        // {data: 'checkbox', name:'checkbox'},
         {data: 'name', name:'name'},
         {data: 'username', name:'username'},
         {data: 'phone_number', name:'phone_number'},
@@ -103,7 +103,7 @@
         {data: 'account_action', name:'account_action'},
         {data: 'action', name:'action'},
         ];
-        makeDataTable(table, title, columns, dataColumns);
+        makeDataTable2(table, title, columns, dataColumns);
 
       // method to populate vendor information on editing
      $('body').on('click', '#edit-vendor', function (event) {

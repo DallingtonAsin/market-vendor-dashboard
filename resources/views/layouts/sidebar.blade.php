@@ -56,6 +56,10 @@
         <li><a href="{{ route('home') }}"><i class="fa fa-home fa-lg">
         </i> <span class="ml-2">Home</span></a></li>
    
+
+     @cannot('isVendor')
+       
+  
         <li class="treeview">
           <a href="#"><i class="fa fa-tasks fa-lg"></i> <span class="ml-2"> Roles</span>
             <span class="pull-right-container">
@@ -63,15 +67,10 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{ route('roles.add') }}"><i class="fa fa-plus-circle"></i> Create</a></li>
+            <li><a href="{{ route('roles.add') }}"><i class="fa fa-plus-circle"></i> Add role</a></li>
             <li><a href="{{ route('roles.index') }}"><i class="fa fa-list"></i> List of roles</a></li>
           </ul>
         </li>
-        
-     
-        
-        
-        
         
         <li class="treeview">
           <a href="#"><i class="fa fa-users fa-lg"></i> <span class="ml-2"> Vendors</span>
@@ -80,7 +79,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{ route('vendors.add') }}"><i class="fa fa-plus-circle"></i> Create</a></li>
+            <li><a href="{{ route('vendors.add') }}"><i class="fa fa-plus-circle"></i> Add vendor</a></li>
             <li><a href="{{ route('vendors-list.index') }}"><i class="fa fa-list"></i> List of vendors</a></li>
           </ul>
         </li>
@@ -96,6 +95,7 @@
           </ul>
         </li>
 
+        @endcannot
 
 
         
@@ -106,12 +106,26 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{ route('shopping.lists.index') }}"><i class="fa fa-list"></i> Submitted lists</a></li>
+            <li><a href="{{ route('shopping.orders.index') }}"><i class="fa fa-list"></i> List of all orders</a></li>
+            <li><a href="{{ route('shopping.orders.pending') }}"><i class="fa fa-clock-o"></i> Pending orders</a></li>
+            <li><a href="{{ route('shopping.orders.processed') }}"><i class="fa fa-check-circle"></i> Processed orders</a></li>
 
           </ul>
         </li>
 
-           
+        <li class="treeview">
+          <a href="#"><i class="fa fa-list fa-lg"></i> <span class="ml-2"> Goods</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{ route('goods.index') }}"><i class="fa fa-list"></i> List of all goods</a></li>
+          </ul>
+        </li>
+
+    
+        @cannot('isVendor')
         <li class="treeview">
           <a href="#"><i class="fa fa-download fa-lg"></i> <span class="ml-2"> System audit</span>
             <span class="pull-right-container">
@@ -124,43 +138,6 @@
           </ul>
         </li>
 
-      
-        <!-- <li class="treeview">
-          <a href="#"><i class="fa fa-line-chart fa-lg"></i> <span class="ml-2">Reports </span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-   
-          <ul class="treeview-menu">
-            <li class="treeview">
-              <a href="#"><i class="fa fa-balance-scale"></i> <span> Shopping Requests </span>
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="{{ route('requests.charts') }}"><i class="fa fa-bar-chart"></i> Charts</a></li>
-                <li><a href="{{ route('requests.monthly.review') }}"><i class="fa fa-table"></i> Monthly Stats</a></li>
-              </ul>
-            </li>
-          </ul>
-          
-          <ul class="treeview-menu">
-            <li class="treeview">
-              <a href="#"><i class="fa fa-calendar"></i> <span> Shopping Revenue </span>
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="{{ route('incomes.charts') }}"><i class="fa fa-bar-chart"></i> Charts</a></li>
-                <li><a href="{{ route('income.monthly.review') }}"><i class="fa fa-table"></i> Monthly Stats</a></li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-         -->
         
         <li class="treeview">
           <a href="#"><i class="fa fa-cog fa-lg"></i> <span class="ml-2"> Settings </span>
@@ -171,10 +148,11 @@
           <ul class="treeview-menu">
             <li><a href="{{ route('company.add-edit') }}"><i class="fa fa-user"></i> Company</a></li>
             <li><a href="{{ route('password.edit') }}"><i class="fa fa-home"></i> Change Password</a></li>
-           
-      
+    
           </ul>
         </li>
+
+        @endcannot
       
       </ul>
     </section>

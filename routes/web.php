@@ -30,29 +30,24 @@ Route::post('/auth', [CustomLoginController::class, 'authenticate'])->name('auth
 Route::get('/logout', [CustomLoginController::class, 'logout'])->name('signout');
 
 
-Route::get('shopping-lists/ajax/',[App\Http\Livewire\ShoppingLists\Index::class, 'fetchAjaxRequest'])->name('shopping.lists.fetch');
+Route::get('shopping-orders/ajax/',[App\Http\Livewire\ShoppingOrders\Index::class, 'fetchAjaxRequest'])->name('shopping.orders.fetch');
+Route::get('shopping-orders/pending/ajax/',[App\Http\Livewire\ShoppingOrders\Pending::class, 'fetchAjaxRequest'])->name('shopping.orders.pending.fetch');
+Route::get('shopping-orders/processed/ajax/',[App\Http\Livewire\ShoppingOrders\Processed::class, 'fetchAjaxRequest'])->name('shopping.orders.processed.fetch');
 
-// Vendors ajax
-Route::get('vendors/ajax/',[App\Http\Livewire\Vendor\Index::class, 'fetchAjaxRequest'])->name('vendors.ajax.fetch');
-
-// Clients ajax
-Route::get('clients/ajax/',[App\Http\Livewire\Clients\Index::class, 'fetchAjaxRequest'])->name('clients.ajax.fetch');
-
-// Parking areas ajax
-Route::get('parking/areas/ajax/',[App\Http\Livewire\Parking\ParkingAreas::class, 'fetchAjaxRequest'])->name('parking.areas.ajax.fetch');
-
-// Parking fees ajax
-Route::get('parking/fees/ajax/',[App\Http\Livewire\Parking\ParkingFees::class, 'fetchAjaxRequest'])->name('parking.fees.ajax.fetch');
-
-
-// Requests monthly ajax
-Route::get('requests/monthly/ajax/',[RequestMonthlyReview::class, 'fetchAjaxRequest'])->name('requests.monthly.ajax.fetch');
-
-// Income monthly ajax
-Route::get('income/monthly/ajax/',[IncomeMonthlyReview::class, 'fetchAjaxRequest'])->name('income.monthly.ajax.fetch');
 
 // Logs ajax
 Route::get('logs/ajax/',[ActivityLogs::class, 'fetchAjaxRequest'])->name('logs.ajax.fetch');
+
+// Goods ajax
+Route::get('goods/ajax/',[App\Http\Livewire\Goods\Index::class, 'fetchAjaxRequest'])->name('goods.ajax.fetch');
+
+// Vendors ajax
+Route::get('vendors/ajax/',[App\Http\Livewire\Vendor\Index::class, 'fetchAjaxRequest'])->name('vendors.ajax.fetch');
+// Requests monthly ajax
+Route::get('requests/monthly/ajax/',[RequestMonthlyReview::class, 'fetchAjaxRequest'])->name('requests.monthly.ajax.fetch');
+// Income monthly ajax
+Route::get('income/monthly/ajax/',[IncomeMonthlyReview::class, 'fetchAjaxRequest'])->name('income.monthly.ajax.fetch');
+
 
 
 // Roles ajax
@@ -80,21 +75,28 @@ Route::group(["middleware" => "restricted"], function(){
     Route::get('vendors-list',App\Http\Livewire\Vendor\Index::class)->name('vendors-list.index');
     Route::get('vendors/add',App\Http\Livewire\Vendor\Add::class)->name('vendors.add');
     Route::get('vendors/show/{id}',[App\Http\Livewire\Vendor\Index::class, 'show'])->name('vendor.show');
+    Route::put('vendor/update',[App\Http\Livewire\Vendor\Index::class, 'update'])->name('vendor.update');
+    Route::delete('vendor/delete',[App\Http\Livewire\Vendor\Index::class, 'destroy'])->name('vendor.destroy');
+    Route::post('vendor/account/change',[App\Http\Livewire\Vendor\Index::class, 'changeVendorAccountStatus'])->name('vendor.account.change');
+   
 
     // customers
     Route::get('customers',App\Http\Livewire\Customers\Index::class)->name('customers.index');
 
-    
-    Route::put('vendor/update',[App\Http\Livewire\Vendor\Index::class, 'update'])->name('vendor.update');
-    Route::delete('vendor/delete',[App\Http\Livewire\Vendor\Index::class, 'destroy'])->name('vendor.destroy');
-    Route::post('vendor/account/change',[App\Http\Livewire\Vendor\Index::class, 'changeVendorAccountStatus'])->name('vendor.account.change');
-    Route::post('order/status/change',[App\Http\Livewire\ShoppingLists\Index::class, 'changeOrderStatus'])->name('order.status.change');
+    // goods
+    Route::get('goods/', App\Http\Livewire\Goods\Index::class)->name('goods.index');
+    Route::get('goods/add',App\Http\Livewire\Goods\Add::class)->name('goods.add');
+
+  
+    Route::post('order/status/change',[App\Http\Livewire\ShoppingOrders\Index::class, 'changeOrderStatus'])->name('order.status.change');
     
 
-    // Shopping Lists
+    // Shopping orders
 
-    Route::get('shopping/lists',App\Http\Livewire\ShoppingLists\Index::class)->name('shopping.lists.index');
-    
+    Route::get('shopping/orders',App\Http\Livewire\ShoppingOrders\Index::class)->name('shopping.orders.index');
+    Route::get('shopping/orders/pending',App\Http\Livewire\ShoppingOrders\Pending::class)->name('shopping.orders.pending');
+    Route::get('shopping/orders/processed',App\Http\Livewire\ShoppingOrders\Processed::class)->name('shopping.orders.processed');
+ 
  
     
     // User account

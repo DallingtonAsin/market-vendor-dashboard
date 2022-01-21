@@ -49,21 +49,8 @@
                        @error('email') <span class="text-danger">{{ $message }}</span> @enderror
                    </div>
                </div>
-               
-               <div class="row form-group">
-                   <div class="col col-md-3"><label for="gender" class=" form-control-label">Gender</label></div>
-                   <div class="col-12 col-md-9">
-                       <select wire:model="gender" class="form-control" id="gender" selected="selected">
-                          <option value="">Select gender</option>
-                          @foreach($genderOptions as $gender)
-                          <option value="{{ $gender }}">{{ $gender }}</option>
-                          @endforeach
-                      </select>
-                      @error('gender') <span class="text-danger">{{ $message }}</span> @enderror
-                  </div>
-              </div>
+             
 
-            
               <div class="row form-group">
                <div class="col col-md-3"><label for="mobile_no" class=" form-control-label">Mobile No.</label></div>
                <div class="col-12 col-md-9"><input type="text" id="mobile_no" wire:model="mobile_no" class="form-control" placeholder="Mobile Number"/>
@@ -101,7 +88,7 @@
             @if($photo)
             <img src="{{ $photo->temporaryUrl() }}" width="80" height="80">
             @endif
-        </div>
+           </div>
     </div>
 
     <div class="form-group">

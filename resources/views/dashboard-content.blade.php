@@ -3,7 +3,25 @@
     <!-- Info boxes -->
     <div class="row">
        <!-- /.col -->
-       <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="">
+
+       <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="{{ route('shopping.orders.index') }}">
+        <div class="info-box">
+          <span class="info-box-icon bg-orange"><i class="fa fa-file-archive-o"></i></span>
+  
+          <div class="info-box-content">
+            <span class="info-box-text">Total Orders</span>
+            <span class="info-box-number">
+              @isset($data['total_orders'])
+              {{ number_format($data['total_orders']) }}
+              @endisset
+            </span>
+          </div>
+        </div>
+       </a>
+
+
+
+       <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="{{ route('shopping.orders.pending') }}">
         <div class="info-box">
           <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
 
@@ -21,7 +39,7 @@
 </a>
       <!-- /.col -->
      
-        <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="">
+        <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="{{ route('shopping.orders.processed') }}">
         <div class="info-box">
           <span class="info-box-icon bg-green"><i class="ion ion-ios-gear-outline"></i></span>
           <div class="info-box-content">
@@ -37,7 +55,7 @@
 
      
 
-
+      @cannot('isVendor')
       <!-- /.col -->
       <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="{{ route('vendors-list.index') }}">
         <div class="info-box">
@@ -57,6 +75,7 @@
 </a>
       
 
+  
       <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="{{ route('logs.index') }}">
         <div class="info-box">
           <span class="info-box-icon bg-black"><i class="fa fa-file-archive-o"></i></span>
@@ -108,22 +127,6 @@
       </div>
      </a>
 
-
-     <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="{{ route('shopping.lists.index') }}">
-      <div class="info-box">
-        <span class="info-box-icon bg-orange"><i class="fa fa-file-archive-o"></i></span>
-
-        <div class="info-box-content">
-          <span class="info-box-text">Total Orders</span>
-          <span class="info-box-number">
-            @isset($data['total_orders'])
-            {{ number_format($data['total_orders']) }}
-            @endisset
-          </span>
-        </div>
-      </div>
-     </a>
-
      <a class="col-md-3 col-sm-6 col-xs-12 homelink" href="">
       <div class="info-box">
         <span class="info-box-icon bg-blue"><i class="fa fa-file-archive-o"></i></span>
@@ -139,9 +142,11 @@
       </div>
      </a>
 
+     @endcannot
+
     </div>
 
-
+    @cannot('isVendor')
     <div class="row">
 
       <div class="col-md-6 col-sm-6 col-xs-12 homelink">
@@ -158,8 +163,8 @@
           
        </div>
    </div>
-
 </div>
+@endcannot
   </section>
 
   <script type="text/javascript">

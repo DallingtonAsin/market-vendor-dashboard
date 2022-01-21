@@ -15,13 +15,10 @@ class Edit extends Component
     use WithFileUploads;
     
     public $first_name, $last_name, $username, $email, $user_id,
-    $gender, $mobile_no, $user_role, $address, $photo;
-    
-    public $genderOptions;
+    $mobile_no, $user_role, $address, $photo;
     
     public function mount(){
         $this->setUser();
-        $this->genderOptions = ['Male', 'Female'];
     }
     
     public function render()
@@ -35,7 +32,6 @@ class Edit extends Component
         $this->last_name = Auth::user()->last_name;
         $this->username = Auth::user()->username;
         $this->email = Auth::user()->email;
-        $this->gender = Auth::user()->gender;
         $this->mobile_no = Auth::user()->phone_number;
         $this->user_role = ucfirst(Helper::getRoleName(Auth::user()->role));
         $this->address = Auth::user()->address;
@@ -48,7 +44,6 @@ class Edit extends Component
             'last_name' => 'required',
             'username' => 'required',
             'email' => 'required|email',
-            'gender' => 'required',
             'mobile_no' => 'required',
             'user_role' => 'required',
             'address' => 'required',
@@ -94,7 +89,6 @@ class Edit extends Component
                     ['name' => 'last_name', 'contents' => $this->last_name],
                     ['name' => 'username', 'contents' => $this->username],
                     ['name' => 'email' , 'contents' => $this->email],
-                    ['name' => 'gender' , 'contents' => $this->gender],
                     ['name' => 'mobile_no', 'contents' => $this->mobile_no],
                     ['name' => 'user_role', 'contents' => $this->user_role],
                     ['name' => 'address', 'contents' => $this->address],
@@ -204,12 +198,11 @@ public function updatee(Request $request, $id)
         
         $result = $user->save();
         if($result) {
-            $gender = $this->getGender(Auth::user()->id);
-            $action = "updated ".$gender." profile";
+         
+            $action = "updated profile";
             LogsController::logger($request, $action, now());
-            $actionx = Str::replaceFirst($gender, 'your', $action);
             $sessionVariable = 'success';
-            $message = $this->ActionMessage($actionx);
+            $message = $this->ActionMessage($action);
         }
         else
         {

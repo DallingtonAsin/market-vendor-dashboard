@@ -16,8 +16,7 @@
             @include('components.message')
           <div class="box-header">
   
-        <div>Add role</div>
-
+       
         
         <div class="col-lg-12">
             <form wire:submit.prevent="store" method="POST">

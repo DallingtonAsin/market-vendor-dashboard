@@ -37,12 +37,12 @@
         <table class="table" id="customers-table">
             <thead>
                <tr>
-                  <th></th>
+                  {{-- <th></th> --}}
                   <th>First Name</th>
                   <th>Last Name</th>
                   <th>Mobile No</th>
                   <th>Email</th>
-                  <th>Account Balance</th>
+                  <th>A/C Balance</th>
                   <!-- <th>Action</th> -->
               </tr>
           </thead>
@@ -85,7 +85,7 @@
         var title = "List of customers";
         var columns = [1,2,3,4,5];
         var dataColumns = [
-        {data: 'checkbox', name:'checkbox'},
+        // {data: 'checkbox', name:'checkbox'},
         {data: 'first_name', name:'first_name'},
         {data: 'last_name', name:'last_name'},
         {data: 'phone_number', name:'phone_number'},
