@@ -7,4 +7,4 @@
     <!-- Default to the left -->
     <strong>Copyright &copy; <?php echo e(date('Y')); ?> <a  class="text-green" href="https://marketvendor.com" target="_blank"><?php echo e(config('app.name')); ?> Solution</a>.</strong> 
     All rights reserved.
-  </footer><?php /**PATH C:\laragon\www\mkv-ms\resources\views/layouts/footer.blade.php ENDPATH**/ ?>
+  </footer><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/mkv-ms/resources/views/layouts/footer.blade.php ENDPATH**/ ?>

@@ -157,4 +157,4 @@
     </script>
     <script src="<?php echo e(asset('js/site.js')); ?>"></script>
   </body>
-  </html><?php /**PATH C:\laragon\www\mkv-ms\resources\views/layouts/app.blade.php ENDPATH**/ ?>
+  </html><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/mkv-ms/resources/views/layouts/app.blade.php ENDPATH**/ ?>

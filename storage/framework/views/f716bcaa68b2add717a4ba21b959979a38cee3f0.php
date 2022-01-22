@@ -12,4 +12,4 @@
     <?php echo $__env->make('dashboard-content', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
   </div>
 
-<?php /**PATH C:\laragon\www\mkv-ms\resources\views/livewire/home.blade.php ENDPATH**/ ?>
+<?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/mkv-ms/resources/views/livewire/home.blade.php ENDPATH**/ ?>

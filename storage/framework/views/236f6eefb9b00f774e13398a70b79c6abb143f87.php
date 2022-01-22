@@ -17,4 +17,4 @@
          <i class="fa fa-times-circle"></i>
       </div>
       <?php endif; ?>
-   </div><?php /**PATH C:\laragon\www\mkv-ms\resources\views/components/message.blade.php ENDPATH**/ ?>
+   </div><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/mkv-ms/resources/views/components/message.blade.php ENDPATH**/ ?>

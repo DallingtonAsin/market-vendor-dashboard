@@ -8,4 +8,4 @@
 <?php unset($__componentOriginale7c6616875b34e3f53343f67cca22d88de00f61f); ?>
 <?php endif; ?>
 <?php echo $__env->renderComponent(); ?>
-<?php /**PATH C:\laragon\www\mkv-ms\vendor\livewire\livewire\src/Macros/livewire-view-component.blade.php ENDPATH**/ ?>
+<?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/mkv-ms/vendor/livewire/livewire/src/Macros/livewire-view-component.blade.php ENDPATH**/ ?>

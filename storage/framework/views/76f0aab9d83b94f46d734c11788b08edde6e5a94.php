@@ -145,4 +145,4 @@
       
       </ul>
     </section>
-  </aside><?php /**PATH C:\laragon\www\mkv-ms\resources\views/layouts/sidebar.blade.php ENDPATH**/ ?>
+  </aside><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/mkv-ms/resources/views/layouts/sidebar.blade.php ENDPATH**/ ?>
