@@ -44,6 +44,8 @@
                   <th>Phone No</th>
                   <th>Items</th>
                   <th>Address</th>
+                  <th>Request Date</th>
+                  <th>Delivery Date</th>
                   <th>Status</th>
                   <th>Order State Action</th>
                   <!-- <th>Action</th> -->
@@ -95,6 +97,8 @@
         {data: 'phone_number', name:'phone_number'},
         {data: 'items', name:'items'},
         {data: 'address', name:'address'},
+        {data: 'request_date', name:'request_date'},
+        {data: 'delivery_date', name:'delivery_date'},
         {data: 'status', name:'status'},
         {data: 'action_status', name:'action_status'},
         // {data: 'action', name:'action'},

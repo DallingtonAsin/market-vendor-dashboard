@@ -2,11 +2,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1 style="font-weight:bolder; text-transform:uppercase; font-family: 'Times New Roman', Times, serif">
-      Shopping Orders Mangement
+      Processed Customer Orders Mangement
       </h1>
       <ol class="breadcrumb">
         <!-- li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li-->
-        <li class="active">Shopping Orders Mangement</li>
+        <li class="active">Processed customer Orders Mangement</li>
       </ol>
     </section>
 
@@ -18,8 +18,8 @@
     <div class="box-header">
       <div class="row">
         <div class="col-sm-4">
-          <h3 class="box-title" style="font-weight:bolder; text-transform:uppercase; 
-          font-family: 'Times New Roman', Times, serif">List of customer orders</h3>
+          <h5 class="box-title" style="font-weight:bolder; text-transform:uppercase; 
+          font-family: 'Times New Roman', Times, serif">processed customer orders</h5>
             <span class="pl-0 mt-4 response"></span>
         </div>
   </div>
@@ -73,7 +73,7 @@
   <script>
     var $=jQuery.noConflict();
 
-    const ajaxUrl =   <?php echo json_encode(route('shopping.orders.fetch'), 15, 512) ?>;
+    const ajaxUrl =   <?php echo json_encode(route('shopping.orders.processed.fetch'), 15, 512) ?>;
     const cat = 'shopping-lists';
     const token = "<?php echo e(csrf_token()); ?>";
 
@@ -98,7 +98,7 @@
         {data: 'items', name:'items'},
         {data: 'address', name:'address'},
         {data: 'request_date', name:'request_date'},
-        {data: 'delivery_date', name:'delivery_date'},
+        {data: 'created_at', name:'created_at'},
         {data: 'status', name:'status'},
         {data: 'action_status', name:'action_status'},
         // {data: 'action', name:'action'},
@@ -297,4 +297,4 @@
     });
 </script>
 
-<?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/mkv-ms/resources/views/livewire/shopping-orders/index.blade.php ENDPATH**/ ?>
+<?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/mkv-ms/resources/views/livewire/shopping-orders/processed.blade.php ENDPATH**/ ?>

@@ -2,11 +2,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1 style="font-weight:bolder; text-transform:uppercase; font-family: 'Times New Roman', Times, serif">
-      Shopping Orders Mangement
+      Pending Shopping Orders Mangement
       </h1>
       <ol class="breadcrumb">
         <!-- li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li-->
-        <li class="active">Shopping Orders Mangement</li>
+        <li class="active">Pending Shopping Orders Mangement</li>
       </ol>
     </section>
 
@@ -18,8 +18,8 @@
     <div class="box-header">
       <div class="row">
         <div class="col-sm-4">
-          <h3 class="box-title" style="font-weight:bolder; text-transform:uppercase; 
-          font-family: 'Times New Roman', Times, serif">List of customer orders</h3>
+          <h5 class="box-title" style="font-weight:bolder; text-transform:uppercase; 
+          font-family: 'Times New Roman', Times, serif">pending customer orders</h5>
             <span class="pl-0 mt-4 response"></span>
         </div>
   </div>
@@ -73,7 +73,7 @@
   <script>
     var $=jQuery.noConflict();
 
-    const ajaxUrl =   <?php echo json_encode(route('shopping.orders.fetch'), 15, 512) ?>;
+    const ajaxUrl =   <?php echo json_encode(route('shopping.orders.pending.fetch'), 15, 512) ?>;
     const cat = 'shopping-lists';
     const token = "<?php echo e(csrf_token()); ?>";
 
@@ -297,4 +297,4 @@
     });
 </script>
 
-<?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/mkv-ms/resources/views/livewire/shopping-orders/index.blade.php ENDPATH**/ ?>
+<?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/mkv-ms/resources/views/livewire/shopping-orders/pending.blade.php ENDPATH**/ ?>
